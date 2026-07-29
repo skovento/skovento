@@ -5,10 +5,13 @@ import { motion } from 'framer-motion';
 import { PhoneCall, Sparkles } from 'lucide-react';
 
 interface FloatingContactBtnProps {
-  onOpenModal: () => void;
+  onClick?: () => void;
+  onOpenModal?: () => void;
 }
 
-export const FloatingContactBtn: React.FC<FloatingContactBtnProps> = ({ onOpenModal }) => {
+export const FloatingContactBtn: React.FC<FloatingContactBtnProps> = ({ onClick, onOpenModal }) => {
+  const handleClick = onClick || onOpenModal;
+
   return (
     <div className="fixed bottom-6 right-6 z-40 flex items-center">
       {/* Pulsing ring aura */}
@@ -18,7 +21,7 @@ export const FloatingContactBtn: React.FC<FloatingContactBtnProps> = ({ onOpenMo
       <motion.button
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
-        onClick={onOpenModal}
+        onClick={handleClick}
         aria-label="Book Free Consultation"
         className="relative group flex items-center gap-2.5 px-4 py-3.5 bg-[#16203D] text-[#FAF8F5] rounded-full shadow-2xl border border-[#C88770]/30 hover:bg-[#8A2B88] transition-all duration-300"
       >
