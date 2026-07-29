@@ -29,13 +29,17 @@ export const WhyWeStartedSection: React.FC = () => {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div className="p-4 bg-[#FAF8F5] border border-[#E3DCD3] rounded-2xl flex items-center gap-3">
-                <Lightbulb className="w-5 h-5 text-[#C88770]" />
-                <span className="text-xs font-bold text-[#16203D]">Engineered for Outcomes</span>
+              <div className="p-4 bg-[#FAF8F5] border border-[#E3DCD3] rounded-2xl flex items-center gap-3.5 shadow-sm">
+                <div className="p-2.5 bg-[#C88770]/15 rounded-xl text-[#C88770] flex-shrink-0">
+                  <Lightbulb className="w-5 h-5" />
+                </div>
+                <span className="text-xs sm:text-sm font-bold text-[#16203D]">Engineered for Outcomes</span>
               </div>
-              <div className="p-4 bg-[#FAF8F5] border border-[#E3DCD3] rounded-2xl flex items-center gap-3">
-                <ShieldCheck className="w-5 h-5 text-[#8A2B88]" />
-                <span className="text-xs font-bold text-[#16203D]">Built on Trust & Transparency</span>
+              <div className="p-4 bg-[#FAF8F5] border border-[#E3DCD3] rounded-2xl flex items-center gap-3.5 shadow-sm">
+                <div className="p-2.5 bg-[#8A2B88]/15 rounded-xl text-[#8A2B88] flex-shrink-0">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <span className="text-xs sm:text-sm font-bold text-[#16203D]">Built on Trust & Transparency</span>
               </div>
             </div>
           </div>
