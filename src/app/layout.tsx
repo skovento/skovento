@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { LenisProvider } from '@/components/layout/LenisProvider';
+import { GSAPCinematicScroll } from '@/components/animation/GSAPCinematicScroll';
+import { CustomCursor } from '@/components/ui/CustomCursor';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://skovento.com'),
@@ -49,7 +51,10 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#424965] font-sans overflow-x-hidden">
         <LenisProvider>
-          {children}
+          <GSAPCinematicScroll>
+            <CustomCursor />
+            {children}
+          </GSAPCinematicScroll>
         </LenisProvider>
       </body>
     </html>

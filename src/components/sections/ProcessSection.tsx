@@ -32,23 +32,24 @@ export const ProcessSection: React.FC = () => {
           </p>
         </div>
 
-        {/* 8-Step Grid Roadmap */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 8-Step Animated Grid Roadmap */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 perspective-[1000px]">
           {steps.map((step, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="p-6 bg-[#F3EFEA] border border-[#E3DCD3] rounded-3xl relative flex flex-col justify-between hover:border-[#8A2B88]/40 transition-all group"
+              initial={{ opacity: 0, y: 30, rotateX: 10 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="p-6 bg-[#F3EFEA] border border-[#E3DCD3] rounded-3xl relative flex flex-col justify-between hover:border-[#8A2B88]/50 hover:shadow-xl transition-all group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-extrabold text-[#8A2B88] bg-[#8A2B88]/10 px-3 py-1 rounded-full">
-                    {step.num}
+                  <span className="text-xs font-mono font-extrabold text-[#8A2B88] bg-[#8A2B88]/10 px-3 py-1 rounded-full group-hover:bg-[#8A2B88] group-hover:text-white transition-colors">
+                    STAGE {step.num}
                   </span>
-                  <div className="p-2.5 bg-[#FAF8F5] rounded-xl text-[#16203D] border border-[#E3DCD3] group-hover:text-[#8A2B88] transition-colors">
+                  <div className="p-2.5 bg-[#FAF8F5] rounded-xl text-[#16203D] border border-[#E3DCD3] group-hover:text-[#8A2B88] group-hover:scale-110 transition-all">
                     {step.icon}
                   </div>
                 </div>
@@ -62,11 +63,10 @@ export const ProcessSection: React.FC = () => {
                 </p>
               </div>
 
-              {idx < steps.length - 1 && (
-                <div className="pt-4 text-center hidden lg:block text-[#8A2B88]/40 font-bold">
-                  ↓
-                </div>
-              )}
+              <div className="pt-4 flex items-center justify-between text-[10px] font-bold text-[#8A2B88]">
+                <span>Progress Milestone</span>
+                <span className="w-2 h-2 rounded-full bg-[#8A2B88] animate-ping" />
+              </div>
             </motion.div>
           ))}
         </div>

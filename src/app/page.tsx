@@ -7,6 +7,7 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { TrustBar } from '@/components/sections/TrustBar';
 import { ProblemSection } from '@/components/sections/ProblemSection';
 import { WhyWeStartedSection } from '@/components/sections/WhyWeStartedSection';
+import { MacroProductRevealSection } from '@/components/sections/MacroProductRevealSection';
 import { OurSolutionSection } from '@/components/sections/OurSolutionSection';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import { ProcessSection } from '@/components/sections/ProcessSection';
@@ -30,7 +31,7 @@ export default function HomePage() {
       {/* Floating Off-White Header */}
       <Navbar onOpenModal={handleOpenModal} />
 
-      {/* Main Page Layout - 15 Chronological Sections */}
+      {/* Main Page Layout - Chronological Sections */}
       <main className="flex-grow">
         {/* Section 1: Hero Section */}
         <HeroSection onOpenModal={handleOpenModal} />
@@ -43,6 +44,9 @@ export default function HomePage() {
 
         {/* Section 4: Why We Started */}
         <WhyWeStartedSection />
+
+        {/* Cinematic Macro Product Reveal (Dark Tech Scroll Reveal) */}
+        <MacroProductRevealSection />
 
         {/* Section 5: Our Solution */}
         <OurSolutionSection />

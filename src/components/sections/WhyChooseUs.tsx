@@ -54,19 +54,20 @@ export const WhyChooseUs: React.FC = () => {
           </p>
         </div>
 
-        {/* 6 Pillars Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 6 3D Interactive Pillars Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-[1000px]">
           {pillars.map((pillar, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="p-6 bg-[#FAF8F5] border border-[#E3DCD3] rounded-3xl space-y-4 shadow-sm hover:border-[#8A2B88]/40 transition-all hover:-translate-y-1"
+              whileHover={{ rotateX: 6, rotateY: -6, scale: 1.02 }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              className="p-6 bg-[#FAF8F5] border border-[#E3DCD3] rounded-3xl space-y-4 shadow-sm hover:border-[#8A2B88]/50 hover:shadow-xl transition-all group"
             >
               <div className="flex items-center justify-between">
-                <div className="p-3 bg-[#F3EFEA] rounded-2xl border border-[#E3DCD3]">
+                <div className="p-3 bg-[#F3EFEA] rounded-2xl border border-[#E3DCD3] group-hover:scale-110 transition-transform">
                   {pillar.icon}
                 </div>
                 <CheckCircle2 className="w-5 h-5 text-[#8A2B88]" />
