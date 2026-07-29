@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'use-link' || 'next/link';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
@@ -29,18 +29,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services', hasDropdown: true },
-    { name: 'Case Studies', href: '/work' },
+    { name: 'Portfolio', href: '/work' },
     { name: 'About Us', href: '/about' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' }
   ];
 
   const quickServices = [
     { title: 'Website Development', href: '/services/website-development' },
-    { title: 'E-commerce Development', href: '/services/ecommerce-development' },
-    { title: 'Web Applications & SaaS', href: '/services/web-application-development' },
-    { title: 'Search Engine Optimization (SEO)', href: '/services/search-engine-optimization' },
-    { title: 'PPC Google Ads', href: '/services/pay-per-click-advertising' },
-    { title: 'Branding & Graphic Design', href: '/services/branding-graphic-design' }
+    { title: 'Digital Marketing', href: '/services/search-engine-optimization' },
+    { title: 'Mobile App Development', href: '/services/web-application-development' },
+    { title: 'QA Testing', href: '/services/website-maintenance-support' },
+    { title: 'Social Media Management', href: '/services/social-media-marketing' },
+    { title: 'Branding & Identity', href: '/services/branding-graphic-design' },
+    { title: 'UI/UX Design', href: '/services/ui-ux-design' },
+    { title: 'AI Automation', href: '/services/web-application-development' },
+    { title: 'Maintenance & Support', href: '/services/website-maintenance-support' }
   ];
 
   return (
@@ -53,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <Logo size="md" showTagline={false} />
+        <Logo size="md" />
 
         {/* Desktop Nav Links */}
         <nav className="hidden md:flex items-center gap-1 bg-[#F3EFEA]/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-[#E3DCD3]">
@@ -95,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
                         </div>
                         {quickServices.map((svc) => (
                           <Link
-                            key={svc.slug || svc.title}
+                            key={svc.href || svc.title}
                             href={svc.href}
                             className="flex items-center justify-between px-3 py-2 text-xs font-medium text-[#424965] hover:text-[#16203D] hover:bg-[#F3EFEA] rounded-xl transition-colors group"
                           >

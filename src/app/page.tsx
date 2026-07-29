@@ -5,65 +5,81 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { TrustBar } from '@/components/sections/TrustBar';
-import { ServicesGrid } from '@/components/sections/ServicesGrid';
+import { ProblemSection } from '@/components/sections/ProblemSection';
+import { WhyWeStartedSection } from '@/components/sections/WhyWeStartedSection';
+import { OurSolutionSection } from '@/components/sections/OurSolutionSection';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import { ProcessSection } from '@/components/sections/ProcessSection';
 import { CaseStudiesSection } from '@/components/sections/CaseStudiesSection';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { StatsSection } from '@/components/sections/StatsSection';
+import { ServicesGrid } from '@/components/sections/ServicesGrid';
+import { IndustriesSection } from '@/components/sections/IndustriesSection';
+import { HonestTestimonialsSection } from '@/components/sections/HonestTestimonialsSection';
+import { FAQSection } from '@/components/sections/FAQSection';
 import { FinalCTASection } from '@/components/sections/FinalCTASection';
 import { ConsultationModal } from '@/components/ui/ConsultationModal';
 import { FloatingContactBtn } from '@/components/ui/FloatingContactBtn';
 
 export default function HomePage() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => setModalOpen(true);
-  const handleCloseModal = () => setModalOpen(false);
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#424965]">
-      {/* Navigation */}
+    <div className="min-h-screen bg-[#FAF8F5] text-[#16203D] flex flex-col font-sans selection:bg-[#8A2B88] selection:text-white">
+      {/* Floating Off-White Header */}
       <Navbar onOpenModal={handleOpenModal} />
 
-      {/* Main Content */}
+      {/* Main Page Layout - 15 Chronological Sections */}
       <main className="flex-grow">
-        {/* 1. Hero Section */}
+        {/* Section 1: Hero Section */}
         <HeroSection onOpenModal={handleOpenModal} />
 
-        {/* 2. Trust Bar */}
+        {/* Section 2: Trusted By */}
         <TrustBar />
 
-        {/* 3. Services Overview */}
-        <ServicesGrid />
+        {/* Section 3: The Problem */}
+        <ProblemSection />
 
-        {/* 4. Why Choose Skovento */}
+        {/* Section 4: Why We Started */}
+        <WhyWeStartedSection />
+
+        {/* Section 5: Our Solution */}
+        <OurSolutionSection />
+
+        {/* Section 6: Why Choose Us */}
         <WhyChooseUs />
 
-        {/* 5. Our Process */}
+        {/* Section 7: Our Process */}
         <ProcessSection />
 
-        {/* 6. Featured Work / Case Studies */}
+        {/* Section 8: Portfolio & Sample Work */}
         <CaseStudiesSection />
 
-        {/* 7. Testimonials */}
-        <TestimonialsSection />
+        {/* Section 9: Services in Detail */}
+        <ServicesGrid />
 
-        {/* 8. Impact Stats */}
-        <StatsSection />
+        {/* Section 10: Industries We Serve */}
+        <IndustriesSection />
 
-        {/* 9. Final CTA */}
+        {/* Section 11: Testimonials */}
+        <HonestTestimonialsSection />
+
+        {/* Section 12: FAQ */}
+        <FAQSection />
+
+        {/* Section 13: Free Consultation CTA */}
         <FinalCTASection onOpenModal={handleOpenModal} />
       </main>
 
-      {/* Footer */}
+      {/* Section 14 & 15: Footer & Global Modals */}
       <Footer />
 
-      {/* Floating Call Widget (Inspired by Manhar Creatives) */}
-      <FloatingContactBtn onOpenModal={handleOpenModal} />
+      {/* Consultation Booking Modal */}
+      <ConsultationModal isOpen={isModalOpen} onClose={handleCloseModal} />
 
-      {/* Interactive Consultation Booking Modal */}
-      <ConsultationModal isOpen={modalOpen} onClose={handleCloseModal} />
+      {/* Floating Action Call Widget */}
+      <FloatingContactBtn onClick={handleOpenModal} />
     </div>
   );
 }

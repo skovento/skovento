@@ -12,54 +12,57 @@ interface FinalCTASectionProps {
 export const FinalCTASection: React.FC<FinalCTASectionProps> = ({ onOpenModal }) => {
   return (
     <section className="py-24 bg-[#FAF8F5] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="relative p-10 sm:p-16 bg-[#16203D] rounded-3xl text-[#FAF8F5] overflow-hidden shadow-2xl border border-[#8A2B88]/30"
+          transition={{ duration: 0.6 }}
+          className="p-10 sm:p-16 bg-gradient-to-br from-[#16203D] via-[#1E2E6B] to-[#55246D] text-[#FAF8F5] rounded-3xl text-center space-y-8 relative overflow-hidden shadow-2xl"
         >
-          {/* Background Ambient Glow */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[#8A2B88]/40 via-[#C88770]/20 to-transparent rounded-full blur-3xl pointer-events-none" />
+          {/* Subtle Ambient Orbs */}
+          <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#8A2B88]/40 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#C88770]/30 rounded-full blur-3xl" />
 
-          <div className="max-w-3xl space-y-6 relative z-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5]/10 border border-[#FAF8F5]/20 text-xs font-semibold text-[#E5C396]">
+          <div className="relative z-10 space-y-4 max-w-3xl mx-auto">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-xs font-bold text-[#E5C396] uppercase tracking-wider border border-white/10">
               <Sparkles className="w-4 h-4 text-[#C88770]" />
-              <span>Let’s Talk Growth</span>
-            </div>
+              <span>Zero-Risk Growth Consultation</span>
+            </span>
 
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white leading-tight font-sans">
-              Ready to build something that <span className="text-gradient-brand underline decoration-[#C88770]">actually grows?</span>
+            {/* User specified Headline */}
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-sans tracking-tight">
+              Ready to Grow Your Business?
             </h2>
 
-            <p className="text-base sm:text-lg text-[#FAF8F5]/80 max-w-xl leading-relaxed">
-              Let's talk about your project — no pressure, just a real conversation with senior engineers about what's possible for your business.
+            {/* User specified Subheading */}
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed">
+              Let's discuss your goals and create a strategy that works for your business.
             </p>
+          </div>
 
-            <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <Button
-                size="lg"
-                variant="secondary"
-                onClick={onOpenModal}
-                icon={<ArrowUpRight className="w-5 h-5" />}
-              >
-                Book a Free Strategy Call
-              </Button>
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <Button
+              size="lg"
+              onClick={onOpenModal}
+              icon={<ArrowUpRight className="w-5 h-5" />}
+            >
+              Book Free Consultation
+            </Button>
+          </div>
+
+          <div className="relative z-10 flex items-center justify-center gap-6 pt-4 text-xs text-white/70">
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-[#E5C396]" />
+              <span>No Obligation Proposal</span>
             </div>
-
-            <div className="pt-6 flex flex-wrap items-center gap-6 text-xs text-[#FAF8F5]/60 border-t border-white/10">
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#C88770]" />
-                <span>Zero Pressure Consultation</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <PhoneCall className="w-4 h-4 text-[#8A2B88]" />
-                <span>24-Hour SLA Response</span>
-              </div>
+            <div className="flex items-center gap-1.5">
+              <PhoneCall className="w-4 h-4 text-[#C88770]" />
+              <span>24-Hour SLA Response</span>
             </div>
           </div>
+
         </motion.div>
 
       </div>
