@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Mail, ShieldCheck } from 'lucide-react';
+import { Mail, ShieldCheck, PhoneCall } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 
 export const Footer: React.FC = () => {
@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#E3DCD3]">
           
-          {/* Brand Info Column - Logo sits cleanly on off-white background */}
+          {/* Column 1: Brand & Mission */}
           <div className="lg:col-span-2 space-y-4">
             <div>
               <Logo size="lg" />
@@ -27,41 +27,41 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Development Services Column */}
+          {/* Column 2: Website Development */}
           <div>
             <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#16203D] mb-4">
-              Development
+              Website Development
             </h4>
             <ul className="space-y-2.5 text-sm text-[#424965]">
               <li>
                 <Link href="/services/website-development" className="hover:text-[#8A2B88] transition-colors">
-                  Website Development
+                  Business Websites
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/website-development" className="hover:text-[#8A2B88] transition-colors">
+                  Landing Pages
                 </Link>
               </li>
               <li>
                 <Link href="/services/ecommerce-development" className="hover:text-[#8A2B88] transition-colors">
-                  E-commerce Stores
+                  E-Commerce Stores
                 </Link>
               </li>
               <li>
-                <Link href="/services/web-application-development" className="hover:text-[#8A2B88] transition-colors">
-                  Web Applications & SaaS
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/ui-ux-design" className="hover:text-[#8A2B88] transition-colors">
-                  UI/UX Interface Design
+                <Link href="/services/website-development" className="hover:text-[#8A2B88] transition-colors">
+                  Website Redesign
                 </Link>
               </li>
               <li>
                 <Link href="/services/website-maintenance-support" className="hover:text-[#8A2B88] transition-colors">
-                  Maintenance & Support
+                  Website Maintenance
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Marketing Services Column */}
+          {/* Column 3: Digital Marketing */}
           <div>
             <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#16203D] mb-4">
               Digital Marketing
@@ -69,7 +69,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-sm text-[#424965]">
               <li>
                 <Link href="/services/search-engine-optimization" className="hover:text-[#8A2B88] transition-colors">
-                  Search Engine Optimization (SEO)
+                  SEO Optimization
                 </Link>
               </li>
               <li>
@@ -79,72 +79,75 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link href="/services/social-media-marketing" className="hover:text-[#8A2B88] transition-colors">
-                  Social Media Marketing
+                  Meta Ads (Facebook/IG)
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/search-engine-optimization" className="hover:text-[#8A2B88] transition-colors">
+                  Local SEO & Maps
                 </Link>
               </li>
               <li>
                 <Link href="/services/branding-graphic-design" className="hover:text-[#8A2B88] transition-colors">
-                  Branding & Identity
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/conversion-rate-optimization" className="hover:text-[#8A2B88] transition-colors">
-                  Conversion Rate Optimization (CRO)
+                  Content Strategy
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Quick Links & Contact */}
+          {/* Column 4 & 5: Company, Resources & Legal */}
           <div>
             <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#16203D] mb-4">
-              Company & Contact
+              Explore Skovento
             </h4>
-            <ul className="space-y-3 text-sm text-[#424965]">
+            <ul className="space-y-2.5 text-sm text-[#424965]">
               <li>
                 <Link href="/about" className="hover:text-[#8A2B88] transition-colors">
-                  About Skovento
+                  About Us & Mission
                 </Link>
               </li>
               <li>
                 <Link href="/work" className="hover:text-[#8A2B88] transition-colors">
-                  Portfolio & Work
+                  Portfolio & Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries" className="hover:text-[#8A2B88] transition-colors">
+                  Industries We Serve
+                </Link>
+              </li>
+              <li>
+                <Link href="/process" className="hover:text-[#8A2B88] transition-colors">
+                  Our 8-Stage Process
                 </Link>
               </li>
               <li>
                 <Link href="/blog" className="hover:text-[#8A2B88] transition-colors">
-                  Growth Blog
+                  Resources & Blog
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-[#8A2B88] transition-colors">
-                  Contact Us
+                  Contact & HQ Location
                 </Link>
-              </li>
-              <li className="pt-2 flex items-center gap-2 text-xs text-[#16203D] font-medium">
-                <Mail className="w-4 h-4 text-[#8A2B88]" />
-                <span>hello@skovento.com</span>
-              </li>
-              <li className="flex items-center gap-2 text-xs text-[#16203D] font-medium">
-                <ShieldCheck className="w-4 h-4 text-[#C88770]" />
-                <span>24/7 Global Support Availability</span>
               </li>
             </ul>
           </div>
+
         </div>
 
-        {/* Bottom Credits */}
+        {/* Bottom Credits & Legal Links */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#424965]/80 gap-4">
           <p>© {new Date().getFullYear()} Skovento. All rights reserved. Beyond Limits. Elevated Journeys.</p>
           <div className="flex items-center gap-6">
-            <Link href="/contact" className="hover:text-[#8A2B88] transition-colors">
+            <Link href="/privacy" className="hover:text-[#8A2B88] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/contact" className="hover:text-[#8A2B88] transition-colors">
-              Terms of Service
+            <Link href="/terms" className="hover:text-[#8A2B88] transition-colors">
+              Terms & Conditions
             </Link>
             <Link href="/contact" className="hover:text-[#8A2B88] transition-colors">
-              Sitemap
+              Book Free Consultation
             </Link>
           </div>
         </div>
