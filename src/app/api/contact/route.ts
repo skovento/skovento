@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, service, budget, message } = body;
+    const { name, email, phone, service, message } = body;
 
     if (!name || !email) {
       return NextResponse.json(
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log('Received Skovento Lead:', { name, email, phone, service, budget, message });
+    console.log('Received Skovento Lead:', { name, email, phone, service, message });
 
     return NextResponse.json(
       { success: true, message: 'Lead submitted successfully.' },

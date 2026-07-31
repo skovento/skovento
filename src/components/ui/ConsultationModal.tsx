@@ -18,7 +18,6 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
     email: '',
     phone: '',
     service: 'Website Development',
-    budget: '$5,000 - $15,000',
     details: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,7 +47,6 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
       email: '',
       phone: '',
       service: 'Website Development',
-      budget: '$5,000 - $15,000',
       details: ''
     });
     onClose();
@@ -141,42 +139,25 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
-                        Core Service Needed
-                      </label>
-                      <select
-                        value={formData.service}
-                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                        className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
-                      >
-                        <option>Website Development</option>
-                        <option>E-commerce Store</option>
-                        <option>Web Application / SaaS</option>
-                        <option>UI/UX Design</option>
-                        <option>SEO & Organic Growth</option>
-                        <option>PPC Google Ads</option>
-                        <option>Social Media Marketing</option>
-                        <option>Branding & Graphic Design</option>
-                        <option>Full Digital Growth Engine</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
-                        Estimated Budget
-                      </label>
-                      <select
-                        value={formData.budget}
-                        onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                        className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
-                      >
-                        <option>&lt; $5,000</option>
-                        <option>$5,000 - $15,000</option>
-                        <option>$15,000 - $30,000</option>
-                        <option>$30,000+</option>
-                      </select>
-                    </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
+                      Core Service Needed
+                    </label>
+                    <select
+                      value={formData.service}
+                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                      className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
+                    >
+                      <option>Website Development</option>
+                      <option>E-commerce Store</option>
+                      <option>Web Application / SaaS</option>
+                      <option>UI/UX Design</option>
+                      <option>SEO & Organic Growth</option>
+                      <option>PPC Google Ads</option>
+                      <option>Social Media Marketing</option>
+                      <option>Branding & Graphic Design</option>
+                      <option>Full Digital Growth Engine</option>
+                    </select>
                   </div>
 
                   <div>

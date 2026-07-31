@@ -34,7 +34,7 @@ export default function PrivacyPage() {
             <li>E-mail Address</li>
             <li>Phone Number & WhatsApp ID</li>
             <li>Company / Business Name</li>
-            <li>Project Specifications & Budget Ranges</li>
+            <li>Project Specifications & Requirements</li>
           </ul>
 
           <h2 className="text-xl font-bold text-[#16203D]">2. Use of your Personal Information</h2>

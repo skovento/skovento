@@ -43,12 +43,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/services', hasDropdown: true },
-    { name: 'Portfolio', href: '/work' },
+    // { name: 'Portfolio', href: '/work' },
     { name: 'Industries', href: '/industries' },
     { name: 'Process', href: '/process' },
     { name: 'Resources', href: '/blog' },
+    { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' }
   ];
 

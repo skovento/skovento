@@ -238,7 +238,7 @@ export const servicesData: Service[] = [
       desc: 'Average Return On Ad Spend (ROAS) achieved across active accounts.'
     },
     faqs: [
-      { question: 'What is the minimum ad spend required?', answer: 'We work with monthly ad budgets starting from $1,000 up to $50,000+ depending on market competitiveness.' }
+      { question: 'What is the minimum ad spend required?', answer: 'Ad spend is flexible and scales with your market competitiveness — we\'ll recommend the right level for your goals during our strategy call.' }
     ]
   },
   {

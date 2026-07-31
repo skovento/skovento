@@ -20,7 +20,6 @@ export default function ContactPage() {
     email: '',
     phone: '',
     service: 'Website Development',
-    budget: '$5,000 - $15,000',
     message: ''
   });
 
@@ -219,28 +218,6 @@ export default function ContactPage() {
                           <option>Branding & Graphic Design</option>
                           <option>Full Digital Growth Engine</option>
                         </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
-                        Estimated Budget Range
-                      </label>
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                        {['<$5k', '$5k-$15k', '$15k-$30k', '$30k+'].map((b) => (
-                          <button
-                            type="button"
-                            key={b}
-                            onClick={() => setFormData({ ...formData, budget: b })}
-                            className={`py-2.5 text-xs font-bold rounded-xl border transition-all ${
-                              formData.budget === b
-                                ? 'bg-[#16203D] text-white border-[#16203D]'
-                                : 'bg-[#FAF8F5] text-[#424965] border-[#E3DCD3] hover:border-[#8A2B88]'
-                            }`}
-                          >
-                            {b}
-                          </button>
-                        ))}
                       </div>
                     </div>
 
