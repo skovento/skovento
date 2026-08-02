@@ -1,0 +1,124 @@
+// Skovento — database schema
+//
+// Run after editing:
+//   npx prisma generate
+//   npx prisma migrate dev --name init
+//
+// DATABASE_URL uses the Supabase transaction-mode pooler (for the app).
+// DIRECT_URL uses the session-mode pooler (required for migrations).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// Every consultation request and contact-form submission.
+/// Before this model existed, /api/contact only console.logged the payload —
+/// meaning every enquiry the site ever received was discarded.
+model Inquiry {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name    String
+  email   String
+  phone   String?
+  company String?
+  service String?
+  message String? @db.Text
+
+  /// Where the enquiry came from: 'contact-page', 'consultation-modal', etc.
+  source String @default("website")
+  /// Page path the visitor submitted from, for attribution.
+  pagePath String?
+
+  status   InquiryStatus @default(NEW)
+  priority Priority      @default(NORMAL)
+
+  /// Internal notes — never shown to the person who submitted.
+  adminNotes String? @db.Text
+
+  /// Set when an admin first opens it, so "unread" is meaningful.
+  readAt      DateTime?
+  respondedAt DateTime?
+
+  /// Coarse metadata for spam triage. No precise IP is stored — only a
+  /// truncated form, so this stays proportionate under India's DPDP Act 2023.
+  userAgent   String?
+  ipHash      String?
+  referrer    String?
+
+  @@index([status, createdAt])
+  @@index([createdAt])
+}
+
+enum InquiryStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  PROPOSAL_SENT
+  WON
+  LOST
+  SPAM
+}
+
+enum Priority {
+  LOW
+  NORMAL
+  HIGH
+}
+
+/// Client-submitted reviews.
+///
+/// Deliberately defaults to PENDING and is never rendered publicly until an
+/// admin approves it. The homepage testimonials section stays hidden entirely
+/// until at least one APPROVED record exists — the site shows no reviews rather
+/// than placeholder or invented ones.
+model Testimonial {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  authorName  String
+  authorRole  String?
+  companyName String?
+  /// Optional public link so a reader can verify the person is real.
+  companyUrl  String?
+
+  /// Kept private. Used only to verify the submitter and follow up.
+  authorEmail String
+
+  rating Int    @default(5)
+  quote  String @db.Text
+
+  /// Which project this relates to, in the client's own words.
+  projectContext String?
+
+  status TestimonialStatus @default(PENDING)
+
+  /// Explicit, recorded consent to publish. Without this we do not display it,
+  /// regardless of status — a review submitted is not a review licensed.
+  consentToPublish Boolean @default(false)
+
+  /// Single-use token from the invite link, so we know which client this is
+  /// and can rate-limit submissions per invite.
+  inviteToken String? @unique
+
+  /// Set by an admin. Lets you order the section deliberately.
+  displayOrder Int @default(0)
+
+  adminNotes String? @db.Text
+
+  @@index([status, displayOrder])
+}
+
+enum TestimonialStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}

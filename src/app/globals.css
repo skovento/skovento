@@ -148,6 +148,65 @@
   border-image: linear-gradient(135deg, #1E2E6B, #8A2B88, #C88770) 1;
 }
 
+/* ==========================================================================
+   DARK GLASS — admin panel surfaces
+   ==========================================================================
+   The public site is light; the admin panel is dark. That's deliberate: glass
+   only reads as glass when there's something behind it worth refracting, and a
+   dark ground with coloured light sources gives the effect somewhere to live.
+   It also makes the two contexts instantly distinguishable at a glance.
+   ========================================================================== */
+
+.glass-panel {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.085),
+    rgba(255, 255, 255, 0.03)
+  );
+  backdrop-filter: blur(26px) saturate(170%);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    0 20px 48px -18px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.13);
+}
+
+/* Lighter weight for rows and list items — a full glass panel per row would
+   blow the 4-6 backdrop-filter budget instantly on a list of 50 enquiries. */
+.glass-row {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.glass-row:hover {
+  background: rgba(255, 255, 255, 0.065);
+  border-color: rgba(194, 79, 190, 0.32);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-panel {
+    background: rgba(20, 20, 28, 0.96);
+  }
+}
+
+/* Live indicator pulse for the realtime connection badge */
+@keyframes live-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.82);
+  }
+}
+
+.animate-live-dot {
+  animation: live-dot 1.8s ease-in-out infinite;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

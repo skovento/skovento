@@ -37,7 +37,7 @@ export const siteConfig = {
    * Keep it factual, entity-dense, and under ~60 words.
    */
   description:
-    'Skovento is a web design and digital growth studio in India. We build 3D scroll-animated, high-performance websites using Next.js, React, GSAP and Three.js, and run SEO and paid acquisition campaigns for D2C brands, cafes, clinics and local businesses.',
+    'Skovento is a web design and digital growth studio in Ahmedabad, Gujarat. We build 3D scroll-animated, high-performance websites using Next.js, React, GSAP and Three.js, and run SEO and paid acquisition campaigns for D2C brands, cafes, clinics and local businesses across India.',
 
   // ----------------------------------------------------------------- contact
   // These were already live in the codebase (src/lib/contact.ts, Footer,
@@ -45,7 +45,7 @@ export const siteConfig = {
   // truth instead of the same number hard-coded in six files.
   contact: {
     /** Must be an inbox you actually monitor — it's published in schema.org. */
-    email: 'hello@skovento.com',
+    email: 'connect@skovento.com',
 
     /** E.164 format. Used for schema.org telephone and `tel:` links. */
     phone: '+919104450552',
@@ -62,13 +62,16 @@ export const siteConfig = {
 
   // ---------------------------------------------------------------- location
   address: {
-    /** TODO_STREET — e.g. '3rd Floor, Iscon Emporio, Satellite' */
+    /**
+     * TODO_STREET — street line, e.g. '3rd Floor, Iscon Emporio, Satellite'.
+     * Optional: schema.org accepts a city-level address without it, and the
+     * city is what actually drives local ranking. Add it when you have a
+     * public office address you're happy to publish.
+     */
     street: 'TODO_STREET',
-    /** TODO_CITY — e.g. 'Ahmedabad'. Also drives the /[city] local SEO page. */
-    city: 'TODO_CITY',
-    /** TODO_STATE — e.g. 'Gujarat' */
-    region: 'TODO_STATE',
-    /** TODO_PIN — e.g. '380015' */
+    city: 'Ahmedabad',
+    region: 'Gujarat',
+    /** TODO_PIN — 6-digit PIN code, e.g. '380015'. */
     postalCode: 'TODO_PIN',
     country: 'IN',
     countryName: 'India',
@@ -76,13 +79,17 @@ export const siteConfig = {
 
   /**
    * TODO_GEO — latitude/longitude of your office.
-   * Get them from Google Maps: right-click your location → click the coordinates to copy.
-   * Leave as null if you work remotely and have no public office.
+   * Google Maps → right-click your location → click the coordinates to copy,
+   * then replace `null` with { latitude: 23.0225, longitude: 72.5714 }.
+   * Leave null if you work remotely and have no public office.
    */
   geo: null as { latitude: number; longitude: number } | null,
 
-  /** Cities and regions you actively sell into. Feeds schema.org areaServed. */
-  areaServed: ['India'] as string[],
+  /**
+   * Cities and regions you actively sell into. Feeds schema.org areaServed.
+   * Ahmedabad first: specific-then-broad is how local intent gets matched.
+   */
+  areaServed: ['Ahmedabad', 'Gujarat', 'India'] as string[],
 
   /** TODO_GST — 15-character GSTIN, or null if not registered yet. */
   gstNumber: null as string | null,
@@ -162,11 +169,19 @@ export const siteConfig = {
 export const isTodo = (v: string | null | undefined): boolean =>
   !v || v.startsWith('TODO_');
 
-/** Full postal address as one line, or null while incomplete. */
+/**
+ * Postal address as one line, built from whatever parts are filled in.
+ *
+ * Degrades gracefully rather than all-or-nothing: "Ahmedabad, Gujarat, India"
+ * is a perfectly good NAP string and is what drives local ranking. Waiting for
+ * a street line before publishing any location would be the worse trade.
+ * Returns null only if we don't even have a city.
+ */
 export const formattedAddress = (): string | null => {
   const a = siteConfig.address;
-  if ([a.street, a.city, a.region, a.postalCode].some(isTodo)) return null;
-  return `${a.street}, ${a.city}, ${a.region} ${a.postalCode}, ${a.countryName}`;
+  if (isTodo(a.city)) return null;
+  const parts = [a.street, a.city, a.region, a.postalCode].filter((p) => !isTodo(p));
+  return [...parts, a.countryName].join(', ');
 };
 
 /** Ready-to-use wa.me link, or null while the number is a placeholder. */

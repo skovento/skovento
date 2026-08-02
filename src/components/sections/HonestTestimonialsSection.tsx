@@ -58,8 +58,15 @@ export const HonestTestimonialsSection: React.FC<HonestTestimonialsSectionProps>
             <Quote className="w-4 h-4" />
             Claim a founding slot
           </button>
+          {/*
+            Was "2 of 3 slots remaining", which implies one client has already
+            signed. None has. Manufactured scarcity is the same category of
+            problem as a fake testimonial — it's a claim a prospect can't verify
+            and you can't defend, on a page whose entire argument is that you're
+            the honest option.
+          */}
           <span className="text-xs text-[#E5C396] font-semibold uppercase tracking-wider">
-            2 of 3 slots remaining
+            All 3 founding slots open
           </span>
         </div>
 
