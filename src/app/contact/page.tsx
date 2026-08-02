@@ -131,7 +131,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <div className="text-xs text-[#424965]">Global Client Hubs</div>
-                        <span>USA, Europe & Worldwide</span>
+                        <span>India & Worldwide</span>
                       </div>
                     </div>
                   </div>
@@ -165,7 +165,7 @@ export default function ContactPage() {
                         <input
                           type="text"
                           required
-                          placeholder="Marcus Vance"
+                          placeholder="e.g. Priya Sharma"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E3DCD3] rounded-xl text-[#16203D] placeholder-[#424965]/40 focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
@@ -178,7 +178,7 @@ export default function ContactPage() {
                         <input
                           type="email"
                           required
-                          placeholder="marcus@vance.com"
+                          placeholder="priya@yourbrand.in"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E3DCD3] rounded-xl text-[#16203D] placeholder-[#424965]/40 focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
@@ -193,7 +193,7 @@ export default function ContactPage() {
                         </label>
                         <input
                           type="tel"
-                          placeholder="+1 (555) 000-0000"
+                          placeholder="+91 98765 43210"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E3DCD3] rounded-xl text-[#16203D] placeholder-[#424965]/40 focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"

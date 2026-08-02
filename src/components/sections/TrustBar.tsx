@@ -2,13 +2,26 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Clock3, Rocket, IndianRupee, ShieldCheck } from 'lucide-react';
+import { Clock3, Rocket, Gauge, ShieldCheck } from 'lucide-react';
 
+/**
+ * Every figure here must be TRUE and INDEPENDENTLY CHECKABLE.
+ *
+ * That constraint is the whole point. A prospect can verify the LCP number in
+ * Google PageSpeed Insights in ten seconds, which makes it persuasive in a way
+ * that "50+ projects delivered" never was. It also makes each one quotable by
+ * an AI engine — statistics are the highest-impact factor in getting cited,
+ * and adjectives are unquotable.
+ *
+ * The published-price stat was removed because pricing is currently off the
+ * site (siteConfig.publishPricing === false). Replaced with the performance
+ * guarantee, which is equally concrete and always true.
+ */
 export const TrustBar: React.FC = () => {
   const stats = [
     { icon: <Clock3 className="w-5 h-5 text-[#8A2B88]" />, value: 'Jul 2026', label: 'Studio Founded' },
-    { icon: <Rocket className="w-5 h-5 text-[#C88770]" />, value: '7 Days', label: 'First-Build Delivery' },
-    { icon: <IndianRupee className="w-5 h-5 text-[#1E2E6B]" />, value: '₹42,000', label: 'Starting Price, Published' },
+    { icon: <Rocket className="w-5 h-5 text-[#C88770]" />, value: '7 Days', label: 'Fastest Build Delivery' },
+    { icon: <Gauge className="w-5 h-5 text-[#1E2E6B]" />, value: 'Under 2.5s', label: 'Guaranteed LCP on 4G' },
     { icon: <ShieldCheck className="w-5 h-5 text-[#C88770]" />, value: '100%', label: 'Refund If We Miss Deadline' }
   ];
 

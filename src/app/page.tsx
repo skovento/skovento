@@ -20,6 +20,7 @@ import { FAQSection } from '@/components/sections/FAQSection';
 import { FinalCTASection } from '@/components/sections/FinalCTASection';
 import { ConsultationModal } from '@/components/ui/ConsultationModal';
 import { FloatingContactBtn } from '@/components/ui/FloatingContactBtn';
+import { siteConfig } from '@/lib/site-config';
 
 export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -64,8 +65,20 @@ export default function HomePage() {
         {/* Section 9: Services in Detail */}
         <ServicesGrid />
 
-        {/* Section 10: Pricing */}
-        <PricingSection onOpenModal={handleOpenModal} />
+        {/*
+          Section 10: Pricing — currently OFF.
+
+          Gated behind siteConfig.publishPricing (set to false). The component
+          and its tiers are kept intact, not deleted: flip the flag in
+          src/lib/site-config.ts to true and this section, the /pricing route in
+          the sitemap, and the Offer schema all switch on together.
+
+          Worth knowing before you flip it: publishing pricing is the strongest
+          available play for "how much does a website cost in india" — the
+          highest commercial-intent query in this market, and one that answer
+          engines can only cite you for if the numbers are actually on the page.
+        */}
+        {siteConfig.publishPricing && <PricingSection onOpenModal={handleOpenModal} />}
 
         {/* Section 11: Industries We Serve */}
         <IndustriesSection />

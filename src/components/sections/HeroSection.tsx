@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowUpRight, TrendingUp, Laptop, Smartphone, ShieldCheck, Zap, Sparkles } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { siteConfig, locationLabel } from '@/lib/site-config';
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -52,30 +53,47 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F3EFEA] border border-[#E3DCD3] shadow-sm text-xs font-semibold text-[#8A2B88]"
             >
               <Sparkles className="w-4 h-4 text-[#C88770]" />
-              <span>Premium Growth Consultancy</span>
+              <span>3D &amp; Motion Web</span>
               <span className="text-[#424965]/30">•</span>
-              <span className="text-[#16203D]">Web Engineering & Performance Ads</span>
+              <span className="text-[#16203D]">{locationLabel()}</span>
             </motion.div>
 
-            {/* Bold Headline */}
+            {/*
+              H1 rewritten for AEO/GEO.
+
+              The previous headline — "We Don't Just Build Websites. We Build
+              Businesses That Grow." — is what every agency says, contains no
+              entity and no fact, and is therefore unquotable: an AI engine has
+              nothing to extract from it.
+
+              This version names the differentiator (3D, motion) and is followed
+              immediately by a subheading dense with named entities (Next.js,
+              GSAP, Three.js) and hard numbers (2.5s, 4G, 7 days). Statistics
+              and entity density are the two highest-impact factors in whether
+              a page gets cited by generative engines.
+            */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#16203D] tracking-tight leading-[1.1] font-sans"
             >
-              We Don&apos;t Just Build Websites.{' '}
-              <span className="block text-gradient-brand mt-1">We Build Businesses That Grow.</span>
+              Websites that move{' '}
+              <span className="block text-gradient-brand mt-1">like your brand should.</span>
             </motion.h1>
 
-            {/* Subheading */}
+            {/* Subheading — entity-dense and statistic-led by design */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-base sm:text-lg text-[#424965] leading-relaxed max-w-2xl"
             >
-              Custom websites and result-driven digital marketing designed to help startups and businesses attract more customers, generate quality leads, and grow online.
+              Skovento builds 3D scroll-animated websites on Next.js, GSAP and Three.js
+              for D2C brands, cafes and clinics across {siteConfig.address.countryName} —
+              server-rendered, and guaranteed to load in under{' '}
+              {siteConfig.standards.lcpSeconds} seconds on 4G. First builds go live in{' '}
+              {siteConfig.standards.fastestDeliveryDays} working days.
             </motion.p>
 
             {/* CTA Buttons */}

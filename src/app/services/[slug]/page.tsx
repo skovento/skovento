@@ -10,9 +10,11 @@ import { ConsultationModal } from '@/components/ui/ConsultationModal';
 import { FloatingContactBtn } from '@/components/ui/FloatingContactBtn';
 import { Button } from '@/components/ui/Button';
 import { servicesData } from '@/data/services';
-import { 
-  CheckCircle2, ArrowRight, ShieldCheck, Sparkles, 
-  ChevronDown, TrendingUp, HelpCircle, ArrowLeft 
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildGraph, serviceSchema, faqSchema, breadcrumbSchema } from '@/lib/schema';
+import {
+  CheckCircle2, ArrowRight, ShieldCheck, Sparkles,
+  ChevronDown, TrendingUp, HelpCircle, ArrowLeft
 } from 'lucide-react';
 
 export default function IndividualServicePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -28,6 +30,31 @@ export default function IndividualServicePage({ params }: { params: Promise<{ sl
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#424965]">
+      {/*
+        Service + FAQPage + BreadcrumbList structured data.
+
+        Each of the 12 services already ships hand-written FAQs in
+        data/services.ts — until now they were rendered as plain HTML and
+        marked up as nothing. Emitting them as FAQPage turns 12 existing pages
+        into 12 answer-engine assets at zero content cost, which is the single
+        cheapest AEO win available on this site.
+      */}
+      <JsonLd
+        data={buildGraph(
+          serviceSchema({
+            name: service.title,
+            description: service.detailedDescription,
+            slug: service.slug
+          }),
+          faqSchema(service.faqs),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' },
+            { name: service.title, path: `/services/${service.slug}` }
+          ])
+        )}
+      />
+
       <Navbar onOpenModal={() => setModalOpen(true)} />
 
       <main className="flex-grow pt-28">

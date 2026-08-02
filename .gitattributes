@@ -1,0 +1,28 @@
+# Normalise line endings.
+#
+# Several files in the working tree got converted from LF to CRLF by a Windows
+# editor, which makes `git diff` show entire files as changed even when only a
+# few lines moved. That noise makes code review effectively impossible.
+#
+# `text=auto eol=lf` stores LF in the repository and checks out LF, which is
+# what the rest of this codebase already uses.
+#
+# After adding this file, run once to normalise everything already tracked:
+#
+#   git add --renormalize .
+#
+* text=auto eol=lf
+
+# Binary — never touch these
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.webp  binary
+*.avif  binary
+*.mp4   binary
+*.webm  binary
+*.woff  binary
+*.woff2 binary
+*.pdf   binary

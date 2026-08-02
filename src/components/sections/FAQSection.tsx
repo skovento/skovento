@@ -3,45 +3,34 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle } from 'lucide-react';
+import { homepageFaqs } from '@/data/faqs';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { faqSchema, buildGraph } from '@/lib/schema';
 
 export const FAQSection: React.FC = () => {
-  const faqs = [
-    {
-      q: 'How much does a custom website cost?',
-      a: 'Published pricing, no "contact for quote": Launch starts at ₹42,000 (7 days, 5 pages), Growth at ₹85,000 (14 days, 10 pages), and Signature at ₹1,60,000 (25–30 days, 18 pages), all excluding 18% GST. Larger custom builds are scoped individually.'
-    },
-    {
-      q: "You have no client work yet — why should I hire you?",
-      a: "Because we'd rather tell you that than invent fake case studies. What we offer instead: a founding-client discount, a written performance guarantee, and full transparency on process and pricing — things you can actually verify, unlike a testimonial."
-    },
-    {
-      q: 'How long does a website project take to launch?',
-      a: 'Most custom website projects are completed and launched within 2 to 4 weeks, depending on content readiness and custom feature requirements.'
-    },
-    {
-      q: 'Do you redesign existing websites?',
-      a: 'Yes! We perform complete digital redesigns—overhauling outdated visuals, improving mobile responsiveness, optimizing site speed, and restructuring content for higher conversion rates.'
-    },
-    {
-      q: 'Will my new website rank on Google?',
-      a: 'Absolutely. Every Skovento website is engineered from day one with technical SEO best practices, clean semantic markup, fast load times, and mobile optimization.'
-    },
-    {
-      q: 'Do you provide ongoing maintenance and support?',
-      a: 'Yes, we offer dedicated post-launch support and monthly growth packages covering security updates, content updates, backups, speed monitoring, and strategy calls.'
-    },
-    {
-      q: 'Can you manage my Google Ads and Meta campaigns?',
-      a: 'Yes! Our digital marketing team manages end-to-end PPC campaigns, keyword targeting, ad copywriting, conversion tracking, and ongoing ROI optimization on Google, Facebook, and Instagram.'
-    }
-  ];
+  // Single source of truth, shared with the FAQPage JSON-LD below. Google
+  // requires the visible text and the markup to match exactly.
+  const faqs = homepageFaqs;
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section className="py-14 sm:py-24 bg-[#F3EFEA] border-y border-[#E3DCD3]">
+      {/*
+        FAQPage structured data. This is the single highest-value schema type
+        for AI search: pages carrying it are roughly 3.2x more likely to appear
+        in Google AI Overviews. Rendered from `homepageFaqs`, the same array the
+        accordion below renders, so the markup can never drift from the visible
+        text — which is a Google requirement, not a nicety.
+
+        This component is a Client Component, but Next.js still renders it to
+        HTML on the server for the initial response, so the block is present in
+        the raw HTML that non-JS crawlers read.
+      */}
+      <JsonLd data={buildGraph(faqSchema(faqs))} />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="text-center space-y-4 mb-16">
           <span className="text-xs font-bold uppercase tracking-widest text-[#8A2B88]">
             Clear Answers
@@ -68,7 +57,7 @@ export const FAQSection: React.FC = () => {
                   className="w-full p-6 text-left flex items-center justify-between gap-4 font-bold text-[#16203D] hover:text-[#8A2B88] transition-colors"
                 >
                   <span className="text-base sm:text-lg font-sans">
-                    {faq.q}
+                    {faq.question}
                   </span>
                   <ChevronDown
                     className={`w-5 h-5 text-[#8A2B88] transition-transform duration-300 ${
@@ -87,7 +76,7 @@ export const FAQSection: React.FC = () => {
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-6 text-sm text-[#424965] leading-relaxed border-t border-[#E3DCD3]/60 pt-4">
-                        {faq.a}
+                        {faq.answer}
                       </div>
                     </motion.div>
                   )}

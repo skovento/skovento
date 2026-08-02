@@ -104,7 +104,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Sarah Jenkins"
+                      placeholder="e.g. Priya Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] placeholder-[#424965]/50 focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
@@ -119,7 +119,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                       <input
                         type="email"
                         required
-                        placeholder="sarah@company.com"
+                        placeholder="priya@yourbrand.in"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] placeholder-[#424965]/50 focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
@@ -131,7 +131,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                       </label>
                       <input
                         type="tel"
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] placeholder-[#424965]/50 focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"

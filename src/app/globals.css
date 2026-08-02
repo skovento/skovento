@@ -38,20 +38,96 @@
   }
 }
 
-/* Glassmorphism & Custom Luxury Cards */
+/* ==========================================================================
+   GLASS SYSTEM — three tiers, each with a rule about when it's allowed
+   ==========================================================================
+
+   The mature version of glassmorphism (the one Apple actually ships in Liquid
+   Glass) is not "blur everywhere". Translucency never compromises text
+   readability, and critical UI keeps high contrast. Glass belongs on SECONDARY
+   surfaces — floating nav, modals, overlays, cards sitting over media. Never
+   under body copy, never on a form field.
+
+   Performance ceiling: max 4-6 backdrop-filter elements per viewport. Each one
+   forces a repaint of everything behind it, and on a mid-range Android that is
+   exactly how you fail the INP < 200ms budget. Never apply backdrop-filter to a
+   scrolling container — that repaints every frame.
+   ========================================================================== */
+
+/* --- Tier 1: Chrome Glass — floating nav, FABs, toasts, badges ----------- */
 .glass-card {
   background: rgba(243, 239, 234, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid rgba(227, 220, 211, 0.9);
+  /* Inset top highlight is what reads as "glass" rather than "grey box". */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 
 .glass-card-elevated {
   background: rgba(250, 248, 245, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
   border: 1px solid rgba(200, 135, 112, 0.25);
-  box-shadow: 0 20px 40px -15px rgba(22, 32, 61, 0.05);
+  box-shadow:
+    0 20px 40px -15px rgba(22, 32, 61, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* --- Tier 2: Refractive Card — ONLY over video, imagery or a 3D canvas ---
+   Over a flat colour this is just a lighter rectangle: all of the repaint
+   cost, none of the payoff. The gradient border below is the "liquid glass"
+   tell — a light-catching edge that shifts along the surface. */
+.glass-refractive {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.04)
+  );
+  backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
+  -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.06);
+  border-radius: 28px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.glass-refractive::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(194, 79, 190, 0.35)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* --- Tier 3: Solid Content Card — anything containing real text ----------
+   Every service card, FAQ item, pricing tier and blog card uses this, not
+   glass. Text sits on solid ground. This is the discipline that separates a
+   professional glass system from a dribbble shot. */
+.card-solid {
+  background: #f3efea;
+  border: 1px solid #e3dcd3;
+  border-radius: 20px;
+}
+
+/* --- Fallback: browsers without backdrop-filter support ------------------ */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-card,
+  .glass-card-elevated,
+  .glass-refractive {
+    background: rgba(250, 248, 245, 0.97);
+  }
 }
 
 .text-gradient-brand {
@@ -108,4 +184,58 @@
 
 .animate-pulse-ring {
   animation: pulse-ring 2.5s infinite;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY & MOTION
+   ========================================================================== */
+
+/* Respect the OS-level reduced-motion preference.
+   This is non-optional once a site leans on scroll animation and 3D: for users
+   with vestibular disorders, parallax and scroll-scrubbed motion can cause
+   real nausea. It is also a Lighthouse accessibility factor, and this site
+   promises a score of 100. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Windows High Contrast / forced-colours mode: glass becomes solid, because
+   translucency in forced-colours reliably produces unreadable text. */
+@media (forced-colors: active) {
+  .glass-card,
+  .glass-card-elevated,
+  .glass-refractive {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: Canvas;
+    border: 1px solid CanvasText;
+  }
+}
+
+/* Visible focus ring on every interactive element, including over glass.
+   Keyboard users need to see where they are; :focus-visible means mouse users
+   never see it. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #c24fbe;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Minimum 44x44px tap targets — the WCAG 2.2 target size threshold.
+   The live site currently has 43 controls below this. Applied via a utility so
+   it can be opted into per component rather than fighting existing layout. */
+.tap-target {
+  min-width: 44px;
+  min-height: 44px;
 }
