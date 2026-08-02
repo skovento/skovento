@@ -6,7 +6,7 @@ import { Compass, Lightbulb, ShieldCheck, Sparkles } from 'lucide-react';
 
 export const WhyWeStartedSection: React.FC = () => {
   return (
-    <section className="py-24 bg-[#16203D] text-[#FAF8F5] relative overflow-hidden">
+    <section className="py-14 sm:py-24 bg-[#16203D] text-[#FAF8F5] relative overflow-hidden">
       
       {/* Cinematic Ambient Dark Mesh Video/Canvas Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#16203D] via-[#251842] to-[#16203D] pointer-events-none" />

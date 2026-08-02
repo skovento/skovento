@@ -56,7 +56,7 @@ export const OurSolutionSection: React.FC = () => {
   ];
 
   return (
-    <section ref={containerRef} className="relative py-24 bg-[#FAF8F5] overflow-hidden">
+    <section ref={containerRef} className="relative py-14 sm:py-24 bg-[#FAF8F5] overflow-hidden">
       
       {/* Background Cinematic Mesh Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-[#8A2B88]/10 via-[#C88770]/10 to-[#16203D]/10 rounded-full blur-3xl pointer-events-none" />
@@ -101,7 +101,7 @@ export const OurSolutionSection: React.FC = () => {
               </div>
               <Link
                 href={solutions[0].link}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-[#8A2B88] text-white text-xs font-bold transition-all border border-white/10"
+                className="inline-flex items-center gap-2 min-h-11 px-5 py-2.5 rounded-full bg-white/10 hover:bg-[#8A2B88] text-white text-xs font-bold transition-all border border-white/10"
               >
                 <span>Explore Web Dev</span>
                 <ArrowRight className="w-4 h-4" />
@@ -144,7 +144,7 @@ export const OurSolutionSection: React.FC = () => {
               </div>
               <Link
                 href={solutions[1].link}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#16203D] hover:bg-[#8A2B88] text-white text-xs font-bold transition-all shadow-md"
+                className="inline-flex items-center gap-2 min-h-11 px-5 py-2.5 rounded-full bg-[#16203D] hover:bg-[#8A2B88] text-white text-xs font-bold transition-all shadow-md"
               >
                 <span>Explore Marketing</span>
                 <ArrowRight className="w-4 h-4" />

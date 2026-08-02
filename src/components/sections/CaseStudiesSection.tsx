@@ -8,24 +8,27 @@ import { caseStudiesData } from '@/data/case-studies';
 
 export const CaseStudiesSection: React.FC = () => {
   return (
-    <section className="py-24 bg-[#F3EFEA] border-y border-[#E3DCD3]">
+    <section className="py-14 sm:py-24 bg-[#F3EFEA] border-y border-[#E3DCD3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
             <span className="text-xs font-bold uppercase tracking-widest text-[#8A2B88]">
-              Featured Client Work
+              Concept Builds
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-[#16203D] mt-2 font-sans">
-              Results that speak for themselves
+              We&apos;re new — here&apos;s what we can build
             </h2>
+            <p className="text-sm text-[#424965] mt-3 max-w-xl">
+              Self-initiated concept projects, labeled honestly. No real clients yet — just real engineering.
+            </p>
           </div>
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-sm font-extrabold text-[#8A2B88] hover:text-[#16203D] transition-colors"
+            className="inline-flex items-center gap-2 min-h-11 px-1 py-2 text-sm font-extrabold text-[#8A2B88] hover:text-[#16203D] transition-colors"
           >
-            <span>View All Case Studies</span>
+            <span>View All Concept Builds</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
@@ -43,9 +46,14 @@ export const CaseStudiesSection: React.FC = () => {
             >
               {/* Visual Card Banner */}
               <div className={`h-40 bg-gradient-to-br ${study.imageColor} p-6 flex flex-col justify-between relative`}>
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-white/90 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full w-fit">
-                  {study.category}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-white/90 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full w-fit">
+                    {study.category}
+                  </span>
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#16203D] bg-[#E5C396] px-3 py-1 rounded-full w-fit">
+                    Concept
+                  </span>
+                </div>
 
                 <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl w-fit shadow-md border border-white">
                   <span className="text-xs font-extrabold text-[#16203D] flex items-center gap-1.5">

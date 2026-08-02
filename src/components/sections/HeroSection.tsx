@@ -36,7 +36,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-[#FAF8F5]">
+    <section className="relative pt-24 pb-12 md:pt-40 md:pb-28 overflow-hidden bg-[#FAF8F5]">
       {/* Ambient Radial Mesh Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-[#16203D]/15 via-[#8A2B88]/15 to-[#C88770]/15 rounded-full blur-3xl pointer-events-none" />
 
@@ -144,10 +144,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Monthly Lead Funnel</div>
-                      <div className="text-2xl font-extrabold text-white font-sans mt-0.5">+310% Revenue</div>
+                      <div className="text-2xl font-extrabold text-white font-sans mt-0.5">Concept Preview</div>
                     </div>
                     <span className="px-2.5 py-1 bg-emerald-500/20 text-emerald-300 text-[10px] font-bold rounded-full border border-emerald-500/30 animate-pulse">
-                      Live Stream
+                      Illustrative
                     </span>
                   </div>
 
@@ -174,7 +174,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
                 <div className="space-y-1.5 text-[9px] text-[#424965]">
                   <div className="p-1.5 bg-[#F3EFEA] rounded-md font-bold text-[#16203D] flex items-center justify-between">
                     <span>⚡ Core Speed</span>
-                    <span className="text-emerald-600 font-mono">100/100</span>
+                    <span className="text-emerald-600 font-mono">Optimized</span>
                   </div>
                   <div className="p-1.5 bg-[#F3EFEA] rounded-md font-bold text-[#8A2B88] flex items-center justify-between">
                     <span>📈 Lead Funnel</span>

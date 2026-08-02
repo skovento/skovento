@@ -2,14 +2,14 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Award, Clock, Star } from 'lucide-react';
+import { Clock3, Rocket, IndianRupee, ShieldCheck } from 'lucide-react';
 
 export const TrustBar: React.FC = () => {
   const stats = [
-    { icon: <Building2 className="w-5 h-5 text-[#8A2B88]" />, value: '50+', label: 'Projects Delivered' },
-    { icon: <Award className="w-5 h-5 text-[#C88770]" />, value: '10+', label: 'Industries Served' },
-    { icon: <Clock className="w-5 h-5 text-[#1E2E6B]" />, value: '24/7', label: 'Support Availability' },
-    { icon: <Star className="w-5 h-5 text-[#C88770]" />, value: '4.9★', label: 'Average Client Rating' }
+    { icon: <Clock3 className="w-5 h-5 text-[#8A2B88]" />, value: 'Jul 2026', label: 'Studio Founded' },
+    { icon: <Rocket className="w-5 h-5 text-[#C88770]" />, value: '7 Days', label: 'First-Build Delivery' },
+    { icon: <IndianRupee className="w-5 h-5 text-[#1E2E6B]" />, value: '₹42,000', label: 'Starting Price, Published' },
+    { icon: <ShieldCheck className="w-5 h-5 text-[#C88770]" />, value: '100%', label: 'Refund If We Miss Deadline' }
   ];
 
   return (

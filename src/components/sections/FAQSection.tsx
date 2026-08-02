@@ -8,7 +8,11 @@ export const FAQSection: React.FC = () => {
   const faqs = [
     {
       q: 'How much does a custom website cost?',
-      a: 'Our website investments are tailored to your business scope and growth targets. Small business websites start with accessible packages, while enterprise web applications are custom quoted based on integrations and deliverables. We provide 100% transparent proposals before any work begins.'
+      a: 'Published pricing, no "contact for quote": Launch starts at ₹42,000 (7 days, 5 pages), Growth at ₹85,000 (14 days, 10 pages), and Signature at ₹1,60,000 (25–30 days, 18 pages), all excluding 18% GST. Larger custom builds are scoped individually.'
+    },
+    {
+      q: "You have no client work yet — why should I hire you?",
+      a: "Because we'd rather tell you that than invent fake case studies. What we offer instead: a founding-client discount, a written performance guarantee, and full transparency on process and pricing — things you can actually verify, unlike a testimonial."
     },
     {
       q: 'How long does a website project take to launch?',
@@ -35,7 +39,7 @@ export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-[#F3EFEA] border-y border-[#E3DCD3]">
+    <section className="py-14 sm:py-24 bg-[#F3EFEA] border-y border-[#E3DCD3]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center space-y-4 mb-16">

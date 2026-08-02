@@ -21,7 +21,7 @@ export const IndustriesSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#F3EFEA] border-y border-[#E3DCD3]">
+    <section className="py-14 sm:py-24 bg-[#F3EFEA] border-y border-[#E3DCD3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">

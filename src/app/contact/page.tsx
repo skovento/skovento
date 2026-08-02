@@ -297,7 +297,7 @@ export default function ContactPage() {
       </main>
 
       <Footer />
-      <FloatingContactBtn onOpenModal={() => setModalOpen(true)} />
+      <FloatingContactBtn />
       <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );

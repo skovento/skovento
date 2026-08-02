@@ -89,13 +89,13 @@ export default function IndividualServicePage({ params }: { params: Promise<{ sl
                 </div>
               </div>
 
-              {/* Verified Case Study Proof Card */}
+              {/* Our Commitment Card */}
               <div className="p-8 bg-[#16203D] text-[#FAF8F5] rounded-3xl shadow-xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#8A2B88]/30 rounded-full blur-3xl" />
                 <div className="relative z-10 space-y-6">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 rounded-full text-xs font-bold text-[#E5C396]">
                     <TrendingUp className="w-4 h-4 text-[#C88770]" />
-                    <span>Proven Service Result</span>
+                    <span>Our Commitment</span>
                   </div>
 
                   <h3 className="text-2xl font-bold text-white font-sans">
@@ -193,7 +193,7 @@ export default function IndividualServicePage({ params }: { params: Promise<{ sl
       </main>
 
       <Footer />
-      <FloatingContactBtn onOpenModal={() => setModalOpen(true)} />
+      <FloatingContactBtn />
       <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );

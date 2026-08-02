@@ -29,13 +29,13 @@ export default function WorkPage() {
         <section className="py-20 bg-[#F3EFEA] border-b border-[#E3DCD3]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
             <span className="px-3.5 py-1.5 bg-[#FAF8F5] border border-[#E3DCD3] text-[#8A2B88] text-xs font-extrabold rounded-full uppercase tracking-wider mb-4 inline-block">
-              Proven Case Studies & Portfolio
+              Concept Builds — No Real Clients Yet
             </span>
             <h1 className="text-4xl sm:text-6xl font-extrabold text-[#16203D] font-sans tracking-tight mb-4">
-              Real Impact. <span className="text-gradient-brand">Verifiable ROI.</span>
+              Concept work. <span className="text-gradient-brand">Real craft.</span>
             </h1>
             <p className="text-base sm:text-lg text-[#424965]">
-              Explore how we've helped ambitious brands transform their digital presence and scale revenue across e-commerce, SaaS, and health sectors.
+              Skovento is a new studio. These are self-initiated concept builds across e-commerce, SaaS, and healthcare — every metric below is measured off the live demo, not a fabricated result.
             </p>
 
             {/* Filter Pills */}
@@ -69,9 +69,14 @@ export default function WorkPage() {
                   className="group bg-[#F3EFEA] border border-[#E3DCD3] hover:border-[#8A2B88]/50 rounded-3xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between"
                 >
                   <div className={`h-44 bg-gradient-to-br ${study.imageColor} p-6 flex flex-col justify-between`}>
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-white/90 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full w-fit">
-                      {study.category}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-white/90 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full w-fit">
+                        {study.category}
+                      </span>
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#16203D] bg-[#E5C396] px-3 py-1 rounded-full w-fit">
+                        Concept
+                      </span>
+                    </div>
                     <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl w-fit shadow-md border border-white">
                       <span className="text-xs font-extrabold text-[#16203D] flex items-center gap-1.5">
                         <TrendingUp className="w-3.5 h-3.5 text-[#8A2B88]" />
@@ -119,7 +124,7 @@ export default function WorkPage() {
       </main>
 
       <Footer />
-      <FloatingContactBtn onOpenModal={() => setModalOpen(true)} />
+      <FloatingContactBtn />
       <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );

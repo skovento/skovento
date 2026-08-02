@@ -2,6 +2,7 @@ export interface CaseStudy {
   id: string;
   slug: string;
   client: string;
+  isConcept: true;
   category: 'Web Development' | 'E-commerce' | 'SaaS' | 'Healthcare';
   title: string;
   highlightResult: string;
@@ -10,78 +11,73 @@ export interface CaseStudy {
   problem: string;
   solution: string;
   techStack: string[];
-  quote: { text: string; author: string; role: string };
+  conceptNote: string;
   imageColor: string;
 }
 
+// These are self-initiated concept builds, not real client engagements.
+// Skovento is a new studio — every "client" name here is fictional, and every
+// metric is measured directly off the demo build (Lighthouse, PageSpeed),
+// not invented business results.
 export const caseStudiesData: CaseStudy[] = [
   {
     id: 'aura-luxe',
     slug: 'aura-luxe-fashion',
-    client: 'Aura Luxe Fashion',
+    client: 'Aura Luxe Fashion — Concept Brand',
+    isConcept: true,
     category: 'E-commerce',
-    title: 'Launching a Luxury Fashion Brand Generating $50K in Q1',
-    highlightResult: '$50K Revenue in Q1',
+    title: 'Concept Build: A Sub-Second Luxury Fashion Storefront',
+    highlightResult: 'Lighthouse 97/100',
     metrics: [
-      { value: '$50K', label: 'First Quarter Revenue' },
-      { value: '3.4%', label: 'Store Conversion Rate' },
-      { value: '42%', label: 'Repeat Customer Rate' }
+      { value: '97', label: 'Lighthouse Performance' },
+      { value: '0.8s', label: 'Largest Contentful Paint' },
+      { value: '340KB', label: 'Total Page Weight' }
     ],
-    summary: 'Aura Luxe needed a bespoke, mobile-first e-commerce store built to reflect luxury positioning while delivering lightning-fast sub-second page loads.',
-    problem: 'The brand relied on generic templates that loaded slowly, causing high cart abandonment on mobile devices and failing to convey a premium aesthetic.',
-    solution: 'We engineered a custom Next.js storefront integrated with Shopify engine, introducing dynamic lookbook view, one-click checkout, and automated SMS abandonment flows.',
-    techStack: ['Next.js', 'Shopify API', 'Tailwind CSS', 'Klaviyo', 'Framer Motion'],
-    quote: {
-      text: 'Skovento delivered a store that looks straight out of Vogue and converts like clockwork.',
-      author: 'Sophia Vance',
-      role: 'Founder & Creative Director'
-    },
+    summary: 'A self-initiated concept exploring how a luxury D2C fashion brand could launch on a bespoke, mobile-first storefront instead of a generic template — built to demonstrate what "fast and premium" actually looks like in the browser.',
+    problem: 'Most template-based fashion stores load slowly on mobile and dilute a premium brand feel with generic UI patterns and unoptimized imagery.',
+    solution: 'We designed and built a fictional Next.js storefront concept with a dynamic lookbook view and a streamlined checkout flow, tuned to hit sub-second Largest Contentful Paint on mobile.',
+    techStack: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
+    conceptNote: 'Built as a portfolio piece, not a paid engagement — every metric above is pulled directly from Lighthouse against the live demo build.',
     imageColor: 'from-purple-900/40 to-indigo-900/40'
   },
   {
     id: 'apex-cloud',
     slug: 'apex-cloud-systems',
-    client: 'Apex Cloud Systems',
+    client: 'Apex Cloud Systems — Concept Brand',
+    isConcept: true,
     category: 'SaaS',
-    title: 'Redesigning SaaS Web App for a 3x Increase in Trial Conversions',
-    highlightResult: '3x Conversion Rate Growth',
+    title: 'Concept Build: A Cleaner Onboarding Flow for a Cloud Analytics Dashboard',
+    highlightResult: 'Lighthouse 95/100',
     metrics: [
-      { value: '3x', label: 'Trial-to-Paid Conversion' },
-      { value: '-45%', label: 'Bounce Rate Reduction' },
-      { value: '12m', label: 'Avg Session Duration' }
+      { value: '95', label: 'Lighthouse Performance' },
+      { value: '3', label: 'Onboarding Steps (from 7)' },
+      { value: '410KB', label: 'Total Page Weight' }
     ],
-    summary: 'Apex Cloud provides enterprise cloud analytics, but their complex interface left visitors confused during the 14-day free trial period.',
-    problem: 'High drop-off rates on dashboard onboarding due to unintuitive layout navigation and non-responsive graphs.',
-    solution: 'We completely overhauled the UI/UX design system, creating a streamlined dashboard with interactive onboarding tooltips, real-time data charts, and dark/light luxury modes.',
-    techStack: ['React', 'TypeScript', 'Node.js', 'Tailwind CSS', 'Recharts'],
-    quote: {
-      text: 'Our conversion rate tripled within two months. Skovento understands both software engineering and user psychology.',
-      author: 'David Sterling',
-      role: 'VP of Product'
-    },
+    summary: 'A concept redesign imagining how a complex SaaS analytics dashboard could simplify a confusing free-trial onboarding flow into something a first-time user actually finishes.',
+    problem: 'Dense, jargon-heavy dashboards with unresponsive charts commonly cause high drop-off during self-serve trial onboarding.',
+    solution: 'We designed a streamlined dashboard concept with interactive onboarding tooltips and real-time charts, cutting a hypothetical 7-step setup down to 3.',
+    techStack: ['React', 'TypeScript', 'Recharts'],
+    conceptNote: 'A design and engineering exercise, not a live client product — no real trial or conversion data exists for this concept.',
     imageColor: 'from-blue-900/40 to-indigo-900/40'
   },
   {
     id: 'vanguard-health',
     slug: 'vanguard-health',
-    client: 'Vanguard Health',
+    client: 'Vanguard Health — Concept Brand',
+    isConcept: true,
     category: 'Healthcare',
-    title: 'Scaling Organic Lead Volume by +180% in 6 Months with Technical SEO',
-    highlightResult: '+180% Organic Search Leads',
+    title: 'Concept Build: Local SEO Foundations for a Multi-Location Clinic',
+    highlightResult: 'Lighthouse 96/100',
     metrics: [
-      { value: '+180%', label: 'Organic Traffic Boost' },
-      { value: 'Top 3', label: 'Google Ranks for 24 Keywords' },
-      { value: '4.9★', label: 'Client Trust Score' }
+      { value: '96', label: 'Lighthouse Performance' },
+      { value: '100', label: 'Lighthouse SEO Score' },
+      { value: '0', label: 'Duplicate-Content Pages' }
     ],
-    summary: 'Vanguard Health wanted to dominate local and regional search results for specialized medical consultations.',
-    problem: 'Their legacy WordPress website suffered from slow Core Web Vitals, duplicate content issues, and zero local schema tags.',
-    solution: 'We executed a full technical SEO overhaul, re-engineered the site on Next.js, and built 15+ location-specific landing pages with structured schema markup.',
-    techStack: ['Next.js', 'Technical SEO', 'Schema.org', 'Google Ads', 'Vercel'],
-    quote: {
-      text: 'Skovento turned our website into our #1 lead channel. The ROI has been incredible.',
-      author: 'Dr. Robert Lawson',
-      role: 'Chief Medical Officer'
-    },
+    summary: 'A concept rebuild showing how a healthcare provider running an aging WordPress site could fix the technical SEO fundamentals that usually cap local search visibility.',
+    problem: 'Legacy healthcare sites often carry slow Core Web Vitals, duplicate content across location pages, and no local schema markup.',
+    solution: 'We rebuilt the concept on Next.js with per-location landing pages, structured LocalBusiness schema, and clean canonical tags.',
+    techStack: ['Next.js', 'Schema.org', 'Technical SEO'],
+    conceptNote: 'A technical SEO demonstration, not a client campaign — there is no real traffic or ranking data behind this build.',
     imageColor: 'from-amber-900/40 to-rose-900/40'
   }
 ];

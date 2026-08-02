@@ -13,6 +13,7 @@ import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import { ProcessSection } from '@/components/sections/ProcessSection';
 import { CaseStudiesSection } from '@/components/sections/CaseStudiesSection';
 import { ServicesGrid } from '@/components/sections/ServicesGrid';
+import { PricingSection } from '@/components/sections/PricingSection';
 import { IndustriesSection } from '@/components/sections/IndustriesSection';
 import { HonestTestimonialsSection } from '@/components/sections/HonestTestimonialsSection';
 import { FAQSection } from '@/components/sections/FAQSection';
@@ -36,43 +37,46 @@ export default function HomePage() {
         {/* Section 1: Hero Section */}
         <HeroSection onOpenModal={handleOpenModal} />
 
-        {/* Section 2: Trusted By */}
+        {/* Section 2: Portfolio & Sample Work (moved up — nobody scrolled to screen 12 for this) */}
+        <CaseStudiesSection />
+
+        {/* Section 3: Trusted By */}
         <TrustBar />
 
-        {/* Section 3: The Problem */}
+        {/* Section 4: The Problem */}
         <ProblemSection />
 
-        {/* Section 4: Why We Started */}
+        {/* Section 5: Why We Started */}
         <WhyWeStartedSection />
 
         {/* Cinematic Macro Product Reveal (Dark Tech Scroll Reveal) */}
         <MacroProductRevealSection />
 
-        {/* Section 5: Our Solution */}
+        {/* Section 6: Our Solution */}
         <OurSolutionSection />
 
-        {/* Section 6: Why Choose Us */}
+        {/* Section 7: Why Choose Us */}
         <WhyChooseUs />
 
-        {/* Section 7: Our Process */}
+        {/* Section 8: Our Process */}
         <ProcessSection />
-
-        {/* Section 8: Portfolio & Sample Work */}
-        <CaseStudiesSection />
 
         {/* Section 9: Services in Detail */}
         <ServicesGrid />
 
-        {/* Section 10: Industries We Serve */}
+        {/* Section 10: Pricing */}
+        <PricingSection onOpenModal={handleOpenModal} />
+
+        {/* Section 11: Industries We Serve */}
         <IndustriesSection />
 
-        {/* Section 11: Testimonials */}
-        <HonestTestimonialsSection />
+        {/* Section 12: Testimonials */}
+        <HonestTestimonialsSection onOpenModal={handleOpenModal} />
 
-        {/* Section 12: FAQ */}
+        {/* Section 13: FAQ */}
         <FAQSection />
 
-        {/* Section 13: Free Consultation CTA */}
+        {/* Section 14: Free Consultation CTA */}
         <FinalCTASection onOpenModal={handleOpenModal} />
       </main>
 
@@ -83,7 +87,7 @@ export default function HomePage() {
       <ConsultationModal isOpen={isModalOpen} onClose={handleCloseModal} />
 
       {/* Floating Action Call Widget */}
-      <FloatingContactBtn onClick={handleOpenModal} />
+      <FloatingContactBtn />
     </div>
   );
 }

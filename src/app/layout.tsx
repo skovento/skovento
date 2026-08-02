@@ -1,20 +1,28 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { LenisProvider } from '@/components/layout/LenisProvider';
 import { GSAPCinematicScroll } from '@/components/animation/GSAPCinematicScroll';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter'
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-jakarta'
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://skovento.com'),
   title: "Skovento — We Don't Just Build Websites. We Build Businesses That Grow.",
   description: 'Custom websites and result-driven digital marketing designed to help startups and businesses attract more customers, generate quality leads, and grow online.',
   keywords: ['Web Development', 'Digital Marketing', 'Next.js Agency', 'SEO Services', 'UI/UX Design', 'E-commerce Development', 'PPC Google Ads', 'Skovento'],
-  icons: {
-    icon: '/final-icon.png',
-    shortcut: '/final-icon.png',
-    apple: '/final-icon.png'
-  },
   openGraph: {
     title: "Skovento — We Don't Just Build Websites. We Build Businesses That Grow.",
     description: 'Custom websites and result-driven digital marketing designed to help startups and businesses grow online.',
@@ -23,8 +31,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/skovento-transparent.png',
-        width: 1200,
-        height: 630,
+        width: 1376,
+        height: 768,
         alt: 'Skovento Logo'
       }
     ],
@@ -42,17 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased selection:bg-[#8A2B88]/20 selection:text-[#16203D]">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="icon" type="image/png" href="/final-icon.png" />
-        <link rel="apple-touch-icon" href="/final-icon.png" />
-      </head>
+    <html lang="en" className={`h-full antialiased selection:bg-[#8A2B88]/20 selection:text-[#16203D] ${inter.variable} ${plusJakartaSans.variable}`}>
       <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#424965] font-sans overflow-x-hidden">
         {/* Google Tag Manager (noscript) */}
         <noscript>

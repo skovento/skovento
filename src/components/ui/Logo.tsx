@@ -26,6 +26,8 @@ export const Logo: React.FC<LogoProps> = ({
         <img
           src="/skovento-transparent.png"
           alt="Skovento - Beyond Limits. Elevated Journeys."
+          width={1376}
+          height={768}
           className="h-full w-auto object-contain drop-shadow-md"
         />
       </div>

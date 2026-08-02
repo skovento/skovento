@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Mail, ShieldCheck, PhoneCall } from 'lucide-react';
+import { Mail, MessageCircle, PhoneCall } from 'lucide-react';
 import { Logo } from '../ui/Logo';
+import { whatsappLink, telLink, PHONE_NUMBER_DISPLAY } from '@/lib/contact';
 
 export const Footer: React.FC = () => {
   return (
@@ -19,11 +20,30 @@ export const Footer: React.FC = () => {
             <p className="text-sm text-[#424965]/90 leading-relaxed max-w-sm">
               Skovento is a full-service digital partner combining custom web development and growth marketing — so your brand doesn’t just look good, it performs.
             </p>
-            <div className="flex items-center gap-3 pt-2">
-              <div className="flex items-center gap-1 text-xs text-[#16203D] font-bold bg-[#F3EFEA] px-3.5 py-1.5 rounded-full border border-[#E3DCD3]">
-                <span className="text-[#8A2B88]">★ 4.9/5 Rating</span>
-                <span className="text-[#424965]/40">• 50+ Projects</span>
-              </div>
+            <div className="flex flex-col gap-2.5 pt-2 text-sm">
+              <a
+                href={telLink()}
+                className="inline-flex items-center gap-2 min-h-11 text-[#16203D] font-semibold hover:text-[#8A2B88] transition-colors w-fit"
+              >
+                <PhoneCall className="w-4 h-4 text-[#8A2B88]" />
+                <span>{PHONE_NUMBER_DISPLAY}</span>
+              </a>
+              <a
+                href={whatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 min-h-11 text-[#16203D] font-semibold hover:text-[#8A2B88] transition-colors w-fit"
+              >
+                <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                <span>Chat on WhatsApp</span>
+              </a>
+              <a
+                href="mailto:hello@skovento.com"
+                className="inline-flex items-center gap-2 min-h-11 text-[#16203D] font-semibold hover:text-[#8A2B88] transition-colors w-fit"
+              >
+                <Mail className="w-4 h-4 text-[#C88770]" />
+                <span>hello@skovento.com</span>
+              </a>
             </div>
           </div>
 

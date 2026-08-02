@@ -11,7 +11,7 @@ interface FinalCTASectionProps {
 
 export const FinalCTASection: React.FC<FinalCTASectionProps> = ({ onOpenModal }) => {
   return (
-    <section className="py-24 bg-[#FAF8F5] relative overflow-hidden">
+    <section className="py-14 sm:py-24 bg-[#FAF8F5] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <motion.div

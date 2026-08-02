@@ -33,7 +33,7 @@ export const ServicesGrid: React.FC = () => {
     : servicesData.filter((s) => s.category === activeTab);
 
   return (
-    <section className="py-24 bg-[#FAF8F5] relative">
+    <section className="py-14 sm:py-24 bg-[#FAF8F5] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

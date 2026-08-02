@@ -39,7 +39,7 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
 
             <div className="max-w-3xl space-y-4">
               <span className="px-3.5 py-1.5 bg-[#FAF8F5] border border-[#E3DCD3] text-[#8A2B88] text-xs font-extrabold rounded-full uppercase tracking-wider">
-                {study.category} Case Study
+                {study.category} · Concept Build
               </span>
               <h1 className="text-3xl sm:text-5xl font-extrabold text-[#16203D] font-sans tracking-tight leading-tight">
                 {study.title}
@@ -106,14 +106,14 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
               </div>
             </div>
 
-            {/* Client Quote */}
-            <div className="p-8 bg-[#8A2B88]/10 border border-[#8A2B88]/30 rounded-3xl space-y-4 text-center">
+            {/* Honest Concept Note */}
+            <div className="p-8 bg-[#8A2B88]/10 border border-[#8A2B88]/30 rounded-3xl space-y-3 text-center">
               <Quote className="w-8 h-8 text-[#8A2B88] mx-auto" />
-              <blockquote className="text-lg font-bold text-[#16203D] italic max-w-2xl mx-auto font-sans">
-                "{study.quote.text}"
-              </blockquote>
-              <div className="text-xs font-semibold text-[#8A2B88]">
-                — {study.quote.author}, <span className="text-[#424965]">{study.quote.role} at {study.client}</span>
+              <p className="text-sm text-[#16203D] leading-relaxed max-w-2xl mx-auto">
+                {study.conceptNote}
+              </p>
+              <div className="text-xs font-bold text-[#8A2B88] uppercase tracking-wider">
+                — A Skovento Concept Build, Not a Paid Engagement
               </div>
             </div>
 
@@ -128,7 +128,7 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
       </main>
 
       <Footer />
-      <FloatingContactBtn onOpenModal={() => setModalOpen(true)} />
+      <FloatingContactBtn />
       <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );

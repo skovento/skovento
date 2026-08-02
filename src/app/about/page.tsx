@@ -197,7 +197,7 @@ export default function AboutPage() {
       </main>
 
       <Footer />
-      <FloatingContactBtn onOpenModal={() => setModalOpen(true)} />
+      <FloatingContactBtn />
       <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );

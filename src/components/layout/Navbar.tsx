@@ -13,41 +13,24 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [userOpened, setUserOpened] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Always show Navbar when at the very top (Hero Section)
-      if (currentScrollY <= 40) {
-        setHidden(false);
-        setUserOpened(false);
-      } else {
-        // Below Hero Section: Keep Navbar HIDDEN unless user explicitly clicked Menu pill
-        if (!userOpened) {
-          setHidden(true);
-        }
-      }
-
-      setScrolled(currentScrollY > 20);
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [userOpened]);
+  }, []);
 
   const navLinks = [
-    { name: 'Home', href: '/' },
+    { name: 'Work', href: '/work' },
     { name: 'Services', href: '/services', hasDropdown: true },
-    // { name: 'Portfolio', href: '/work' },
-    { name: 'Industries', href: '/industries' },
+    { name: 'Pricing', href: '/#pricing' },
     { name: 'Process', href: '/process' },
-    { name: 'Resources', href: '/blog' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' }
   ];
@@ -72,12 +55,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
     <>
       {/* Floating Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform ${
-          hidden ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
-        } ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
             ? 'py-3 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E3DCD3] shadow-md'
-            : 'py-5 bg-transparent'
+            : 'py-5 bg-[#FAF8F5]/80 backdrop-blur-sm'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -190,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
           {/* Mobile Menu Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl bg-[#F3EFEA] border border-[#E3DCD3] text-[#16203D]"
+            className="lg:hidden min-w-11 min-h-11 flex items-center justify-center rounded-xl bg-[#F3EFEA] border border-[#E3DCD3] text-[#16203D]"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -206,7 +187,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-2.5 rounded-xl text-sm font-bold text-[#16203D] hover:bg-[#F3EFEA] hover:text-[#8A2B88]"
+                  className="flex items-center min-h-11 px-4 py-2.5 rounded-xl text-sm font-bold text-[#16203D] hover:bg-[#F3EFEA] hover:text-[#8A2B88]"
                 >
                   {link.name}
                 </Link>
@@ -220,18 +201,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal }) => {
           </div>
         )}
       </header>
-
-      {/* Floating Menu Toggle Button (Visible when scrolled away from Hero Section unless manually opened) */}
-      {hidden && (
-        <button
-          onClick={() => { setHidden(false); setUserOpened(true); }}
-          aria-label="Open Navigation Menu"
-          className="fixed top-5 right-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-[#16203D] text-[#FAF8F5] rounded-full shadow-2xl border border-[#C88770]/60 hover:bg-[#8A2B88] transition-all duration-300 transform hover:scale-105"
-        >
-          <ChevronDown className="w-4 h-4 text-[#E5C396]" />
-          <span className="text-xs font-bold tracking-wide">Menu</span>
-        </button>
-      )}
     </>
   );
 };

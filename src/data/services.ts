@@ -38,9 +38,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Deployment & QA', desc: 'Rigorous cross-device testing, speed audits, and zero-downtime launch.' }
     ],
     proof: {
-      headline: 'Vanguard Health Digital Overhaul',
-      stat: '+180%',
-      desc: 'Increase in organic lead volume within 6 months post-launch.'
+      headline: 'Our Performance Commitment',
+      stat: '90+',
+      desc: 'Every website we ship targets a 90+ Lighthouse performance score — checkable in your own browser the day it launches.'
     },
     faqs: [
       { question: 'How long does a custom website build take?', answer: 'Typical custom website projects take between 2 to 4 weeks depending on scope and custom feature requirements.' },
@@ -72,9 +72,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Launch & Test', desc: 'End-to-end transaction testing across payment options before official opening.' }
     ],
     proof: {
-      headline: 'Aura Luxe Fashion Launch',
-      stat: '$50K',
-      desc: 'Generated in gross revenue during the first 90 days after store launch.'
+      headline: 'Our Launch Commitment',
+      stat: '100%',
+      desc: 'Every payment method is tested end-to-end before go-live — no broken checkout flows on launch day.'
     },
     faqs: [
       { question: 'Which e-commerce platform do you recommend?', answer: 'We recommend Shopify for easy store management, or custom Next.js headless e-commerce for ultra-custom enterprise experiences.' },
@@ -105,9 +105,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'CI/CD Deployment', desc: 'Setting up automated cloud build pipelines for smooth iterative updates.' }
     ],
     proof: {
-      headline: 'Apex Cloud SaaS Dashboard',
-      stat: '3x',
-      desc: 'Increase in free-to-paid trial conversion rates within 60 days.'
+      headline: 'Our Security Commitment',
+      stat: '100%',
+      desc: 'Role-based access control and authenticated API routes are tested before every handover — no exceptions.'
     },
     faqs: [
       { question: 'Do you build native mobile apps too?', answer: 'We build Progressive Web Apps (PWAs) that run seamlessly across web, iOS, and Android without requiring separate app store downloads.' }
@@ -137,9 +137,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Prototype Testing', desc: 'Validating clickable prototypes before sending to development.' }
     ],
     proof: {
-      headline: 'FinTech Portal Redesign',
-      stat: '-40%',
-      desc: 'Reduction in user onboarding drop-off after UI/UX simplification.'
+      headline: 'Our Handoff Commitment',
+      stat: 'Full Files',
+      desc: 'You receive organized, editable Figma files and a component library — not just static exports.'
     },
     faqs: [
       { question: 'Will I receive editable Figma files?', answer: 'Yes, you receive full ownership of clean, organized Figma design files and component libraries.' }
@@ -169,9 +169,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Monthly Reports', desc: 'Delivering detailed performance and security update logs.' }
     ],
     proof: {
-      headline: 'Enterprise Client Uptime',
-      stat: '99.99%',
-      desc: 'Guaranteed uptime maintained across all managed client websites.'
+      headline: 'Our Response Commitment',
+      stat: '< 24h',
+      desc: 'Priority bug reports get a same-day response, tracked and summarized in your monthly report.'
     },
     faqs: [
       { question: 'Can I request quick content edits under maintenance?', answer: 'Yes! Maintenance retainer packages include dedicated developer hours every month for content updates.' }
@@ -201,9 +201,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Authority Building', desc: 'Acquiring relevant industry backlinks to boost domain authority.' }
     ],
     proof: {
-      headline: 'Legal Firm Organic Expansion',
-      stat: '+310%',
-      desc: 'Growth in inbound high-value organic client consultation requests.'
+      headline: 'Our Reporting Commitment',
+      stat: 'Monthly',
+      desc: 'Ranking and traffic reports pulled straight from Google Search Console — real data, on a fixed schedule.'
     },
     faqs: [
       { question: 'How long until we see SEO results?', answer: 'Initial technical indexing improvements occur within weeks; significant keyword rank jumps typically compound in 3 to 6 months.' }
@@ -233,9 +233,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Daily Optimization', desc: 'Pruning negative terms and bidding for peak ROAS.' }
     ],
     proof: {
-      headline: 'B2B SaaS PPC Campaign',
-      stat: '4.8x',
-      desc: 'Average Return On Ad Spend (ROAS) achieved across active accounts.'
+      headline: 'Our Transparency Commitment',
+      stat: 'Full Access',
+      desc: 'You get admin access to your own Google Ads account from day one — no black-box reporting.'
     },
     faqs: [
       { question: 'What is the minimum ad spend required?', answer: 'Ad spend is flexible and scales with your market competitiveness — we\'ll recommend the right level for your goals during our strategy call.' }
@@ -265,9 +265,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Performance Review', desc: 'Double down on high-performing creative formats.' }
     ],
     proof: {
-      headline: 'Lifestyle Brand Social Growth',
-      stat: '1.2M+',
-      desc: 'Total social impressions generated within 90 days.'
+      headline: 'Our Content Commitment',
+      stat: 'Weekly',
+      desc: 'A fixed weekly content calendar, delivered for your review before anything goes live.'
     },
     faqs: [
       { question: 'Do you create custom graphics and videos?', answer: 'Yes, our in-house design team produces original graphics, short-form video reels, and brand carousels.' }
@@ -297,9 +297,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Distribution', desc: 'Sharing content across email lists and social channels.' }
     ],
     proof: {
-      headline: 'Tech Blog Organic Authority',
-      stat: '45K',
-      desc: 'Monthly organic blog readers acquired in 8 months.'
+      headline: 'Our Editorial Commitment',
+      stat: 'SEO-Audited',
+      desc: 'Every article is checked against real keyword and technical SEO criteria before publishing — not just written and forgotten.'
     },
     faqs: [
       { question: 'Who writes the content?', answer: 'Our content is authored by experienced industry writers with native proficiency and subject-matter expertise.' }
@@ -329,9 +329,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Deliverability Check', desc: 'Ensuring SPF/DKIM verification so emails land in the primary inbox.' }
     ],
     proof: {
-      headline: 'E-commerce Automation Revenue',
-      stat: '34%',
-      desc: 'Of total store revenue generated solely through automated email flows.'
+      headline: 'Our Deliverability Commitment',
+      stat: 'SPF/DKIM',
+      desc: 'Full sender authentication configured before your first campaign send, so your emails reach the inbox, not spam.'
     },
     faqs: [
       { question: 'Can you migrate our list from another platform?', answer: 'Yes, we handle list cleaning, tag migration, and deliverability warm-up safely.' }
@@ -361,9 +361,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Brand Book Handoff', desc: 'Delivering full SVG, PNG, EPS vector packages and guidelines.' }
     ],
     proof: {
-      headline: 'Corporate Brand Transformation',
-      stat: '100%',
-      desc: 'Positive client feedback and instant brand recognition upgrade.'
+      headline: 'Our Ownership Commitment',
+      stat: 'Full Rights',
+      desc: 'You receive full source files and usage rights to every asset we design — nothing withheld.'
     },
     faqs: [
       { question: 'What vector formats do I receive?', answer: 'You receive vector SVG, EPS, AI master files alongside PNG, JPG, and web-ready formats.' }
@@ -393,9 +393,9 @@ export const servicesData: Service[] = [
       { step: '04', title: 'Scale Winners', desc: 'Permanently implementing high-converting design variations.' }
     ],
     proof: {
-      headline: 'SaaS Checkout Funnel Optimization',
-      stat: '+62%',
-      desc: 'Increase in checkout completion rate after CRO redesign.'
+      headline: 'Our Testing Commitment',
+      stat: 'Documented',
+      desc: 'Every test hypothesis and result is documented and shared with you — win or lose, you see the real data.'
     },
     faqs: [
       { question: 'Do I need high website traffic for CRO?', answer: 'CRO works best for sites receiving at least 5,000 monthly visitors to achieve fast statistical significance.' }

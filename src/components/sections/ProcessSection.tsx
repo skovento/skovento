@@ -9,7 +9,7 @@ export const ProcessSection: React.FC = () => {
     { num: '01', title: 'Discovery', desc: 'Analyzing your business goals, target buyers, and market competitors.', icon: <Search className="w-5 h-5" /> },
     { num: '02', title: 'Strategy', desc: 'Crafting custom site architecture and targeted lead generation funnels.', icon: <Compass className="w-5 h-5" /> },
     { num: '03', title: 'Design', desc: 'Designing modern UI/UX interfaces that elevate brand authority.', icon: <Layout className="w-5 h-5" /> },
-    { num: '04', title: 'Development', desc: 'Engineering clean Next.js code for 100/100 speed and security.', icon: <Code className="w-5 h-5" /> },
+    { num: '04', title: 'Development', desc: 'Engineering clean Next.js code, built for speed and security.', icon: <Code className="w-5 h-5" /> },
     { num: '05', title: 'Testing', desc: 'Rigorous QA testing across all mobile screens and browser engines.', icon: <ShieldCheck className="w-5 h-5" /> },
     { num: '06', title: 'Launch', desc: 'Deploying your digital foundation on high-speed global CDN servers.', icon: <Rocket className="w-5 h-5" /> },
     { num: '07', title: 'Marketing', desc: 'Executing Google Ads, Meta Campaigns, and SEO optimization.', icon: <Megaphone className="w-5 h-5" /> },
@@ -17,7 +17,7 @@ export const ProcessSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#FAF8F5]">
+    <section className="py-14 sm:py-24 bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -33,7 +33,7 @@ export const ProcessSection: React.FC = () => {
         </div>
 
         {/* 8-Step Animated Grid Roadmap */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 perspective-[1000px]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 perspective-[1000px]">
           {steps.map((step, idx) => (
             <motion.div
               key={idx}
