@@ -5,6 +5,7 @@ import './globals.css';
 import { LenisProvider } from '@/components/layout/LenisProvider';
 import { GSAPCinematicScroll } from '@/components/animation/GSAPCinematicScroll';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+import { ThreeBackgroundCanvas } from '@/components/ui/ThreeBackgroundCanvas';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { baseGraph } from '@/lib/schema';
 import { siteConfig } from '@/lib/site-config';
@@ -21,14 +22,6 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-jakarta'
 });
 
-/**
- * Title is 56 characters — under the ~60 char point where Google truncates.
- * The previous title was 71 and was being cut off in results.
- *
- * The description leads with the entity and the specific capability rather than
- * a slogan, because this string is frequently what an AI engine quotes when
- * asked "what is Skovento?".
- */
 const TITLE = 'Skovento — 3D Animated Website Design & Growth';
 const DESCRIPTION =
   'Skovento builds 3D scroll-animated, server-rendered websites on Next.js, GSAP and Three.js for D2C brands, cafes and clinics in India — with a written performance guarantee: LCP under 2.5s on 4G.';
@@ -56,7 +49,6 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
-  // Self-referencing canonical. Child routes override this with their own path.
   alternates: {
     canonical: '/'
   },
@@ -84,7 +76,6 @@ export const metadata: Metadata = {
         alt: 'Skovento — web design and growth studio'
       }
     ],
-    // en_IN, not en_US — this site sells to Indian businesses.
     locale: 'en_IN',
     type: 'website'
   },
@@ -107,15 +98,12 @@ export default function RootLayout({
   return (
     <html lang={siteConfig.locale} className={`h-full antialiased selection:bg-[#8A2B88]/20 selection:text-[#16203D] ${inter.variable} ${plusJakartaSans.variable}`}>
       <head>
-        {/*
-          Organization + WebSite structured data, emitted on every page.
-          Rendered as a plain <script> in the server response so that crawlers
-          which do not execute JavaScript (GPTBot, ClaudeBot, PerplexityBot)
-          can still read it. See components/seo/JsonLd.tsx.
-        */}
         <JsonLd data={baseGraph()} />
       </head>
-      <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#424965] font-sans overflow-x-hidden">
+      <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#424965] font-sans overflow-x-hidden relative">
+        {/* Global 3D WebGL Ambient Scene */}
+        <ThreeBackgroundCanvas />
+
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -125,9 +113,7 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        {/* End Google Tag Manager (noscript) */}
 
-        {/* Google Tag Manager Script */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
@@ -143,7 +129,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <LenisProvider>
           <GSAPCinematicScroll>
             <CustomCursor />
-            {children}
+            <div className="relative z-10">{children}</div>
           </GSAPCinematicScroll>
         </LenisProvider>
       </body>

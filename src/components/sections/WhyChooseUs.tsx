@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Briefcase, MessageSquare, DollarSign, Handshake, Award, CheckCircle2 } from 'lucide-react';
+import { Spatial3DCard } from '../ui/Spatial3DCard';
 
 export const WhyChooseUs: React.FC = () => {
   const pillars = [
@@ -39,7 +40,7 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section className="py-14 sm:py-24 bg-[#F3EFEA] border-y border-[#E3DCD3]">
+    <section className="py-14 sm:py-24 bg-[#F3EFEA]/80 backdrop-blur-md border-y border-[#E3DCD3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -55,31 +56,35 @@ export const WhyChooseUs: React.FC = () => {
         </div>
 
         {/* 6 3D Interactive Pillars Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-[1000px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {pillars.map((pillar, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ rotateX: 6, rotateY: -6, scale: 1.02 }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="p-6 bg-[#FAF8F5] border border-[#E3DCD3] rounded-3xl space-y-4 shadow-sm hover:border-[#8A2B88]/50 hover:shadow-xl transition-all group"
             >
-              <div className="flex items-center justify-between">
-                <div className="p-3 bg-[#F3EFEA] rounded-2xl border border-[#E3DCD3] group-hover:scale-110 transition-transform">
-                  {pillar.icon}
+              <Spatial3DCard depth={18} maxTilt={12} className="h-full">
+                <div className="p-6 bg-[#FAF8F5] border border-[#E3DCD3] rounded-3xl space-y-4 shadow-sm hover:border-[#8A2B88]/50 hover:shadow-xl transition-all group h-full flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 bg-[#F3EFEA] rounded-2xl border border-[#E3DCD3] group-hover:scale-110 transition-transform">
+                        {pillar.icon}
+                      </div>
+                      <CheckCircle2 className="w-5 h-5 text-[#8A2B88]" />
+                    </div>
+
+                    <h3 className="text-xl font-bold text-[#16203D] font-sans">
+                      ✔ {pillar.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-[#424965] leading-relaxed">
+                      {pillar.description}
+                    </p>
+                  </div>
                 </div>
-                <CheckCircle2 className="w-5 h-5 text-[#8A2B88]" />
-              </div>
-
-              <h3 className="text-xl font-bold text-[#16203D] font-sans">
-                ✔ {pillar.title}
-              </h3>
-
-              <p className="text-xs sm:text-sm text-[#424965] leading-relaxed">
-                {pillar.description}
-              </p>
+              </Spatial3DCard>
             </motion.div>
           ))}
         </div>

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, ShieldCheck, Zap, Sparkles } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { siteConfig, locationLabel } from '@/lib/site-config';
-import { GlassPrism } from '../ui/GlassPrism';
+import { Hero3DScene } from './Hero3DScene';
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -35,20 +35,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
               <span className="text-[#16203D]">{locationLabel()}</span>
             </motion.div>
 
-            {/*
-              H1 rewritten for AEO/GEO.
-
-              The previous headline — "We Don't Just Build Websites. We Build
-              Businesses That Grow." — is what every agency says, contains no
-              entity and no fact, and is therefore unquotable: an AI engine has
-              nothing to extract from it.
-
-              This version names the differentiator (3D, motion) and is followed
-              immediately by a subheading dense with named entities (Next.js,
-              GSAP, Three.js) and hard numbers (2.5s, 4G, 7 days). Statistics
-              and entity density are the two highest-impact factors in whether
-              a page gets cited by generative engines.
-            */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -59,7 +45,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
               <span className="block text-gradient-brand mt-1">like your brand should.</span>
             </motion.h1>
 
-            {/* Subheading — entity-dense and statistic-led by design */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -109,63 +94,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
             </motion.div>
           </div>
 
-          {/* Right Column — refractive glass composition.
-              Replaces the laptop-plus-phone mockup, which read as a 2018
-              template and, worse, was a picture of a dashboard rather than a
-              demonstration of anything. This object IS the product claim:
-              if we can make glass bend light in a browser at 60fps on a
-              phone, the "we build websites that move" line proves itself
-              before anyone reads it. */}
-          <div className="lg:col-span-5 relative flex items-center justify-center min-h-[340px] sm:min-h-[420px]">
-
-            {/* Ambient light pool behind the object */}
-            <div
-              aria-hidden
-              className="absolute inset-0 -z-10"
-              style={{
-                backgroundImage:
-                  'radial-gradient(ellipse 60% 55% at 50% 45%, rgba(138,43,136,0.16), transparent 70%)'
-              }}
-            />
-
-            <GlassPrism className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[440px] lg:h-[440px]" />
-
-            {/* Floating glass stat cards. Real, verifiable numbers only —
-                these sit over a gradient, which is the one place refractive
-                glass earns its repaint cost. */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="glass-card absolute top-6 -left-1 sm:left-2 rounded-2xl px-4 py-3 shadow-lg"
-            >
-              <div className="flex items-center gap-2.5">
-                <Zap className="w-4 h-4 text-[#C88770]" />
-                <div className="text-[11px] leading-tight">
-                  <div className="font-extrabold text-[#16203D]">
-                    Under {siteConfig.standards.lcpSeconds}s on 4G
-                  </div>
-                  <div className="text-[#8A2B88] font-semibold">Written into the contract</div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="glass-card absolute bottom-8 -right-1 sm:right-2 rounded-2xl px-4 py-3 shadow-lg"
-            >
-              <div className="flex items-center gap-2.5">
-                <ShieldCheck className="w-4 h-4 text-[#8A2B88]" />
-                <div className="text-[11px] leading-tight">
-                  <div className="font-extrabold text-[#16203D]">
-                    Live in {siteConfig.standards.fastestDeliveryDays} working days
-                  </div>
-                  <div className="text-[#8A2B88] font-semibold">Or you don&apos;t pay</div>
-                </div>
-              </div>
-            </motion.div>
+          {/* Right Column — 3D Interactive WebGL Centerpiece */}
+          <div className="lg:col-span-5 relative flex items-center justify-center">
+            <Hero3DScene />
           </div>
 
         </div>
