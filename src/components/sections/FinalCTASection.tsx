@@ -38,7 +38,7 @@ export const FinalCTASection: React.FC<FinalCTASectionProps> = ({ onOpenModal })
                 </h2>
 
                 <p className="text-base sm:text-lg text-white/80 leading-relaxed">
-                  Let's discuss your goals and create a strategy that works for your business.
+                  Let&apos;s discuss your goals and create a strategy that works for your business.
                 </p>
               </div>
 

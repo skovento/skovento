@@ -22,7 +22,7 @@ export default function PrivacyPage() {
 
         <div className="space-y-6 text-sm text-[#424965] leading-relaxed">
           <p>
-            At Skovento ("we", "our", or "us"), protecting your private information is our priority. This Privacy Policy applies to the Skovento website and governs data collection and usage.
+            At Skovento (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), protecting your private information is our priority. This Privacy Policy applies to the Skovento website and governs data collection and usage.
           </p>
 
           <h2 className="text-xl font-bold text-[#16203D]">1. Collection of Personal Information</h2>

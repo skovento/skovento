@@ -50,7 +50,7 @@ export default function AboutPage() {
               Engineering Perfection Meets <span className="text-gradient-brand">Marketing Growth.</span>
             </h1>
             <p className="text-lg text-[#424965] leading-relaxed">
-              We Don't Just Build Websites. We Build Businesses That Grow.
+              We Don&apos;t Just Build Websites. We Build Businesses That Grow.
             </p>
           </div>
         </section>
@@ -67,7 +67,7 @@ export default function AboutPage() {
                   Why We Started Skovento
                 </h2>
                 <p className="text-sm text-[#424965] leading-relaxed">
-                  In traditional digital agencies, developers build websites in isolation. Then, marketing teams are hired months later to drive traffic to a site that wasn't optimized for SEO or conversions in the first place.
+                  In traditional digital agencies, developers build websites in isolation. Then, marketing teams are hired months later to drive traffic to a site that wasn&apos;t optimized for SEO or conversions in the first place.
                 </p>
                 <p className="text-sm text-[#424965] leading-relaxed">
                   We built Skovento to bring senior web engineering and result-driven marketing under one unified roof. Every line of code, every database schema, and every UI pixel is designed from day one to rank on Google and convert visitors into loyal customers.
@@ -102,43 +102,39 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Section 2 & 3: Mission & Vision */}
-        <section id="mission-vision" className="py-20 bg-[#F3EFEA] border-y border-[#E3DCD3]">
+        {/* Section 2: Our Mission */}
+        <section id="our-mission" className="py-20 bg-[#F3EFEA] border-y border-[#E3DCD3]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              
-              {/* Mission Card */}
-              <div className="p-8 bg-[#FAF8F5] border border-[#E3DCD3] rounded-3xl space-y-4 shadow-sm">
-                <div className="p-3 bg-[#F3EFEA] rounded-2xl w-fit">
-                  <Target className="w-6 h-6 text-[#8A2B88]" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-4">
+                <div className="p-3 bg-[#FAF8F5] border border-[#E3DCD3] rounded-2xl w-fit">
+                  <Target className="w-8 h-8 text-[#8A2B88]" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-widest text-[#8A2B88]">
                   02. Our Mission
                 </span>
                 <h3 className="text-2xl font-bold text-[#16203D] font-sans">
-                  Empowering Businesses With Solid Digital Foundations
+                  Democratizing Enterprise-Grade Web Engineering
                 </h3>
                 <p className="text-sm text-[#424965] leading-relaxed">
-                  Our mission is to help ambitious startups and growing businesses build their digital presence, generate qualified customer leads, and scale revenue through high-performing web code and targeted acquisition campaigns.
+                  Our mission is to help ambitious startups, local practices, and growing companies compete with industry giants by delivering high-converting web architecture and performance marketing at accessible pricing.
                 </p>
               </div>
 
-              {/* Vision Card */}
-              <div className="p-8 bg-[#FAF8F5] border border-[#E3DCD3] rounded-3xl space-y-4 shadow-sm">
-                <div className="p-3 bg-[#F3EFEA] rounded-2xl w-fit">
-                  <Eye className="w-6 h-6 text-[#C88770]" />
+              <div className="space-y-4">
+                <div className="p-3 bg-[#FAF8F5] border border-[#E3DCD3] rounded-2xl w-fit">
+                  <Compass className="w-8 h-8 text-[#C88770]" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-widest text-[#C88770]">
                   03. Our Vision
                 </span>
                 <h3 className="text-2xl font-bold text-[#16203D] font-sans">
-                  Becoming the World's Preferred Growth Partner
+                  Becoming the World&apos;s Preferred Growth Partner
                 </h3>
                 <p className="text-sm text-[#424965] leading-relaxed">
                   Our vision is to become the premier growth consultancy for growing brands globally, renowned for zero-fluff transparency, high-velocity engineering, and measurable ROI impact.
                 </p>
               </div>
-
             </div>
           </div>
         </section>
@@ -180,7 +176,7 @@ export default function AboutPage() {
               05. Why We Exist
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-sans">
-              "Because Most Businesses Don't Have a Marketing Problem — They Have a Digital Foundation Problem."
+              &quot;Because Most Businesses Don&apos;t Have a Marketing Problem — They Have a Digital Foundation Problem.&quot;
             </h2>
             <p className="text-base text-white/80 leading-relaxed max-w-2xl mx-auto">
               We exist to give business owners confidence, clarity, and predictable customer growth by fixing their underlying digital foundation.

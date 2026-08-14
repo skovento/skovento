@@ -1,20 +1,12 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { prisma } from '@/lib/db';
 import { testimonialSchema, fieldErrors } from '@/lib/validation';
 import { rateLimit, clientKey } from '@/lib/rate-limit';
-import { publish } from '@/lib/realtime';
-import { siteConfig } from '@/lib/site-config';
 
 /**
  * POST /api/testimonials — client-submitted reviews.
  *
- * Every submission lands as PENDING and is invisible on the public site until
- * an admin approves it. There is deliberately no way for this endpoint to
- * create an APPROVED record — not via a request field, not via a query param.
- * If it could, anyone who found the URL could publish arbitrary text to the
- * homepage under a fake company name, which is precisely the failure this
- * whole flow exists to avoid.
+ * Emailed directly to studio contact.
  */
 
 export const runtime = 'nodejs';
@@ -54,47 +46,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true }, { status: 200 });
     }
 
-    // One review per invite token. Without this, a shared link could be used
-    // to flood the moderation queue.
-    if (data.inviteToken) {
-      const existing = await prisma.testimonial.findUnique({
-        where: { inviteToken: data.inviteToken },
-        select: { id: true },
-      });
-      if (existing) {
-        return NextResponse.json(
-          { error: 'A review has already been submitted using this link. Thank you!' },
-          { status: 409 }
-        );
-      }
-    }
-
-    const testimonial = await prisma.testimonial.create({
-      data: {
-        authorName: data.authorName,
-        authorEmail: data.authorEmail,
-        authorRole: data.authorRole || null,
-        companyName: data.companyName || null,
-        companyUrl: data.companyUrl || null,
-        rating: data.rating,
-        quote: data.quote,
-        projectContext: data.projectContext || null,
-        consentToPublish: data.consentToPublish,
-        inviteToken: data.inviteToken || null,
-        // Status is intentionally NOT settable from the request. Prisma's
-        // default (PENDING) applies and cannot be overridden by the client.
-      },
-      select: { id: true, authorName: true, createdAt: true },
+    await notifyAdmin({
+      authorName: data.authorName,
+      authorEmail: data.authorEmail,
+      companyName: data.companyName,
+      companyUrl: data.companyUrl,
+      rating: data.rating,
+      quote: data.quote,
+      projectContext: data.projectContext,
     });
-
-    publish({
-      type: 'testimonial:new',
-      id: testimonial.id,
-      authorName: testimonial.authorName,
-      createdAt: testimonial.createdAt.toISOString(),
-    });
-
-    void notifyAdmin(data.authorName, data.companyName, data.rating);
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
@@ -106,11 +66,15 @@ export async function POST(request: Request) {
   }
 }
 
-async function notifyAdmin(
-  authorName: string,
-  companyName: string | undefined,
-  rating: number
-) {
+async function notifyAdmin(review: {
+  authorName: string;
+  authorEmail: string;
+  companyName?: string;
+  companyUrl?: string;
+  rating: number;
+  quote: string;
+  projectContext?: string;
+}) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.NOTIFICATION_EMAIL;
   const from = process.env.FROM_EMAIL;
@@ -121,15 +85,24 @@ async function notifyAdmin(
     await resend.emails.send({
       from,
       to,
-      subject: `New review awaiting approval — ${authorName}`,
+      replyTo: review.authorEmail,
+      subject: `New review submitted — ${review.authorName}`,
       text: [
-        `${authorName}${companyName ? ` (${companyName})` : ''} left a ${rating}-star review.`,
+        `New client review from ${review.authorName}${review.companyName ? ` (${review.companyName})` : ''}:`,
         '',
-        'It is NOT public yet. Approve or reject it here:',
-        `${siteConfig.url}/admin/testimonials`,
-      ].join('\n'),
+        `Rating: ${review.rating}/5 stars`,
+        review.projectContext ? `Project: ${review.projectContext}` : null,
+        review.companyUrl ? `Website: ${review.companyUrl}` : null,
+        `Email:   ${review.authorEmail}`,
+        '',
+        'Review Quote:',
+        review.quote,
+      ]
+        .filter(Boolean)
+        .join('\n'),
     });
   } catch (error) {
     console.error('[testimonials] Resend notification failed:', error);
   }
 }
+

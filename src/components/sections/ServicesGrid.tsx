@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
   Code2, ShoppingBag, Cpu, Palette, ShieldCheck, 
   Search, Target, Share2, FileText, Mail, Sparkles, TrendingUp,
-  ArrowRight, CheckCircle2, ChevronLeft, ChevronRight
+  ArrowRight, CheckCircle2
 } from 'lucide-react';
 import { servicesData } from '@/data/services';
 import { Spatial3DCard } from '../ui/Spatial3DCard';
@@ -100,7 +100,7 @@ export const ServicesGrid: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id as 'all' | 'development' | 'marketing')}
                 className={`px-3.5 py-1.5 text-xs font-bold rounded-full transition-all duration-300 ${
                   activeTab === tab.id
                     ? 'bg-[#16203D] text-[#FAF8F5] shadow-md'

@@ -76,9 +76,9 @@ export const ProblemSection: React.FC = () => {
             className="p-8 sm:p-10 bg-[#F3EFEA] border border-[#8A2B88]/30 rounded-3xl text-center space-y-3 relative overflow-hidden"
           >
             <p className="text-lg sm:text-xl font-extrabold text-[#16203D] font-sans">
-              You're not alone.{' '}
+              You&apos;re not alone.{' '}
               <span className="text-[#8A2B88]">
-                Most businesses don't have a marketing problem—they have a digital foundation problem.
+                Most businesses don&apos;t have a marketing problem—they have a digital foundation problem.
               </span>
             </p>
           </motion.div>

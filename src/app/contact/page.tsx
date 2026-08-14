@@ -6,7 +6,7 @@ import { Footer } from '@/components/layout/Footer';
 import { ConsultationModal } from '@/components/ui/ConsultationModal';
 import { FloatingContactBtn } from '@/components/ui/FloatingContactBtn';
 import { Button } from '@/components/ui/Button';
-import { Mail, Phone, MapPin, Clock, ShieldCheck, Sparkles, Send, CheckCircle2, ChevronDown } from 'lucide-react';
+import { Mail, MapPin, Clock, ShieldCheck, Send, CheckCircle2, ChevronDown } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function ContactPage() {
@@ -23,7 +23,7 @@ export default function ContactPage() {
     message: ''
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -31,16 +31,15 @@ export default function ContactPage() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (res.ok) {
         setSubmitted(true);
         confetti({
           particleCount: 100,
-          spread: 80,
-          origin: { y: 0.6 },
-          colors: ['#1E2E6B', '#8A2B88', '#C88770']
+          spread: 70,
+          origin: { y: 0.6 }
         });
       }
     } catch (err) {

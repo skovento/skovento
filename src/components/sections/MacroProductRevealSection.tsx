@@ -79,7 +79,7 @@ export const MacroProductRevealSection: React.FC = () => {
                   <TrendingUp className="w-5 h-5" />
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-white font-sans">
-                  Growth Marketing That's Measured
+                  Growth Marketing That&apos;s Measured
                 </h3>
               </div>
               <p className="text-xs text-white/70 leading-relaxed">

@@ -46,7 +46,7 @@ export function GlassPrism({ className = '' }: { className?: string }) {
 
     if (prefersReduced || conn?.saveData || lowMemory) return;
 
-    setAnimate(true);
+    requestAnimationFrame(() => setAnimate(true));
 
     // Pointer parallax, throttled to the frame via rAF. Listening on window
     // rather than the element means the object reacts to the whole hero area,

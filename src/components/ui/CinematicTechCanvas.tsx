@@ -35,7 +35,7 @@ export const CinematicTechCanvas: React.FC = () => {
       color: Math.random() > 0.4 ? '#8A2B88' : '#C88770'
     }));
 
-    let speed = 2.5;
+    const speed = 2.5;
     let time = 0;
 
     const render = () => {

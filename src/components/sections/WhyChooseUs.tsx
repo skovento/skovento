@@ -51,7 +51,7 @@ export const WhyChooseUs: React.FC = () => {
             Built for Real Outcomes, Not Just Promises
           </h2>
           <p className="text-base text-[#424965]">
-            Instead of claiming "we are the best", we focus entirely on what drives measurable impact for your business.
+            Instead of claiming &quot;we are the best&quot;, we focus entirely on what drives measurable impact for your business.
           </p>
         </div>
 

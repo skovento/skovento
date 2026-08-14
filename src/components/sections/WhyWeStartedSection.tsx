@@ -62,7 +62,7 @@ export const WhyWeStartedSection: React.FC = () => {
             <Compass className="w-10 h-10 text-[#E5C396]" />
 
             <h3 className="text-2xl font-bold text-white font-sans leading-snug">
-              "A website without a growth strategy is just an expensive digital brochure."
+              &quot;A website without a growth strategy is just an expensive digital brochure.&quot;
             </h3>
 
             <p className="text-xs text-white/75 leading-relaxed">
