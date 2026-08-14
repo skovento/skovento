@@ -9,35 +9,51 @@ import { Button } from './Button';
 interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialMode?: 'consultation' | 'audit';
 }
 
-export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, onClose }) => {
+export const ConsultationModal: React.FC<ConsultationModalProps> = ({
+  isOpen,
+  onClose,
+  initialMode = 'consultation',
+}) => {
   const [step, setStep] = useState<'form' | 'success'>('form');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    service: 'Website Development',
-    details: ''
+    company: '',
+    service: initialMode === 'audit' ? 'Free Digital Audit' : 'New Website',
+    message: '',
+    website: '', // honeypot
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setStep('success');
-
-      // Trigger Confetti effect
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#1E2E6B', '#8A2B88', '#C88770']
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-    }, 1000);
+
+      if (res.ok) {
+        setStep('success');
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#16203D', '#8A2B88', '#C88770'],
+        });
+      }
+    } catch (err) {
+      console.error('[modal] submission error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -46,8 +62,10 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
       name: '',
       email: '',
       phone: '',
-      service: 'Website Development',
-      details: ''
+      company: '',
+      service: 'New Website',
+      message: '',
+      website: '',
     });
     onClose();
   };
@@ -87,16 +105,32 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
               <div>
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#8A2B88] uppercase tracking-wider mb-2">
                   <Sparkles className="w-4 h-4 text-[#C88770]" />
-                  <span>Free 30-Min Strategy Call</span>
+                  <span>
+                    {initialMode === 'audit' ? 'Request Free Digital Presence Audit' : 'Start a Conversation'}
+                  </span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-[#16203D] mb-2 font-sans">
-                  Let’s Build Something Great.
+                  {initialMode === 'audit' ? 'See Where Your Business Can Improve' : 'Let’s Build Something Useful.'}
                 </h3>
                 <p className="text-sm text-[#424965] mb-6">
-                  No pushy sales reps. Talk directly with senior engineers and growth strategists about your project.
+                  {initialMode === 'audit'
+                    ? 'We evaluate your mobile site, Google presence, and customer flow. Zero technical jargon, 100% actionable advice.'
+                    : 'Talk directly with our 3-member team. No pushy sales reps, no arbitrary estimates.'}
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Honeypot */}
+                  <div aria-hidden className="hidden">
+                    <input
+                      type="text"
+                      name="website"
+                      value={formData.website}
+                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div>
                     <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
                       Your Full Name *
@@ -127,10 +161,11 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
-                        Phone / WhatsApp (Optional)
+                        Phone / WhatsApp *
                       </label>
                       <input
                         type="tel"
+                        required
                         placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -139,49 +174,67 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
-                      Core Service Needed
-                    </label>
-                    <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
-                    >
-                      <option>Website Development</option>
-                      <option>E-commerce Store</option>
-                      <option>Web Application / SaaS</option>
-                      <option>UI/UX Design</option>
-                      <option>SEO & Organic Growth</option>
-                      <option>PPC Google Ads</option>
-                      <option>Social Media Marketing</option>
-                      <option>Branding & Graphic Design</option>
-                      <option>Full Digital Growth Engine</option>
-                    </select>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
+                        Business Name
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Your Brand / Company"
+                        value={formData.company}
+                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                        className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] placeholder-[#424965]/50 focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
+                        What are you looking for?
+                      </label>
+                      <select
+                        value={formData.service}
+                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                        className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
+                      >
+                        <option>New Website</option>
+                        <option>Website Redesign</option>
+                        <option>Web Application</option>
+                        <option>SEO & Local Visibility</option>
+                        <option>Digital Marketing</option>
+                        <option>Landing Page</option>
+                        <option>Custom Software</option>
+                        <option>Free Digital Audit</option>
+                        <option>Not Sure — Need Advice</option>
+                      </select>
+                    </div>
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-[#16203D] uppercase tracking-wider mb-1.5">
-                      Project Details & Goals
+                      Tell us about your business or requirements
                     </label>
                     <textarea
                       rows={3}
-                      placeholder="Tell us about your timeline, business goals, or current bottlenecks..."
-                      value={formData.details}
-                      onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                      placeholder="Share your current challenges, Instagram page, website, or goals..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 bg-[#F3EFEA] border border-[#E3DCD3] rounded-xl text-[#16203D] placeholder-[#424965]/50 focus:outline-none focus:ring-2 focus:ring-[#8A2B88]"
                     />
                   </div>
 
                   <div className="pt-2">
                     <Button type="submit" fullWidth disabled={isSubmitting} icon={<Send className="w-4 h-4" />}>
-                      {isSubmitting ? 'Scheduling Your Call...' : 'Book Free Consultation'}
+                      {isSubmitting
+                        ? 'Sending Request...'
+                        : initialMode === 'audit'
+                        ? 'Request Free Digital Audit'
+                        : 'Start a Conversation'}
                     </Button>
                   </div>
 
                   <div className="flex items-center justify-center gap-2 text-xs text-[#424965] pt-1">
                     <ShieldCheck className="w-4 h-4 text-[#8A2B88]" />
-                    <span>Strict 100% Privacy Guarantee • Response in &lt; 24h</span>
+                    <span>Strict 100% Privacy Guarantee • Direct Response in &lt; 24h</span>
                   </div>
                 </form>
               </div>
@@ -191,10 +244,10 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
                   <CheckCircle2 className="w-10 h-10 text-[#8A2B88]" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#16203D] mb-2">
-                  Strategy Session Reserved!
+                  Request Received!
                 </h3>
                 <p className="text-[#424965] mb-6 max-w-md mx-auto">
-                  Thank you, <span className="font-semibold text-[#16203D]">{formData.name}</span>. Our lead strategist will review your details and email you a direct meeting link within 24 business hours.
+                  Thank you, <span className="font-semibold text-[#16203D]">{formData.name}</span>. Our team will review your details and reach out via email/WhatsApp within 24 hours.
                 </p>
                 <Button variant="outline" onClick={handleReset}>
                   Close Window
@@ -207,3 +260,4 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({ isOpen, on
     </AnimatePresence>
   );
 };
+

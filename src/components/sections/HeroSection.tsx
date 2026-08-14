@@ -27,12 +27,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
               initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F3EFEA] border border-[#E3DCD3] shadow-sm text-xs font-semibold text-[#8A2B88]"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F3EFEA] border border-[#E3DCD3] shadow-sm text-xs font-extrabold text-[#8A2B88]"
             >
               <Sparkles className="w-4 h-4 text-[#C88770]" />
-              <span>3D &amp; Motion Web</span>
+              <span>Websites</span>
               <span className="text-[#424965]/30">•</span>
-              <span className="text-[#16203D]">{locationLabel()}</span>
+              <span>Web Applications</span>
+              <span className="text-[#424965]/30">•</span>
+              <span>SEO</span>
+              <span className="text-[#424965]/30">•</span>
+              <span className="text-[#16203D]">Digital Growth</span>
             </motion.div>
 
             <motion.h1
@@ -41,8 +45,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#16203D] tracking-tight leading-[1.1] font-sans"
             >
-              Websites that move{' '}
-              <span className="block text-gradient-brand mt-1">like your brand should.</span>
+              Build better. Launch smarter.{' '}
+              <span className="block text-gradient-brand mt-1">Grow further.</span>
             </motion.h1>
 
             <motion.p
@@ -51,11 +55,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-base sm:text-lg text-[#424965] leading-relaxed max-w-2xl"
             >
-              Skovento builds 3D scroll-animated websites on Next.js, GSAP and Three.js
-              for D2C brands, cafes and clinics across {siteConfig.address.countryName} —
-              server-rendered, and guaranteed to load in under{' '}
-              {siteConfig.standards.lcpSeconds} seconds on 4G. First builds go live in{' '}
-              {siteConfig.standards.fastestDeliveryDays} working days.
+              Skovento helps startups, local businesses, and growing companies turn ideas and digital gaps into modern, fast, and scalable digital experiences that attract more customers.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -66,12 +66,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
             >
               <Button size="lg" onClick={onOpenModal} icon={<ArrowUpRight className="w-5 h-5" />}>
-                Get Free Consultation
+                Start a Conversation
               </Button>
               
               <Link href="/work">
                 <Button size="lg" variant="outline" fullWidth>
-                  View Our Work
+                  Explore Our Work
                 </Button>
               </Link>
             </motion.div>
@@ -81,15 +81,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenModal }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex items-center gap-6 pt-4 text-xs text-[#424965] font-semibold border-t border-[#E3DCD3]/60"
+              className="flex flex-wrap items-center gap-6 pt-4 text-xs text-[#424965] font-semibold border-t border-[#E3DCD3]/60"
             >
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#8A2B88]" />
-                <span>Zero Pressure Strategy Session</span>
+                <span>3-Member Dedicated Digital Team</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Zap className="w-4 h-4 text-[#C88770]" />
-                <span>Custom Built for Conversions</span>
+                <span>100% Transparent & Zero Fake Claims</span>
               </div>
             </motion.div>
           </div>

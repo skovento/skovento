@@ -30,15 +30,16 @@ export const FinalCTASection: React.FC<FinalCTASectionProps> = ({ onOpenModal })
               <div className="relative z-10 space-y-4 max-w-3xl mx-auto">
                 <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-xs font-bold text-[#E5C396] uppercase tracking-wider border border-white/10">
                   <Sparkles className="w-4 h-4 text-[#C88770]" />
-                  <span>Zero-Risk Growth Consultation</span>
+                  <span>Start Your Digital Upgrade</span>
                 </span>
 
-                <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-sans tracking-tight">
-                  Ready to Grow Your Business?
+                <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-sans tracking-tight leading-tight">
+                  You know your business.<br />
+                  <span className="text-[#C88770]">We know how to turn ideas into digital experiences.</span>
                 </h2>
 
-                <p className="text-base sm:text-lg text-white/80 leading-relaxed">
-                  Let&apos;s discuss your goals and create a strategy that works for your business.
+                <p className="text-base sm:text-xl text-white/90 leading-relaxed font-bold">
+                  Let&apos;s build something useful.
                 </p>
               </div>
 
@@ -48,18 +49,18 @@ export const FinalCTASection: React.FC<FinalCTASectionProps> = ({ onOpenModal })
                   onClick={onOpenModal}
                   icon={<ArrowUpRight className="w-5 h-5" />}
                 >
-                  Book Free Consultation
+                  Start a Conversation
                 </Button>
               </div>
 
-              <div className="relative z-10 flex items-center justify-center gap-6 pt-4 text-xs text-white/70">
+              <div className="relative z-10 flex flex-wrap items-center justify-center gap-6 pt-4 text-xs text-white/70 font-medium">
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-[#E5C396]" />
-                  <span>No Obligation Proposal</span>
+                  <span>3-Member Focused Team</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <PhoneCall className="w-4 h-4 text-[#C88770]" />
-                  <span>24-Hour SLA Response</span>
+                  <span>Direct WhatsApp &amp; Email Access</span>
                 </div>
               </div>
             </div>

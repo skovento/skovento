@@ -5,15 +5,17 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { MobileBottomBar } from '@/components/layout/MobileBottomBar';
 import { ConsultationModal } from '@/components/ui/ConsultationModal';
 import { FloatingContactBtn } from '@/components/ui/FloatingContactBtn';
 import { Button } from '@/components/ui/Button';
 import { caseStudiesData } from '@/data/case-studies';
-import { ArrowLeft, ArrowUpRight, TrendingUp, Quote, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, TrendingUp, Quote, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState<'consultation' | 'audit'>('consultation');
 
   const study = caseStudiesData.find((c) => c.slug === slug);
 
@@ -21,9 +23,19 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
     notFound();
   }
 
+  const handleOpenConsultation = () => {
+    setModalMode('consultation');
+    setModalOpen(true);
+  };
+
+  const handleOpenAuditModal = () => {
+    setModalMode('audit');
+    setModalOpen(true);
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#424965]">
-      <Navbar onOpenModal={() => setModalOpen(true)} />
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#424965] pb-16 sm:pb-0">
+      <Navbar onOpenModal={handleOpenConsultation} onOpenAuditModal={handleOpenAuditModal} />
 
       <main className="flex-grow pt-28">
         {/* Header Hero */}
@@ -34,13 +46,19 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
               className="inline-flex items-center gap-2 text-xs font-bold text-[#8A2B88] hover:text-[#16203D] mb-6 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Back to All Case Studies</span>
+              <span>Back to All Concept Projects</span>
             </Link>
 
             <div className="max-w-3xl space-y-4">
-              <span className="px-3.5 py-1.5 bg-[#FAF8F5] border border-[#E3DCD3] text-[#8A2B88] text-xs font-extrabold rounded-full uppercase tracking-wider">
-                {study.category} · Concept Build
-              </span>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="px-3.5 py-1.5 bg-[#FAF8F5] border border-[#E3DCD3] text-[#8A2B88] text-xs font-extrabold rounded-full uppercase tracking-wider">
+                  {study.category}
+                </span>
+                <span className="px-3.5 py-1.5 bg-[#E5C396] text-[#16203D] text-xs font-extrabold rounded-full uppercase tracking-wider shadow-sm">
+                  Concept Project — Skovento Build
+                </span>
+              </div>
+              
               <h1 className="text-3xl sm:text-5xl font-extrabold text-[#16203D] font-sans tracking-tight leading-tight">
                 {study.title}
               </h1>
@@ -75,7 +93,7 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
                 The Challenge
               </span>
               <h2 className="text-2xl font-bold text-[#16203D] font-sans">
-                Legacy Bottlenecks & Growth Obstacles
+                Legacy Bottlenecks &amp; Growth Obstacles
               </h2>
               <p className="text-sm text-[#424965] leading-relaxed">
                 {study.problem}
@@ -88,14 +106,14 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
                 The Skovento Solution
               </span>
               <h2 className="text-2xl font-bold text-[#16203D] font-sans">
-                Custom Engineering & High-Converting Marketing
+                Custom Engineering &amp; Practical User Flow
               </h2>
               <p className="text-sm text-[#424965] leading-relaxed mb-6">
                 {study.solution}
               </p>
 
               <div className="pt-4 border-t border-[#E3DCD3]">
-                <span className="text-xs font-bold text-[#16203D] block mb-3">Tech & Tools Deployed:</span>
+                <span className="text-xs font-bold text-[#16203D] block mb-3">Tech &amp; Tools Deployed:</span>
                 <div className="flex flex-wrap gap-2">
                   {study.techStack.map((tech, i) => (
                     <span key={i} className="text-xs font-semibold px-3 py-1 bg-[#FAF8F5] border border-[#E3DCD3] text-[#8A2B88] rounded-full">
@@ -109,7 +127,7 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
             {/* Honest Concept Note */}
             <div className="p-8 bg-[#8A2B88]/10 border border-[#8A2B88]/30 rounded-3xl space-y-3 text-center">
               <Quote className="w-8 h-8 text-[#8A2B88] mx-auto" />
-              <p className="text-sm text-[#16203D] leading-relaxed max-w-2xl mx-auto">
+              <p className="text-sm text-[#16203D] leading-relaxed max-w-2xl mx-auto font-medium">
                 {study.conceptNote}
               </p>
               <div className="text-xs font-bold text-[#8A2B88] uppercase tracking-wider">
@@ -118,8 +136,8 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
             </div>
 
             <div className="text-center pt-8">
-              <Button size="lg" onClick={() => setModalOpen(true)} icon={<ArrowUpRight className="w-5 h-5" />}>
-                Build Your Own Success Story
+              <Button size="lg" onClick={handleOpenConsultation} icon={<ArrowUpRight className="w-5 h-5" />}>
+                Discuss Your Digital Build
               </Button>
             </div>
 
@@ -128,8 +146,18 @@ export default function SingleCaseStudyPage({ params }: { params: Promise<{ slug
       </main>
 
       <Footer />
+
+      <MobileBottomBar
+        onOpenAuditModal={handleOpenAuditModal}
+        onOpenConsultationModal={handleOpenConsultation}
+      />
+
+      <ConsultationModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        initialMode={modalMode}
+      />
       <FloatingContactBtn />
-      <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

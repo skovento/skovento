@@ -3,7 +3,7 @@
  * SKOVENTO — SINGLE SOURCE OF TRUTH
  * ============================================================================
  *
- * ⚠️  PRIYANKA: THIS IS THE ONLY FILE YOU NEED TO EDIT.
+ * ⚠️ THIS IS THE SINGLE SOURCE OF TRUTH FOR SITE CONFIGURATION.
  *
  * Every `TODO_` value below is a placeholder. Replace them and the whole site
  * updates at once — schema.org markup, llms.txt, sitemap, footer NAP,

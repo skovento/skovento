@@ -4,43 +4,61 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { MobileBottomBar } from '@/components/layout/MobileBottomBar';
 import { FinalCTASection } from '@/components/sections/FinalCTASection';
 import { ConsultationModal } from '@/components/ui/ConsultationModal';
 import { FloatingContactBtn } from '@/components/ui/FloatingContactBtn';
 import { caseStudiesData } from '@/data/case-studies';
-import { ArrowUpRight, TrendingUp, Sparkles, Filter } from 'lucide-react';
+import { ArrowUpRight, TrendingUp, Sparkles, Filter, ShieldCheck } from 'lucide-react';
 
 export default function WorkPage() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState<'consultation' | 'audit'>('consultation');
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const categories = ['All', 'E-commerce', 'SaaS', 'Healthcare'];
+  const categories = ['All', 'Websites', 'Local Business', 'E-commerce', 'SaaS'];
 
-  const filteredStudies = activeFilter === 'All'
-    ? caseStudiesData
-    : caseStudiesData.filter((c) => c.category === activeFilter);
+  const filteredStudies =
+    activeFilter === 'All'
+      ? caseStudiesData
+      : caseStudiesData.filter(
+          (c) => c.category === activeFilter || c.industry === activeFilter
+        );
+
+  const handleOpenConsultation = () => {
+    setModalMode('consultation');
+    setModalOpen(true);
+  };
+
+  const handleOpenAuditModal = () => {
+    setModalMode('audit');
+    setModalOpen(true);
+  };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#424965]">
-      <Navbar onOpenModal={() => setModalOpen(true)} />
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#424965] pb-16 sm:pb-0">
+      <Navbar onOpenModal={handleOpenConsultation} onOpenAuditModal={handleOpenAuditModal} />
 
       <main className="flex-grow pt-28">
         {/* Work Hero */}
-        <section className="py-20 bg-[#F3EFEA] border-b border-[#E3DCD3]">
+        <section className="py-16 sm:py-24 bg-[#F3EFEA] border-b border-[#E3DCD3]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-            <span className="px-3.5 py-1.5 bg-[#FAF8F5] border border-[#E3DCD3] text-[#8A2B88] text-xs font-extrabold rounded-full uppercase tracking-wider mb-4 inline-block">
-              Concept Builds — No Real Clients Yet
+            <span className="px-3.5 py-1.5 bg-[#FAF8F5] border border-[#E3DCD3] text-[#8A2B88] text-xs font-extrabold rounded-full uppercase tracking-wider mb-4 inline-flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-[#C88770]" />
+              <span>100% Transparent — Concept Projects</span>
             </span>
+            
             <h1 className="text-4xl sm:text-6xl font-extrabold text-[#16203D] font-sans tracking-tight mb-4">
-              Concept work. <span className="text-gradient-brand">Real craft.</span>
+              Selected Work &amp; Concepts
             </h1>
-            <p className="text-base sm:text-lg text-[#424965]">
-              Skovento is a new studio. These are self-initiated concept builds across e-commerce, SaaS, and healthcare — every metric below is measured off the live demo, not a fabricated result.
+            
+            <p className="text-base sm:text-lg text-[#424965] leading-relaxed">
+              Real-world digital experiences designed to demonstrate how we approach different business challenges. Every item below is an independently designed Concept Project.
             </p>
 
             {/* Filter Pills */}
             <div className="flex items-center justify-center gap-2 pt-8">
-              <div className="p-1.5 bg-[#FAF8F5] border border-[#E3DCD3] rounded-full inline-flex">
+              <div className="p-1.5 bg-[#FAF8F5] border border-[#E3DCD3] rounded-full inline-flex flex-wrap justify-center gap-1">
                 {categories.map((cat) => (
                   <button
                     key={cat}
@@ -73,8 +91,8 @@ export default function WorkPage() {
                       <span className="text-[10px] font-extrabold uppercase tracking-widest text-white/90 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full w-fit">
                         {study.category}
                       </span>
-                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#16203D] bg-[#E5C396] px-3 py-1 rounded-full w-fit">
-                        Concept
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#16203D] bg-[#E5C396] px-3 py-1 rounded-full w-fit shadow-sm">
+                        Concept Project
                       </span>
                     </div>
                     <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl w-fit shadow-md border border-white">
@@ -110,7 +128,7 @@ export default function WorkPage() {
                       href={`/work/${study.slug}`}
                       className="inline-flex items-center justify-between w-full pt-4 border-t border-[#E3DCD3] text-xs font-bold text-[#16203D] group-hover:text-[#8A2B88] transition-colors"
                     >
-                      <span>Explore Case Study Details</span>
+                      <span>Explore Concept Case Study</span>
                       <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </Link>
                   </div>
@@ -120,12 +138,22 @@ export default function WorkPage() {
           </div>
         </section>
 
-        <FinalCTASection onOpenModal={() => setModalOpen(true)} />
+        <FinalCTASection onOpenModal={handleOpenConsultation} />
       </main>
 
       <Footer />
+
+      <MobileBottomBar
+        onOpenAuditModal={handleOpenAuditModal}
+        onOpenConsultationModal={handleOpenConsultation}
+      />
+
+      <ConsultationModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        initialMode={modalMode}
+      />
       <FloatingContactBtn />
-      <ConsultationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

@@ -3,87 +3,108 @@
 import React, { useState } from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { MobileBottomBar } from '@/components/layout/MobileBottomBar';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { TrustBar } from '@/components/sections/TrustBar';
+import { DigitalPresenceAuditSection } from '@/components/sections/DigitalPresenceAuditSection';
+import { InteractiveNeedTool } from '@/components/sections/InteractiveNeedTool';
 import { ProblemSection } from '@/components/sections/ProblemSection';
-import { WhyWeStartedSection } from '@/components/sections/WhyWeStartedSection';
-import { MacroProductRevealSection } from '@/components/sections/MacroProductRevealSection';
-import { OurSolutionSection } from '@/components/sections/OurSolutionSection';
+import { ServicesGrid } from '@/components/sections/ServicesGrid';
+import { IndustriesSection } from '@/components/sections/IndustriesSection';
+import { CaseStudiesSection } from '@/components/sections/CaseStudiesSection';
+import { TeamSection } from '@/components/sections/TeamSection';
+import { HonestAdviseSection } from '@/components/sections/HonestAdviseSection';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import { ProcessSection } from '@/components/sections/ProcessSection';
-import { CaseStudiesSection } from '@/components/sections/CaseStudiesSection';
-import { ServicesGrid } from '@/components/sections/ServicesGrid';
-import { PricingSection } from '@/components/sections/PricingSection';
-import { IndustriesSection } from '@/components/sections/IndustriesSection';
-import { HonestTestimonialsSection } from '@/components/sections/HonestTestimonialsSection';
+import { SalesObjectionsSection } from '@/components/sections/SalesObjectionsSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { FinalCTASection } from '@/components/sections/FinalCTASection';
 import { ConsultationModal } from '@/components/ui/ConsultationModal';
 import { FloatingContactBtn } from '@/components/ui/FloatingContactBtn';
-import { siteConfig } from '@/lib/site-config';
 
-/**
- * Interactive shell for the homepage.
- *
- * Why this file exists: the page needs client state (the consultation modal),
- * but the testimonials section must be a Server Component so its database query
- * runs on the server and the reviews appear in the initial HTML where crawlers
- * can read them.
- *
- * A Client Component cannot import an async Server Component — but it CAN
- * render one passed in as a prop. So page.tsx stays a Server Component, renders
- * <TestimonialsSection /> there, and hands the result down as `testimonials`.
- */
-export function HomeContent({ testimonials }: { testimonials: React.ReactNode }) {
+export function HomeContent({ testimonials }: { testimonials?: React.ReactNode }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState<'consultation' | 'audit'>('consultation');
 
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
+  const handleOpenConsultation = () => {
+    setModalMode('consultation');
+    setIsModalOpen(true);
+  };
+
+  const handleOpenAudit = () => {
+    setModalMode('audit');
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#16203D] flex flex-col font-sans selection:bg-[#8A2B88] selection:text-white">
-      <Navbar onOpenModal={handleOpenModal} />
+    <div className="min-h-screen bg-[#FAF8F5] text-[#16203D] flex flex-col font-sans selection:bg-[#8A2B88] selection:text-white pb-16 sm:pb-0">
+      <Navbar onOpenModal={handleOpenConsultation} onOpenAuditModal={handleOpenAudit} />
 
       <main className="flex-grow">
-        <HeroSection onOpenModal={handleOpenModal} />
+        {/* 1. Hero Section */}
+        <HeroSection onOpenModal={handleOpenConsultation} />
 
-        {/* Work moved up — nobody scrolled to screen 12 for this */}
-        <CaseStudiesSection />
+        {/* 2. Interactive Digital Presence Audit ("See What's Missing") */}
+        <DigitalPresenceAuditSection onOpenAuditModal={handleOpenAudit} />
 
-        <TrustBar />
+        {/* 3. Interactive Need Selector ("What are you trying to improve?") */}
+        <InteractiveNeedTool onOpenConsultationModal={handleOpenConsultation} />
+
+        {/* 4. Problem Diagnosis ("Your business is already online. But is it working for you?") */}
         <ProblemSection />
-        <WhyWeStartedSection />
-        <MacroProductRevealSection />
-        <OurSolutionSection />
-        <WhyChooseUs />
-        <ProcessSection />
+
+        {/* 5. Services Grid */}
         <ServicesGrid />
 
-        {/* Gated behind siteConfig.publishPricing — currently off. */}
-        {siteConfig.publishPricing && <PricingSection onOpenModal={handleOpenModal} />}
-
+        {/* 6. Industry Showcase ("Built Around Your Business") */}
         <IndustriesSection />
 
-        {/*
-          Real client reviews. Server-rendered above and passed in.
-          Renders NOTHING at all until at least one review has been approved —
-          see components/sections/TestimonialsSection.tsx.
-        */}
+        {/* 7. Selected Work & Concepts */}
+        <CaseStudiesSection />
+
+        {/* 8. Team Showcase ("Three disciplines. One digital team.") */}
+        <TeamSection onOpenModal={handleOpenConsultation} />
+
+        {/* 9. Trust Building ("Maybe you don't need a website... And that's okay.") */}
+        <HonestAdviseSection onOpenModal={handleOpenConsultation} />
+
+        {/* 10. Why Choose Us */}
+        <WhyChooseUs />
+
+        {/* 11. 5-Step Process */}
+        <ProcessSection />
+
+        {/* 12. Sales Objections Q&A ("What are you worried about?") */}
+        <SalesObjectionsSection onOpenConsultationModal={handleOpenConsultation} />
+
+        {/* 13. Testimonials (Renders if approved testimonials exist) */}
         {testimonials}
 
-        {/*
-          The founding-client offer. This is not a testimonials section — it's
-          an honest statement that we're new plus a concrete offer, so it stays
-          visible whether or not any reviews exist yet.
-        */}
-        <HonestTestimonialsSection onOpenModal={handleOpenModal} />
-
+        {/* 14. FAQs */}
         <FAQSection />
-        <FinalCTASection onOpenModal={handleOpenModal} />
+
+        {/* 15. Final CTA */}
+        <FinalCTASection onOpenModal={handleOpenConsultation} />
       </main>
 
       <Footer />
-      <ConsultationModal isOpen={isModalOpen} onClose={handleCloseModal} />
+
+      {/* Mobile Sticky Bottom Bar */}
+      <MobileBottomBar
+        onOpenAuditModal={handleOpenAudit}
+        onOpenConsultationModal={handleOpenConsultation}
+      />
+
+      {/* Shared Consultation & Audit Modal */}
+      <ConsultationModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        initialMode={modalMode}
+      />
+
       <FloatingContactBtn />
     </div>
   );
