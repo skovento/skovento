@@ -15,7 +15,7 @@ export default function AboutPage() {
   const values = [
     {
       icon: <Target className="w-6 h-6 text-[#8A2B88]" />,
-      title: 'Growth ',
+      title: 'Growth First',
       desc: 'We measure success by commercial revenue growth, customer inquiries, and conversion rates.'
     },
     {
