@@ -30,16 +30,15 @@ export const FinalCTASection: React.FC<FinalCTASectionProps> = ({ onOpenModal })
               <div className="relative z-10 space-y-4 max-w-3xl mx-auto">
                 <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-xs font-bold text-[#E5C396] uppercase tracking-wider border border-white/10">
                   <Sparkles className="w-4 h-4 text-[#C88770]" />
-                  <span>Start Your Digital Upgrade</span>
+                  <span>Start Your Digital Growth</span>
                 </span>
 
                 <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-sans tracking-tight leading-tight">
-                  You know your business.<br />
-                  <span className="text-[#C88770]">We know how to turn ideas into digital experiences.</span>
+                  Ready to build?
                 </h2>
 
-                <p className="text-base sm:text-xl text-white/90 leading-relaxed font-bold">
-                  Let&apos;s build something useful.
+                <p className="text-base sm:text-xl text-white/70 leading-relaxed font-semibold tracking-wide">
+                  Website · Software · Marketing · Growth
                 </p>
               </div>
 

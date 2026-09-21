@@ -29,14 +29,12 @@ export function Navbar({ onOpenModal, onOpenAuditModal }: NavbarProps) {
   }, []);
 
   const navLinks = [
+    { name: 'Home', href: '/' },
     { name: 'Services', href: '/services', hasDropdown: true },
     { name: 'Work', href: '/work' },
     { name: 'Industries', href: '/industries', hasIndustryDropdown: true },
-    { name: 'Local Business', href: '/solutions/local-business' },
-    { name: 'Process', href: '/process' },
     { name: 'About', href: '/about' },
-    { name: 'Free Audit', href: '/audit' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Blog', href: '/blog' },
   ];
 
   const industryLinks = [
@@ -220,15 +218,8 @@ export function Navbar({ onOpenModal, onOpenAuditModal }: NavbarProps) {
 
         {/* CTA Buttons */}
         <div className="hidden lg:flex items-center gap-3">
-          <button
-            type="button"
-            onClick={onOpenAuditModal || onOpenModal}
-            className="text-xs font-extrabold text-[#8A2B88] hover:text-[#16203D] px-3 py-1.5"
-          >
-            Free Audit
-          </button>
           <Button size="sm" onClick={onOpenModal} icon={<ArrowUpRight className="w-4 h-4" />}>
-            Start Conversation
+            Start a Project
           </Button>
         </div>
 
