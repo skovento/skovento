@@ -12,8 +12,10 @@
     --border-subtle: #E3DCD3;
     --text-headline: #16203D;
     --text-body: #424965;
-    --brand-indigo: #1E2E6B;
-    --brand-magenta: #8A2B88;
+    --accent: #4F46E5;
+    --accent-hover: #4338CA;
+    --accent-muted: rgba(79, 70, 229, 0.08);
+    --accent-border: rgba(79, 70, 229, 0.2);
     --accent-gold: #C88770;
     --accent-gold-hover: #DB9883;
   }
@@ -29,12 +31,6 @@
     background-color: #FAF8F5;
     color: #424965;
     overflow-x: hidden;
-  }
-
-  /* Custom Selection */
-  ::selection {
-    background-color: rgba(138, 43, 136, 0.2);
-    color: #16203D;
   }
 }
 
@@ -130,22 +126,12 @@
   }
 }
 
-.text-gradient-brand {
-  background: linear-gradient(135deg, #1E2E6B 0%, #8A2B88 50%, #C88770 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.bg-gradient-brand {
-  background: linear-gradient(135deg, #1E2E6B 0%, #8A2B88 100%);
-}
+.text-accent { color: var(--accent); }
+.bg-accent { background-color: var(--accent); }
+.border-accent { border-color: var(--accent-border); }
 
 .bg-gradient-gold {
   background: linear-gradient(135deg, #C88770 0%, #E8AA95 100%);
-}
-
-.border-gradient-brand {
-  border-image: linear-gradient(135deg, #1E2E6B, #8A2B88, #C88770) 1;
 }
 
 /* ==========================================================================
@@ -181,7 +167,7 @@
 
 .glass-row:hover {
   background: rgba(255, 255, 255, 0.065);
-  border-color: rgba(194, 79, 190, 0.32);
+  border-color: rgba(79, 70, 229, 0.32);
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -286,7 +272,7 @@
    Keyboard users need to see where they are; :focus-visible means mouse users
    never see it. */
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-  outline: 2px solid #c24fbe;
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 6px;
 }

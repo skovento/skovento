@@ -37,7 +37,7 @@ export function IndustryClientPage({ industry }: { industry: IndustryData }) {
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#16203D] flex flex-col font-sans selection:bg-[#8A2B88] selection:text-white pb-16 sm:pb-0">
-      <Navbar onOpenModal={handleOpenConsultation} onOpenAuditModal={handleOpenAuditModal} />
+      <Navbar />
 
       <main className="flex-grow pt-28 pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -135,11 +135,11 @@ export function IndustryClientPage({ industry }: { industry: IndustryData }) {
               </div>
 
               <h3 className="text-2xl font-extrabold font-sans">
-                {conceptProject.title} — {conceptProject.client}
+                {conceptProject.title}
               </h3>
 
               <p className="text-xs text-white/80 leading-relaxed">
-                {conceptProject.summary}
+                {conceptProject.overview}
               </p>
 
               <div className="pt-2">

@@ -3,9 +3,6 @@ import Script from 'next/script';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { LenisProvider } from '@/components/layout/LenisProvider';
-import { GSAPCinematicScroll } from '@/components/animation/GSAPCinematicScroll';
-import { CustomCursor } from '@/components/ui/CustomCursor';
-import { ThreeBackgroundCanvas } from '@/components/ui/ThreeBackgroundCanvas';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { baseGraph } from '@/lib/schema';
 import { siteConfig } from '@/lib/site-config';
@@ -22,9 +19,9 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-jakarta'
 });
 
-const TITLE = 'Skovento — 3D Animated Website Design & Growth';
+const TITLE = 'Skovento — Digital Solutions Studio';
 const DESCRIPTION =
-  'Skovento builds 3D scroll-animated, server-rendered websites on Next.js, GSAP and Three.js for D2C brands, cafes and clinics in India — with a written performance guarantee: LCP under 2.5s on 4G.';
+  'We design and develop modern websites, web applications and digital tools for businesses. Skovento is an independent digital solutions brand based in India.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -35,13 +32,11 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   applicationName: siteConfig.name,
   keywords: [
-    '3d animated website',
-    'website design india',
-    'web design agency india',
-    'nextjs development company',
-    'threejs website',
-    'scroll animation website',
-    'ecommerce website development india',
+    'digital solutions',
+    'web development',
+    'business websites',
+    'web applications',
+    'booking systems',
     'technical seo',
     'generative engine optimization',
     'Skovento'
@@ -96,14 +91,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={siteConfig.locale} className={`h-full antialiased selection:bg-[#8A2B88]/20 selection:text-[#16203D] ${inter.variable} ${plusJakartaSans.variable}`}>
+    <html lang={siteConfig.locale} className={`h-full antialiased selection:bg-indigo-100 selection:text-[#16203D] ${inter.variable} ${plusJakartaSans.variable}`}>
       <head>
         <JsonLd data={baseGraph()} />
       </head>
       <body className="min-h-full flex flex-col bg-[#FAF8F5] text-[#424965] font-sans overflow-x-hidden relative">
-        {/* Global 3D WebGL Ambient Scene */}
-        <ThreeBackgroundCanvas />
-
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -127,10 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
 
         <LenisProvider>
-          <GSAPCinematicScroll>
-            <CustomCursor />
-            <div className="relative z-10">{children}</div>
-          </GSAPCinematicScroll>
+          <div className="relative z-10">{children}</div>
         </LenisProvider>
       </body>
     </html>

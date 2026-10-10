@@ -22,6 +22,8 @@ export const inquirySchema = z.object({
   phone: z.string().trim().max(30).optional().or(z.literal('')),
   company: z.string().trim().max(160).optional().or(z.literal('')),
   service: z.string().trim().max(120).optional().or(z.literal('')),
+  budgetRange: z.string().trim().max(100).optional().or(z.literal('')),
+  preferredContact: z.string().trim().max(60).optional().or(z.literal('')),
   message: z.string().trim().max(5000).optional().or(z.literal('')),
   source: z.string().trim().max(60).default('website'),
   pagePath: z.string().trim().max(300).optional().or(z.literal('')),

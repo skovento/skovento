@@ -25,7 +25,7 @@ export const siteConfig = {
   // ---------------------------------------------------------------- identity
   name: 'Skovento',
   legalName: 'Skovento',
-  tagline: 'Beyond Limits. Elevated Journeys.',
+  tagline: 'Digital Solutions Studio',
   url: 'https://skovento.com',
   locale: 'en-IN',
   /** Format: YYYY-MM. Used by schema.org foundingDate and llms.txt. */
@@ -37,7 +37,7 @@ export const siteConfig = {
    * Keep it factual, entity-dense, and under ~60 words.
    */
   description:
-    'Skovento is a web design and digital growth studio in Ahmedabad, Gujarat. We build 3D scroll-animated, high-performance websites using Next.js, React, GSAP and Three.js, and run SEO and paid acquisition campaigns for D2C brands, cafes, clinics and local businesses across India.',
+    'Skovento is an independent digital solutions brand. We design and develop modern websites, web applications and digital tools for businesses across India.',
 
   // ----------------------------------------------------------------- contact
   // These were already live in the codebase (src/lib/contact.ts, Footer,

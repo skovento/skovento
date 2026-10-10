@@ -59,6 +59,8 @@ export async function POST(request: Request) {
       phone: data.phone,
       company: data.company,
       service: data.service,
+      budgetRange: data.budgetRange,
+      preferredContact: data.preferredContact,
       message: data.message,
     });
 
@@ -78,6 +80,8 @@ async function sendNotification(lead: {
   phone?: string;
   company?: string;
   service?: string;
+  budgetRange?: string;
+  preferredContact?: string;
   message?: string;
 }) {
   const apiKey = process.env.RESEND_API_KEY;
@@ -101,13 +105,15 @@ async function sendNotification(lead: {
       text: [
         `New enquiry via ${siteConfig.url}`,
         '',
-        `Name:    ${lead.name}`,
-        `Email:   ${lead.email}`,
-        lead.phone ? `Phone:   ${lead.phone}` : null,
-        lead.company ? `Company: ${lead.company}` : null,
-        lead.service ? `Service: ${lead.service}` : null,
+        `Name:             ${lead.name}`,
+        `Email:            ${lead.email}`,
+        lead.phone ? `Phone/WhatsApp:   ${lead.phone}` : null,
+        lead.company ? `Company/Business: ${lead.company}` : null,
+        lead.service ? `Project Type:     ${lead.service}` : null,
+        lead.budgetRange ? `Budget Range:     ${lead.budgetRange}` : null,
+        lead.preferredContact ? `Preferred Contact:${lead.preferredContact}` : null,
         '',
-        'Message:',
+        'Project Description:',
         lead.message || '(none)',
       ]
         .filter(Boolean)

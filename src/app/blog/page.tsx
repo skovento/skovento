@@ -37,7 +37,7 @@ export default function BlogPage() {
 
   return (
     <main className="min-h-screen bg-[#FAF8F5] text-[#16203D]">
-      <Navbar onOpenModal={() => setIsModalOpen(true)} />
+      <Navbar />
 
       {/* Header */}
       <section className="pt-36 pb-20 bg-[#F3EFEA] border-b border-[#E3DCD3]">

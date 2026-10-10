@@ -1,72 +1,56 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Sparkles, PhoneCall, ShieldCheck } from 'lucide-react';
-import { Button } from '../ui/Button';
-import { Spatial3DCard } from '../ui/Spatial3DCard';
+import { ArrowUpRight, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 
-interface FinalCTASectionProps {
-  onOpenModal: () => void;
-}
-
-export const FinalCTASection: React.FC<FinalCTASectionProps> = ({ onOpenModal }) => {
+export function FinalCTASection() {
   return (
-    <section className="py-14 sm:py-24 bg-[#FAF8F5]/90 backdrop-blur-md relative overflow-hidden">
+    <section className="py-20 sm:py-28 bg-[#FAF8F5] border-t border-[#E3DCD3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+          className="rounded-3xl border border-[#E3DCD3] bg-[#F3EFEA] p-10 sm:p-16 text-center space-y-8 relative overflow-hidden shadow-xs"
         >
-          <Spatial3DCard depth={30} maxTilt={10} glowColor="rgba(200, 135, 112, 0.25)">
-            <div className="p-10 sm:p-16 bg-gradient-to-br from-[#16203D] via-[#1E2E6B] to-[#55246D] text-[#FAF8F5] rounded-3xl text-center space-y-8 relative overflow-hidden shadow-2xl">
-              {/* Subtle Ambient Orbs */}
-              <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#8A2B88]/40 rounded-full blur-3xl" />
-              <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#C88770]/30 rounded-full blur-3xl" />
+          {/* Subtle ambient blur */}
+          <div
+            aria-hidden="true"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-[#4F46E5]/10 via-[#6366F1]/5 to-transparent rounded-full blur-3xl pointer-events-none"
+          />
 
-              <div className="relative z-10 space-y-4 max-w-3xl mx-auto">
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-xs font-bold text-[#E5C396] uppercase tracking-wider border border-white/10">
-                  <Sparkles className="w-4 h-4 text-[#C88770]" />
-                  <span>Start Your Digital Growth</span>
-                </span>
+          <div className="relative z-10 space-y-4 max-w-2xl mx-auto">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#E3DCD3] text-xs font-semibold tracking-wider text-[#4F46E5] uppercase">
+              Get In Touch
+            </span>
 
-                <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-sans tracking-tight leading-tight">
-                  Ready to build?
-                </h2>
+            <h2 className="text-3xl sm:text-5xl font-bold text-[#16203D] font-sans tracking-tight leading-tight">
+              Have a business idea or digital challenge?
+            </h2>
 
-                <p className="text-base sm:text-xl text-white/70 leading-relaxed font-semibold tracking-wide">
-                  Website · Software · Marketing · Growth
-                </p>
-              </div>
+            <p className="text-base sm:text-lg text-[#424965] leading-relaxed">
+              Tell us what you need to build, improve or simplify. We&apos;ll discuss the requirements and recommend a practical next step.
+            </p>
+          </div>
 
-              <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-                <Button
-                  size="lg"
-                  onClick={onOpenModal}
-                  icon={<ArrowUpRight className="w-5 h-5" />}
-                >
-                  Start a Conversation
-                </Button>
-              </div>
-
-              <div className="relative z-10 flex flex-wrap items-center justify-center gap-6 pt-4 text-xs text-white/70 font-medium">
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-[#E5C396]" />
-                  <span>3-Member Focused Team</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <PhoneCall className="w-4 h-4 text-[#C88770]" />
-                  <span>Direct WhatsApp &amp; Email Access</span>
-                </div>
-              </div>
-            </div>
-          </Spatial3DCard>
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <Link href="/contact">
+              <Button size="lg" icon={<ArrowUpRight className="w-4 h-4" />}>
+                Discuss Your Project
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button size="lg" variant="outline" icon={<Mail className="w-4 h-4" />}>
+                Send an Enquiry
+              </Button>
+            </Link>
+          </div>
         </motion.div>
-
       </div>
     </section>
   );
-};
+}

@@ -1,189 +1,202 @@
 export interface CaseStudy {
   id: string;
   slug: string;
-  client: string;
-  isConcept: true;
-  category: 'Websites' | 'E-commerce' | 'SaaS' | 'Web Apps' | 'Local Business';
-  industry: 'Fashion' | 'Restaurants' | 'Travel' | 'Real Estate' | 'SaaS';
   title: string;
-  highlightResult: string;
-  metrics: { value: string; label: string }[];
-  summary: string;
+  category: 'Websites' | 'Business Systems' | 'Product Concepts';
+  projectType: 'Visual Concept' | 'Interactive Prototype' | 'Functional Application';
+  businessType: string;
+  overview: string;
   problem: string;
+  objective: string;
   solution: string;
-  keyFeatures: string[];
+  features: string[];
+  userExperience: string;
   techStack: string[];
+  implementationDetails: string;
+  limitations: string;
+  liveDemo?: string;
+  sourceCode?: string;
   conceptNote: string;
   imageColor: string;
 }
 
 /**
- * SKOVENTO PORTFOLIO POLICY:
- * 100% Honest & Transparent.
- * Every item in this portfolio is an independently designed Concept Project by Skovento
- * to demonstrate our capability, UI standards, and performance engineering.
- * We do NOT claim fictional client relationships or invented revenue figures.
+ * SKOVENTO DEMONSTRATIONS POLICY:
+ * Every project is an independently designed Concept Project by Skovento.
+ * We do not claim fictional client relationships, invented customer testimonials,
+ * or fabricated financial metrics.
  */
 export const caseStudiesData: CaseStudy[] = [
   {
-    id: 'aura-luxe',
-    slug: 'aura-luxe-fashion',
-    client: 'Aura Luxe Fashion (Skovento Concept)',
-    isConcept: true,
-    category: 'E-commerce',
-    industry: 'Fashion',
-    title: 'A Sub-Second Luxury Fashion Showroom & WhatsApp Ordering Concept',
-    highlightResult: 'Sub-1s Mobile Load',
-    metrics: [
-      { value: '98/100', label: 'Lighthouse Performance' },
-      { value: '0.8s', label: 'Largest Contentful Paint' },
-      { value: '1-Tap', label: 'WhatsApp Inquiry Routing' },
-    ],
-    summary:
-      'A self-initiated concept demonstrating how a boutique fashion brand can bridge Instagram discovery with a fast, mobile-first web catalogue and 1-tap WhatsApp checkout.',
-    problem:
-      'Fashion stores relying solely on Instagram DMs lose potential buyers who want a structured catalogue, size charts, and instant price confirmation without waiting for DM replies.',
-    solution:
-      'We engineered a lightweight Next.js storefront concept featuring visual lookbooks, filterable categories, store locator, and direct WhatsApp enquiry buttons on every product.',
-    keyFeatures: [
-      'Visual Collection Grid',
-      'Instant WhatsApp Purchase Inquiry',
-      'Mobile-Optimized Touch Navigation',
-      'Google Maps Store Location Embed',
-      'Sub-Second Page Load Optimization',
-    ],
-    techStack: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
-    conceptNote:
-      'Concept Project — Independently designed by Skovento to demonstrate mobile e-commerce UX and performance optimization.',
-    imageColor: 'from-[#8A2B88]/40 to-[#16203D]/60',
-  },
-  {
-    id: 'spice-table',
-    slug: 'spice-table-restaurant',
-    client: 'Spice Table Bistro (Skovento Concept)',
-    isConcept: true,
-    category: 'Local Business',
-    industry: 'Restaurants',
-    title: 'Digital Menu, Table Reservation & Local SEO Concept for Hospitality',
-    highlightResult: '100/100 SEO Score',
-    metrics: [
-      { value: '100/100', label: 'Lighthouse SEO Score' },
-      { value: '<0.9s', label: 'First Contentful Paint' },
-      { value: '2-Click', label: 'Reservation Flow' },
-    ],
-    summary:
-      'A concept built to showcase how local restaurants and cafés can replace slow PDF menus with a lightning-fast web menu optimized for local Google search.',
-    problem:
-      'Diners searching for food options on mobile encounter PDF menus that are painful to zoom, outdated in pricing, and lack direct table booking.',
-    solution:
-      'We designed a responsive digital menu concept with dietary filters, embedded Google Maps local schema, customer reviews, and a 2-step reservation request form.',
-    keyFeatures: [
-      'Interactive Fast-Loading Digital Menu',
-      'Dietary & Chef Special Filters',
-      '1-Tap Table Reservation Requests',
-      'LocalBusiness Schema.org Integration',
-      'Click-to-Call & WhatsApp Contact',
-    ],
-    techStack: ['Next.js', 'Tailwind CSS', 'Schema.org', 'TypeScript'],
-    conceptNote:
-      'Concept Project — Independently created by Skovento to demonstrate local business web design and Local SEO schema integration.',
-    imageColor: 'from-[#C88770]/40 to-[#16203D]/60',
-  },
-  {
-    id: 'horizon-travels',
-    slug: 'horizon-travels',
-    client: 'Horizon Travels & Fleet (Skovento Concept)',
-    isConcept: true,
+    id: 'local-services',
+    slug: 'local-services-website',
+    title: 'Local Services Business Website',
     category: 'Websites',
-    industry: 'Travel',
-    title: 'Fleet Catalogue & Custom Itinerary Booking Portal Concept',
-    highlightResult: 'Interactive Booking Flow',
-    metrics: [
-      { value: '96/100', label: 'Lighthouse Performance' },
-      { value: '3-Step', label: 'Quotation Request Flow' },
-      { value: '100%', label: 'Mobile Responsive' },
-    ],
-    summary:
-      'A concept travel portal built to demonstrate how tour operators and car rental businesses can present fleet vehicles and itineraries cleanly.',
+    projectType: 'Interactive Prototype',
+    businessType: 'Local Trades & Professional Services',
+    overview:
+      'A streamlined web presence designed for local service businesses to display core offerings, establish local search credibility, and route prospective inquiries directly into email and WhatsApp.',
     problem:
-      'Travel agencies lose leads when prospective travelers cannot easily compare vehicle options, view clear inclusions/exclusions, or request instant quotes.',
+      'Local service businesses frequently rely on fragmented social media pages or outdated websites that fail on mobile devices, do not state service areas clearly, and make contacting the business cumbersome.',
+    objective:
+      'Design and build a mobile-first digital presence with sub-second page loads, structured service packages, direct click-to-call / WhatsApp access, and Schema.org local business indexing.',
     solution:
-      'We created a travel catalogue concept featuring vehicle specs, tour day-by-day breakdowns, transparent pricing guidelines, and a streamlined quotation form.',
-    keyFeatures: [
-      'Vehicle & Package Fleet Grid',
-      'Interactive Tour Itinerary Cards',
-      'Multi-Step Quote Request Tool',
-      'WhatsApp Trip Consultation CTA',
-      'Customer Feedback Showcase',
+      'A server-rendered Next.js website featuring a clear service breakdown, localized geographic coverage signals, accessible inquiry forms with validation, and an interactive FAQ section.',
+    features: [
+      'Categorised service breakdown with transparent scope details',
+      'One-tap WhatsApp & phone consultation routing',
+      'LocalBusiness Schema.org structured data integration',
+      'Embedded Google Maps location and service boundary display',
+      'Lightweight inquiry form with server-side validation and spam prevention',
+      'Fully responsive touch layout optimized for 360px to 4K displays',
     ],
-    techStack: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Lucide React'],
+    userExperience:
+      'Mobile visitors immediately see the primary service offerings, geographic coverage, and direct communication buttons within the first screen view without needing to dig through nested menus.',
+    techStack: ['Next.js (App Router)', 'React 19', 'TypeScript', 'Tailwind CSS', 'Resend API'],
+    implementationDetails:
+      'Built using React Server Components for zero unnecessary JavaScript hydration. Assets and fonts are locally hosted to eliminate third-party render-blocking requests.',
+    limitations:
+      'This demonstration uses simulated enquiry routing unless configured with real production email credentials. Does not include an automated online booking calendar.',
+    liveDemo: 'https://skovento.com/work/local-services-website',
     conceptNote:
-      'Concept Project — Designed by Skovento as an example of a high-converting travel & fleet booking architecture.',
-    imageColor: 'from-[#16203D]/60 to-[#8A2B88]/40',
+      'Design Concept — Created independently by Skovento to demonstrate modern local service web architecture.',
+    imageColor: 'from-[#4F46E5]/40 to-[#16203D]/70',
   },
   {
-    id: 'prime-realty',
-    slug: 'prime-realty',
-    client: 'Prime Realty & Estates (Skovento Concept)',
-    isConcept: true,
+    id: 'industrial-catalogue',
+    slug: 'industrial-b2b-catalogue',
+    title: 'Industrial B2B Product Catalogue',
     category: 'Websites',
-    industry: 'Real Estate',
-    title: 'Luxury Property Showcase & High-Intent Lead Capture Concept',
-    highlightResult: 'High-Intent Lead Routing',
-    metrics: [
-      { value: '97/100', label: 'Lighthouse Performance' },
-      { value: 'Floorplan', label: 'Interactive Viewer' },
-      { value: 'Brochure', label: 'Instant Download Gate' },
-    ],
-    summary:
-      'A concept property landing page demonstrating how real estate developers and agents can capture qualified buyers with rich visual storytelling.',
+    projectType: 'Interactive Prototype',
+    businessType: 'B2B Manufacturers & Industrial Suppliers',
+    overview:
+      'A structured digital product catalogue that allows industrial suppliers and component manufacturers to showcase technical product lines and receive structured Request for Quote (RFQ) inquiries.',
     problem:
-      'Standard real estate listings often hide key floorplans and location contexts behind generic forms, causing prospective buyers to bounce.',
+      'Manufacturers often distribute static 100-page PDF catalogues. B2B buyers struggle to search specifications on mobile devices, and sales teams receive vague email inquiries lacking necessary part numbers.',
+    objective:
+      'Replace cumbersome static files with a fast, searchable digital catalogue featuring itemized technical specifications, multi-item quote requests, and spec sheet downloads.',
     solution:
-      'We designed a property showcase concept featuring interactive floorplan toggles, amenity highlights, neighborhood context, and instant brochure downloads.',
-    keyFeatures: [
-      'High-Resolution Property Gallery',
-      'Interactive Floorplan & Spec Viewer',
-      'Brochure & Pricing Download Gate',
-      'Site Visit Schedule Assistant',
-      'Location & Amenity Context Grid',
+      'An organized digital catalogue with multi-facet category filters, technical dimension tables, a lightweight RFQ cart allowing buyers to select multiple part numbers, and an inquiry submission engine.',
+    features: [
+      'Faceted product specification filters (dimensions, materials, tolerances)',
+      'Multi-item RFQ (Request for Quote) inquiry basket',
+      'Downloadable PDF technical spec sheet gate with lead capture',
+      'Product categorization structured for commercial technical SEO',
+      'Responsive data tables designed for tablet and mobile field review',
     ],
-    techStack: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
+    userExperience:
+      'Engineers and procurement specialists can locate specific part numbers in seconds using real-time search, compare technical parameters, and submit an RFQ with custom quantities.',
+    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Lucide Icons'],
+    implementationDetails:
+      'Product specifications are represented in static TypeScript data structures ready for database or headless CMS hydration. Table components feature horizontal overflow scrolling on mobile.',
+    limitations:
+      'Demonstration currently demonstrates front-end filtering and RFQ submission flow; live ERP inventory synchronization requires direct enterprise API integration.',
+    liveDemo: 'https://skovento.com/work/industrial-b2b-catalogue',
     conceptNote:
-      'Concept Project — Created independently by Skovento to illustrate high-end real estate web architecture.',
-    imageColor: 'from-[#16203D]/60 to-[#C88770]/40',
+      'Design Concept — Demonstrates how B2B manufacturing companies can modernize product discovery without requiring full consumer e-commerce overhead.',
+    imageColor: 'from-[#1E293B]/70 to-[#334155]/70',
   },
   {
-    id: 'apex-cloud',
-    slug: 'apex-cloud-systems',
-    client: 'Apex Analytics Dashboard (Skovento Concept)',
-    isConcept: true,
-    category: 'SaaS',
-    industry: 'SaaS',
-    title: 'Custom Analytics Web Application & Admin Panel Concept',
-    highlightResult: 'Custom Dashboard UI',
-    metrics: [
-      { value: '95/100', label: 'Lighthouse Performance' },
-      { value: '3-Step', label: 'Simplified Trial Flow' },
-      { value: '<400KB', label: 'Bundle Size' },
-    ],
-    summary:
-      'A custom web application concept demonstrating how complex business data and workflows can be simplified into a clean, modern SaaS dashboard.',
+    id: 'booking-system',
+    slug: 'service-booking-system',
+    title: 'Service Booking & Reservation Workflow',
+    category: 'Websites',
+    projectType: 'Functional Application',
+    businessType: 'Consultancies, Salons & Appointment Businesses',
+    overview:
+      'A customer-facing booking and enquiry experience that enables clients to view service packages, select available time windows, and submit appointment requests with automated notifications.',
     problem:
-      'Enterprise and SaaS tools often suffer from cluttered interfaces, slow loading tables, and confusing navigation that hinder daily productivity.',
+      'Service providers lose prospective clients when bookings require back-and-forth phone calls or manual messaging during busy operational hours.',
+    objective:
+      'Create an intuitive multi-step booking request flow that captures client details, preferred dates, and specific requirements in a structured, friction-free interface.',
     solution:
-      'We engineered a modular admin dashboard concept with real-time chart visualizations, role-based navigation, and interactive data filtering.',
-    keyFeatures: [
-      'Interactive Data Visualization Charts',
-      'Modular Sidebar & Role Navigation',
-      'Fast Search & Filterable Data Tables',
-      'Responsive Mobile & Tablet View',
-      'Clean Component Architecture',
+      'A dedicated booking interface that guides users through service selection, date preferences, and contact details, with instant email confirmations sent to both provider and client.',
+    features: [
+      'Multi-step guided booking wizard with live progress indicator',
+      'Service package selection with pricing and duration indications',
+      'Date and preferred time window selection interface',
+      'Automated confirmation email dispatch via transactional email API',
+      'Provider review dashboard mock view for managing booking statuses',
     ],
-    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+    userExperience:
+      'Clients complete booking requests in under 90 seconds on their phones. Input fields are formatted with clear inline validation and accessible touch targets.',
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Resend', 'Zod'],
+    implementationDetails:
+      'State is managed with client-side React hooks for immediate feedback, while form submissions are validated server-side using Zod schemas to guarantee input safety.',
+    limitations:
+      'Payment processing for upfront deposits is designed as an optional add-on; standard demonstration focuses on appointment request collection.',
+    liveDemo: 'https://skovento.com/work/service-booking-system',
     conceptNote:
-      'Concept Project — An engineering and design exercise by Skovento showcasing custom web application capabilities.',
-    imageColor: 'from-[#8A2B88]/30 to-[#16203D]/70',
+      'Design Concept — A functional demonstration of structured service booking workflows.',
+    imageColor: 'from-[#4F46E5]/40 to-[#7C3AED]/50',
+  },
+  {
+    id: 'business-dashboard',
+    slug: 'business-management-dashboard',
+    title: 'Business Management Dashboard',
+    category: 'Business Systems',
+    projectType: 'Functional Application',
+    businessType: 'Growing SMEs & Internal Operations',
+    overview:
+      'A custom internal operations dashboard designed to help business owners track customer records, task statuses, and key operational metrics in a single unified interface.',
+    problem:
+      'Growing businesses frequently outgrow basic spreadsheets, resulting in lost customer history, desynchronized task lists, and no unified daily operational visibility.',
+    objective:
+      'Build a lightweight, responsive management tool that centralizes customer records, internal task pipelines, and daily activity logs without the cost or complexity of enterprise suites.',
+    solution:
+      'A custom web application with authenticated navigation, searchable customer tables, Kanban-style status tracking, and key metric summary cards.',
+    features: [
+      'Role-based layout with secure authentication structure',
+      'Customer record table with instant search and status filtering',
+      'Interactive pipeline view for active projects or order fulfillment',
+      'Summary metrics for pending tasks, completed projects, and response times',
+      'Responsive drawer interface for updating customer notes on mobile',
+    ],
+    userExperience:
+      'High-contrast, distraction-free data density inspired by modern engineering tools like Linear. Fast keyboard shortcuts and sub-100ms UI interactions.',
+    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'PostgreSQL Schema'],
+    implementationDetails:
+      'Component-driven architecture with modular data tables and reusable status badges. Styled with restrained neutral surfaces and accessible contrast.',
+    limitations:
+      'Demonstration runs with seeded local data in demo mode; production deployment connects to dedicated PostgreSQL database with row-level security.',
+    liveDemo: 'https://skovento.com/work/business-management-dashboard',
+    conceptNote:
+      'Design Concept — Demonstrates custom internal tool development for growing businesses.',
+    imageColor: 'from-[#0F172A]/70 to-[#1E3A5F]/70',
+  },
+  {
+    id: 'receivables-tool',
+    slug: 'receivables-management-tool',
+    title: 'Receivables Management Product Concept',
+    category: 'Product Concepts',
+    projectType: 'Functional Application',
+    businessType: 'Finance, B2B Accounts & Billing Teams',
+    overview:
+      'A focused web software concept engineered to help finance managers track outstanding customer invoices, calculate ageing brackets, and automate reminder workflows.',
+    problem:
+      'Delayed invoice collections and manual follow-ups strain business cash flow. Teams lack automated ageing visibility (0-30, 31-60, 60+ days) and forget structured follow-up schedules.',
+    objective:
+      'Demonstrate a focused SaaS-style utility for invoice ageing analysis, automated follow-up communication logging, and receivables health tracking.',
+    solution:
+      'A dashboard featuring an ageing summary breakdown, invoice status management (Paid, Overdue, Disputed), customer communication log, and CSV statement exports.',
+    features: [
+      'Visual receivables ageing analysis (Current, 30+, 60+, 90+ days)',
+      'Invoice status tracking with payment reconciliation logging',
+      'Automated email reminder template triggers',
+      'Customer communication timeline log for collections tracking',
+      'One-click CSV data export for accounting reconciliation',
+    ],
+    userExperience:
+      'Finance teams get instant clarity on outstanding capital with clear visual color-coded ageing indicators and rapid filter toggles.',
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL / Prisma', 'Lucide Icons'],
+    implementationDetails:
+      'Mathematical ageing calculations computed server-side to guarantee precision. Data visualizations use clean SVG-based progress elements for minimal bundle weight.',
+    limitations:
+      'Demonstration concept illustrating user experience and data structure; bank feed automation requires direct Open Banking or payment aggregator APIs.',
+    liveDemo: 'https://skovento.com/work/receivables-management-tool',
+    conceptNote:
+      'Product Concept — An independent software product concept illustrating targeted business workflow design.',
+    imageColor: 'from-[#065F46]/50 to-[#0F172A]/70',
   },
 ];
 

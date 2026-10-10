@@ -1,260 +1,155 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, Menu, X, ArrowUpRight, Code, TrendingUp, Sparkles, Building2 } from 'lucide-react';
-import { Logo } from '../ui/Logo';
-import { Button } from '../ui/Button';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { Logo } from '@/components/ui/Logo';
+import { Button } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
+
+const NAV_LINKS = [
+  { label: 'Services', href: '/services' },
+  { label: 'Work', href: '/work' },
+  { label: 'Process', href: '/process' },
+  { label: 'About', href: '/about' },
+];
 
 interface NavbarProps {
-  onOpenModal: () => void;
+  onOpenModal?: () => void;
   onOpenAuditModal?: () => void;
 }
 
-export function Navbar({ onOpenModal, onOpenAuditModal }: NavbarProps) {
-  const [scrolled, setScrolled] = useState(false);
+export function Navbar({ onOpenModal, onOpenAuditModal }: NavbarProps = {}) {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
-  const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services', hasDropdown: true },
-    { name: 'Work', href: '/work' },
-    { name: 'Industries', href: '/industries', hasIndustryDropdown: true },
-    { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-  ];
+  // Keyboard support: Escape to close
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
 
-  const industryLinks = [
-    { title: 'Fashion & Apparel', href: '/industries/fashion' },
-    { title: 'Restaurants & Hospitality', href: '/industries/restaurants' },
-    { title: 'Salons & Beauty Studios', href: '/industries/salons' },
-    { title: 'Travel & Car Rental', href: '/industries/travel' },
-    { title: 'Real Estate & Builders', href: '/industries/real-estate' },
-    { title: 'Professional Services', href: '/industries' },
-  ];
+  // Focus trap for mobile menu would go here ideally, but for now we rely on basic flow
+
+  const toggleMenu = () => setMobileMenuOpen(prev => !prev);
+  const closeMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'py-3 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E3DCD3] shadow-md'
-          : 'py-5 bg-[#FAF8F5]/80 backdrop-blur-sm'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo */}
-        <Logo size="md" />
-
-        {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center gap-1 bg-[#F3EFEA]/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-[#E3DCD3]">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-
-            if (link.hasDropdown) {
-              return (
-                <div
-                  key={link.name}
-                  className="relative"
-                  onMouseEnter={() => setServicesDropdownOpen(true)}
-                  onMouseLeave={() => setServicesDropdownOpen(false)}
-                >
-                  <Link
-                    href={link.href}
-                    className={`inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors ${
-                      isActive ? 'text-[#8A2B88] bg-[#FAF8F5]' : 'text-[#16203D] hover:text-[#8A2B88]'
-                    }`}
-                  >
-                    <span>{link.name}</span>
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                        servicesDropdownOpen ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </Link>
-
-                  {/* Mega Dropdown */}
-                  {servicesDropdownOpen && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[460px]">
-                      <div className="bg-[#FAF8F5] border border-[#E3DCD3] rounded-3xl shadow-2xl p-6 grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2 pb-2 border-b border-[#E3DCD3] text-xs font-extrabold text-[#16203D]">
-                            <Code className="w-4 h-4 text-[#8A2B88]" />
-                            <span>Digital &amp; Web</span>
-                          </div>
-                          <ul className="space-y-1 text-xs">
-                            <li>
-                              <Link
-                                href="/services"
-                                className="block p-1.5 rounded-lg text-[#424965] hover:text-[#8A2B88] hover:bg-[#F3EFEA]"
-                              >
-                                Digital Presence
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                href="/services"
-                                className="block p-1.5 rounded-lg text-[#424965] hover:text-[#8A2B88] hover:bg-[#F3EFEA]"
-                              >
-                                Web Applications
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                href="/services"
-                                className="block p-1.5 rounded-lg text-[#424965] hover:text-[#8A2B88] hover:bg-[#F3EFEA]"
-                              >
-                                Custom Software
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2 pb-2 border-b border-[#E3DCD3] text-xs font-extrabold text-[#16203D]">
-                            <TrendingUp className="w-4 h-4 text-[#C88770]" />
-                            <span>Growth &amp; SEO</span>
-                          </div>
-                          <ul className="space-y-1 text-xs">
-                            <li>
-                              <Link
-                                href="/services"
-                                className="block p-1.5 rounded-lg text-[#424965] hover:text-[#8A2B88] hover:bg-[#F3EFEA]"
-                              >
-                                Technical &amp; Local SEO
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                href="/services"
-                                className="block p-1.5 rounded-lg text-[#424965] hover:text-[#8A2B88] hover:bg-[#F3EFEA]"
-                              >
-                                Performance Optimization
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                href="/services"
-                                className="block p-1.5 rounded-lg text-[#424965] hover:text-[#8A2B88] hover:bg-[#F3EFEA]"
-                              >
-                                Analytics &amp; CRO
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            }
-
-            if (link.hasIndustryDropdown) {
-              return (
-                <div
-                  key={link.name}
-                  className="relative"
-                  onMouseEnter={() => setIndustriesDropdownOpen(true)}
-                  onMouseLeave={() => setIndustriesDropdownOpen(false)}
-                >
-                  <Link
-                    href={link.href}
-                    className={`inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors ${
-                      isActive ? 'text-[#8A2B88] bg-[#FAF8F5]' : 'text-[#16203D] hover:text-[#8A2B88]'
-                    }`}
-                  >
-                    <span>{link.name}</span>
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                        industriesDropdownOpen ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </Link>
-
-                  {industriesDropdownOpen && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[240px]">
-                      <div className="bg-[#FAF8F5] border border-[#E3DCD3] rounded-2xl shadow-2xl p-4 space-y-1">
-                        {industryLinks.map((ind) => (
-                          <Link
-                            key={ind.title}
-                            href={ind.href}
-                            className="block px-3 py-2 rounded-xl text-xs font-semibold text-[#16203D] hover:bg-[#F3EFEA] hover:text-[#8A2B88] transition-colors"
-                          >
-                            {ind.title}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            }
-
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-colors ${
-                  isActive ? 'text-[#8A2B88] bg-[#FAF8F5]' : 'text-[#16203D] hover:text-[#8A2B88]'
-                }`}
-              >
-                {link.name}
+    <>
+      <header
+        className={cn(
+          'fixed top-0 inset-x-0 z-50 transition-all duration-300',
+          isScrolled
+            ? 'bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E3DCD3] shadow-sm py-3'
+            : 'bg-[#FAF8F5]/80 backdrop-blur-sm py-5'
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex-shrink-0 relative z-50">
+              <Link href="/" onClick={closeMenu} aria-label="Home">
+                <Logo />
               </Link>
-            );
-          })}
-        </nav>
+            </div>
 
-        {/* CTA Buttons */}
-        <div className="hidden lg:flex items-center gap-3">
-          <Button size="sm" onClick={onOpenModal} icon={<ArrowUpRight className="w-4 h-4" />}>
-            Start a Project
-          </Button>
-        </div>
-
-        {/* Mobile Menu Hamburger */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden min-w-11 min-h-11 flex items-center justify-center rounded-xl bg-[#F3EFEA] border border-[#E3DCD3] text-[#16203D]"
-          aria-label="Toggle Navigation Menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
-
-      {/* Mobile Drawer Navigation */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#FAF8F5] border-b border-[#E3DCD3] px-4 py-6 space-y-4 shadow-xl">
-          <nav className="flex flex-col space-y-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center min-h-11 px-4 py-2.5 rounded-xl text-sm font-bold text-[#16203D] hover:bg-[#F3EFEA] hover:text-[#8A2B88]"
-              >
-                {link.name}
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-6">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    'text-sm transition-colors px-3 py-2',
+                    pathname === link.href
+                      ? 'text-[#4F46E5] font-semibold'
+                      : 'font-medium text-[#16203D] hover:text-[#4F46E5]'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Link href="/contact">
+                <Button variant="primary" size="sm">
+                  Discuss a Project
+                </Button>
               </Link>
-            ))}
-          </nav>
-          <div className="pt-4 border-t border-[#E3DCD3] space-y-2">
-            <Button size="md" fullWidth onClick={() => { setMobileMenuOpen(false); onOpenModal(); }}>
-              Start a Conversation
-            </Button>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <div className="flex items-center md:hidden relative z-50">
+              <button
+                onClick={toggleMenu}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-menu"
+                aria-label="Toggle menu"
+                className="p-2 text-[#16203D] hover:text-[#4F46E5] transition-colors tap-target focus-visible"
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
-      )}
-    </header>
+      </header>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            id="mobile-menu"
+            ref={menuRef}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-x-0 top-0 z-40 bg-[#FAF8F5] border-b border-[#E3DCD3] shadow-lg pt-24 pb-6 px-4 md:hidden"
+          >
+            <nav className="flex flex-col space-y-2">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className={cn(
+                    'block px-4 py-4 rounded-lg text-lg min-h-[44px]',
+                    pathname === link.href
+                      ? 'bg-[#4F46E5]/10 text-[#4F46E5] font-semibold'
+                      : 'font-medium text-[#16203D] hover:bg-[#E3DCD3]/30 hover:text-[#4F46E5]'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-4 pb-2 px-4">
+                <Link href="/contact" onClick={closeMenu} className="block">
+                  <Button variant="primary" size="lg" fullWidth>
+                    Discuss a Project
+                  </Button>
+                </Link>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
