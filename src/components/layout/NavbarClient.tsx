@@ -3,14 +3,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Logo } from '@/components/ui/Logo';
-import { Icon } from '@/components/ui/Icon';
-import type { NavLink, ServiceCategory } from '@/types/content';
+import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
+import type { ReactNode } from 'react';
+import type { NavLink } from '@/types/content';
 import { cn } from '@/lib/utils';
 
 interface Props {
   name: string;
   nav: NavLink[];
-  categories: Pick<ServiceCategory, 'slug' | 'title' | 'icon' | 'summary'>[];
+  categories: { slug: string; title: string; summary: string; iconNode: ReactNode }[];
   ctaLabel: string;
   ctaHref: string;
 }
@@ -49,14 +50,14 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
               <div key={l.href} className="group relative">
                 <Link prefetch={false} href={l.href} className={cn('flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg', active(l.href) && 'text-fg')}>
                   {l.label}
-                  <Icon name="ChevronDown" size={14} className="transition-transform group-hover:rotate-180" />
+                  <ChevronDown size={14} aria-hidden="true" className="transition-transform group-hover:rotate-180" />
                 </Link>
                 <div className="invisible absolute left-1/2 top-full w-[620px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
                   <div className="menu-panel grid grid-cols-2 gap-1 p-3">
                     {categories.map((c) => (
                       <Link prefetch={false} key={c.slug} href={`/services#${c.slug}`} className="flex gap-3 rounded-xl p-3 transition-colors hover:bg-raised">
                         <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-line bg-base text-accent-2">
-                          <Icon name={c.icon} size={18} />
+                          {c.iconNode}
                         </span>
                         <span>
                           <span className="block text-sm font-semibold">{c.title}</span>
@@ -83,7 +84,7 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
             </Link>
           </div>
           <button type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((o) => !o)} className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-fg lg:hidden">
-            <Icon name={open ? 'X' : 'Menu'} />
+            {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -94,7 +95,7 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
             {nav.map((l) => (
               <Link prefetch={false} key={l.href} href={l.href} onClick={() => setOpen(false)} className={cn('flex min-h-12 items-center justify-between border-b border-line text-lg font-medium text-muted', active(l.href) && 'text-fg')}>
                 {l.label}
-                <Icon name="ArrowRight" size={16} />
+                <ArrowRight size={16} aria-hidden="true" />
               </Link>
             ))}
           </nav>

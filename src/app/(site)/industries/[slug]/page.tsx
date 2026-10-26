@@ -38,8 +38,8 @@ export default async function IndustryPage({ params }: Props) {
     <>
       <PageHero eyebrow="Industry" title={i.title} text={i.summary} crumbs={[{ name: 'Home', href: '/' }, { name: 'Industries', href: '/industries' }, { name: i.title }]} />
       {i.image && (
-        <Section className="pb-0 pt-10 sm:pb-0 sm:pt-14">
-          <Photo src={i.image} alt={i.imageAlt ?? i.title} sizes="(min-width: 1280px) 1216px, 100vw" priority ratio="21 / 9" />
+        <Section className="hidden pb-0 pt-14 sm:block">
+          <Photo src={i.image} alt={i.imageAlt ?? i.title} sizes="(min-width: 1280px) 1216px, 100vw" ratio="21 / 9" />
         </Section>
       )}
       <Section>

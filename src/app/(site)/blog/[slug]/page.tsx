@@ -37,9 +37,9 @@ export default async function BlogPostPage({ params }: Props) {
         <p className="mt-6 text-sm text-faint"><time dateTime={b.publishedAt}>{new Date(b.publishedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</time> · {b.readingMinutes} min read</p>
       </PageHero>
       {b.coverImage && (
-        <Section className="pb-0 pt-10 sm:pb-0 sm:pt-14">
+        <Section className="hidden pb-0 pt-14 sm:block">
           <Container className="max-w-4xl !px-0">
-            <Photo src={b.coverImage} alt={b.coverAlt ?? b.title} sizes="(min-width: 896px) 896px, 100vw" priority ratio="16 / 8" />
+            <Photo src={b.coverImage} alt={b.coverAlt ?? b.title} sizes="(min-width: 896px) 896px, 100vw" ratio="16 / 8" />
           </Container>
         </Section>
       )}

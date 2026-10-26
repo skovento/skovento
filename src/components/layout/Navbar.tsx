@@ -1,5 +1,6 @@
 import { getServiceCategories } from '@/lib/content';
 import type { Settings } from '@/types/content';
+import { Icon } from '@/components/ui/Icon';
 import { NavbarClient } from './NavbarClient';
 
 export async function Navbar({ settings }: { settings: Settings }) {
@@ -8,7 +9,7 @@ export async function Navbar({ settings }: { settings: Settings }) {
     <NavbarClient
       name={settings.siteName}
       nav={settings.nav}
-      categories={cats.map((c) => ({ slug: c.slug, title: c.title, icon: c.icon, summary: c.summary }))}
+      categories={cats.map((c) => ({ slug: c.slug, title: c.title, summary: c.summary, iconNode: <Icon name={c.icon} size={18} /> }))}
       ctaLabel={settings.cta.primaryLabel}
       ctaHref={settings.cta.primaryHref}
     />

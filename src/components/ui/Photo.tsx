@@ -11,7 +11,7 @@ export function Photo({
   const external = /^https?:\/\//i.test(src);
   return (
     <div className={cn('relative overflow-hidden bg-raised', rounded && 'rounded-2xl', className)} style={{ aspectRatio: ratio }}>
-      <Image src={src} alt={alt} fill sizes={sizes} priority={priority} unoptimized={external} className="object-cover" />
+      <Image src={src} alt={alt} fill sizes={sizes} priority={priority} quality={60} unoptimized={external} className="object-cover" />
     </div>
   );
 }

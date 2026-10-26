@@ -40,8 +40,8 @@ export default async function CaseStudyPage({ params }: Props) {
         </p>
       </PageHero>
       {(c.coverImage || industries.find((x) => x.slug === c.industry)?.image) && (
-        <Section className="pb-0 pt-10 sm:pb-0 sm:pt-14">
-          <Photo src={(c.coverImage || industries.find((x) => x.slug === c.industry)?.image)!} alt={c.coverAlt ?? c.title} sizes="(min-width: 1280px) 1216px, 100vw" priority ratio="21 / 9" />
+        <Section className="hidden pb-0 pt-14 sm:block">
+          <Photo src={(c.coverImage || industries.find((x) => x.slug === c.industry)?.image)!} alt={c.coverAlt ?? c.title} sizes="(min-width: 1280px) 1216px, 100vw" ratio="21 / 9" />
         </Section>
       )}
       <Section>
