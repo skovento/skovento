@@ -72,7 +72,7 @@ Juna `.env` ma je haju padya chhe (Supabase `DATABASE_URL`/`DIRECT_URL`, `ADMIN_
 - [ ] Media upload (hal cover image mate sirf URL)
 - [ ] Rate limit hal in-memory (serverless ma instance-wise); Upstash/Redis mate upgrade
 - [ ] Multiple admin users / password reset / audit log (hal single admin)
-- [ ] Logo: Canva Pro thi real vector SVG export (hal traced SVG, `public/brand/`)
+- [x] Logo: simple hand-built vector S + node mark (no raster / Canva dependency). Old detailed logo vault ma archive
 - [ ] Automated tests (Playwright): contact form, admin login, CRUD
 - [ ] Uptime + error monitoring (Sentry / Vercel Analytics)
 - [ ] Mobile speed: further JS reduction (hero animation lighter)
@@ -81,6 +81,9 @@ Juna `.env` ma je haju padya chhe (Supabase `DATABASE_URL`/`DIRECT_URL`, `ADMIN_
 - [ ] Junu `cms/` folder (Strapi, Windows lock ne karane delete na thayu) — manually delete
 - [ ] Backup `D:\Projects\skovento-legacy-backup` — jyare jarur na hoy tyare delete
 - [ ] `public/final*`, `skovento_macro_*`, `skovento-transparent.png` juna images — hal vaparata nathi
+
+## 5b. Important data vault (project ni bahar)
+`D:\Projects\project-vault\skovento\important\` — repository info, env copies + changelog, legal checklist, data inventory, licenses, brand assets, source snapshot zip. Template: `D:\Projects\project-vault\_template`.
 
 ## 6. Aavti kale problem details mate
 

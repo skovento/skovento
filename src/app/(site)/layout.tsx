@@ -4,12 +4,14 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { Tracking } from '@/components/seo/Tracking';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { SiteLoader } from '@/components/brand/SiteLoader';
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const settings = await getSettings();
   const gtm = settings.tracking.gtmId.replace(/[^\w-]/g, '');
   return (
     <>
+      <SiteLoader />
       {gtm && (
         <noscript>
           <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtm}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} title="gtm" />

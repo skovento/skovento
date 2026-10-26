@@ -47,7 +47,7 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
           {nav.map((l) =>
             l.href === '/services' ? (
               <div key={l.href} className="group relative">
-                <Link href={l.href} className={cn('flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg', active(l.href) && 'text-fg')}>
+                <Link href={l.href} className={cn('flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg', active(l.href) && 'text-fg')}>
                   {l.label}
                   <Icon name="ChevronDown" size={14} className="transition-transform group-hover:rotate-180" />
                 </Link>
@@ -68,7 +68,7 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
                 </div>
               </div>
             ) : (
-              <Link key={l.href} href={l.href} className={cn('rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg', active(l.href) && 'text-fg')}>
+              <Link key={l.href} href={l.href} className={cn('whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg', active(l.href) && 'text-fg')}>
                 {l.label}
               </Link>
             ),
@@ -76,9 +76,12 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link href={ctaHref} className="btn btn-primary hidden !min-h-10 !px-4 !text-sm sm:inline-flex">
-            {ctaLabel}
-          </Link>
+          {/* wrapper hides it on phones: the unlayered .btn rule would override a `hidden` class on the link itself */}
+          <div className="hidden sm:block">
+            <Link href={ctaHref} className="btn btn-primary !min-h-10 !px-4 !text-sm">
+              {ctaLabel}
+            </Link>
+          </div>
           <button type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((o) => !o)} className="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-fg lg:hidden">
             <Icon name={open ? 'X' : 'Menu'} />
           </button>

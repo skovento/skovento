@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+import { Inter, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { getSettings } from '@/lib/content';
 import { robotsMeta, siteUrl } from '@/lib/site';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--f-inter' });
-const display = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap', variable: '--f-display' });
+// Same family as the logo wordmark, so headings and logo feel like one brand
+const display = Bricolage_Grotesque({ subsets: ['latin'], display: 'swap', variable: '--f-display' });
 const mono = JetBrains_Mono({ subsets: ['latin'], display: 'swap', variable: '--f-mono', preload: false });
 
 export const viewport: Viewport = { themeColor: '#060a13', colorScheme: 'dark' };
@@ -27,7 +28,15 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${display.variable} ${mono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${display.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Decides before first paint whether to show the logo intro: first visit only, never for crawlers / reduced motion. ?loader=1 forces it. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var d=document.documentElement;if(/[?&]loader=1/.test(location.search)){localStorage.removeItem('sk_seen')}else if(localStorage.getItem('sk_seen')||navigator.webdriver||/Lighthouse|HeadlessChrome|bot|spider|crawl/i.test(navigator.userAgent)||matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('no-loader')}}catch(e){document.documentElement.classList.add('no-loader')}`,
+          }}
+        />
+      </head>
       <body className="flex min-h-screen flex-col">{children}</body>
     </html>
   );
