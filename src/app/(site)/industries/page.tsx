@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { getIndustries, getSettings } from '@/lib/content';
+import { breadcrumbs } from '@/lib/schema';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { pageMetadata } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
@@ -41,6 +43,7 @@ export default async function IndustriesPage() {
         </div>
       </Section>
       <CtaBand settings={settings} title="Your industry not listed?" text="We regularly work with sectors beyond this list. Tell us about your business and we will tell you honestly whether we are the right fit." />
+      <JsonLd data={breadcrumbs(settings, [{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }])} />
     </>
   );
 }

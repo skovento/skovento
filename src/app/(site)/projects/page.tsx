@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { getIndustries, getProjects, getSettings } from '@/lib/content';
+import { breadcrumbs } from '@/lib/schema';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { pageMetadata } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
@@ -35,6 +37,7 @@ export default async function ProjectsPage() {
         </div>
       </Section>
       <CtaBand settings={settings} />
+      <JsonLd data={breadcrumbs(settings, [{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects' }])} />
     </>
   );
 }

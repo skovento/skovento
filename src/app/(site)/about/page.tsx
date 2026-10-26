@@ -1,4 +1,6 @@
 import { getAbout, getSettings } from '@/lib/content';
+import { breadcrumbs } from '@/lib/schema';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { pageMetadata } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section, SectionHeading } from '@/components/ui/Section';
@@ -61,6 +63,7 @@ export default async function AboutPage() {
         </div>
       </Section>
       <CtaBand settings={settings} />
+      <JsonLd data={breadcrumbs(settings, [{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }])} />
     </>
   );
 }

@@ -1,4 +1,6 @@
 import { getContactPage, getSettings } from '@/lib/content';
+import { breadcrumbs } from '@/lib/schema';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { locationLabel, pageMetadata, whatsappHref } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
@@ -54,6 +56,7 @@ export default async function ContactPage() {
           </aside>
         </div>
       </Section>
+      <JsonLd data={breadcrumbs(settings, [{ name: 'Home', path: '/' }, { name: 'Contact Us', path: '/contact' }])} />
     </>
   );
 }

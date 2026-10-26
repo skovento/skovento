@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { getBlogs, getSettings } from '@/lib/content';
+import { breadcrumbs } from '@/lib/schema';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { pageMetadata } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
@@ -32,6 +34,7 @@ export default async function BlogPage() {
         </div>
       </Section>
       <CtaBand settings={settings} />
+      <JsonLd data={breadcrumbs(settings, [{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }])} />
     </>
   );
 }

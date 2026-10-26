@@ -1,4 +1,6 @@
 import { getSettings, getTechGroups } from '@/lib/content';
+import { breadcrumbs } from '@/lib/schema';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { pageMetadata } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
@@ -41,6 +43,7 @@ export default async function TechnologiesPage() {
         </div>
       </Section>
       <CtaBand settings={settings} title="Not sure which stack fits?" text="We will recommend an approach based on your goals, budget and team — and explain the trade-offs plainly." />
+      <JsonLd data={breadcrumbs(settings, [{ name: 'Home', path: '/' }, { name: 'Technologies', path: '/technologies' }])} />
     </>
   );
 }

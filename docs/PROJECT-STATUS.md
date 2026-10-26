@@ -19,9 +19,10 @@ Home · Technologies · Services (category → service) · Industries (+detail) 
 |---|---|
 | `tsc --noEmit`, `next build` | Pass (65 pages) |
 | `npm audit --omit=dev` | **0 vulnerabilities** (Next 16.4.3, zod 4.6.7) |
-| Lighthouse desktop (home) | Perf **100** · A11y **100** · Best Practices **100** |
-| Lighthouse mobile (simulated slow 4G + 4× CPU) | Perf **81–93** · A11y **100** · BP **100** (home ≈ 86–89; LCP ≈ 3.1–3.7 s, FCP ≈ 1.0 s, TBT ≈ 110–220 ms, CLS ≈ 0) |
-| SEO score 63–69 | **Intentional** — `is-crawlable` fail kyarke site noindex chhe. Indexing ON karta ~100 thase |
+| Lighthouse **desktop** (home, about) | Performance **100** · Accessibility **100** · Best Practices **100** |
+| Lighthouse **mobile** (simulated slow 4G + 4x slower CPU) | Performance **90–96** (home 95–96, inner pages 92–96) · Accessibility **100** · Best Practices **100**; CLS 0, TBT 50–150 ms, FCP 1.2 s, LCP 2.7–2.9 s |
+| SEO score | **100** on every page tested when indexing is ON (home, service page, desktop). Hal **69** kemke site noindex chhe (`is-crawlable` ek j fail) |
+| SEO audit (58 pages) | 0 issues: unique title (<=60) ane description (110-160), exactly one h1, canonical, og:image, alt text; JSON-LD valid (Organization, WebSite, BreadcrumbList, Service, FAQPage, Article) |
 | Horizontal overflow @375 / 768 / 1280 | None (checked 19 routes) |
 | Admin: wrong password / brute force | 401; 8 attempts pachhi 429 |
 | Admin API without/tampered cookie | 401 |
@@ -31,7 +32,7 @@ Home · Technologies · Services (category → service) · Industries (+detail) 
 | CSV export formula injection | Guarded |
 | Security headers | nosniff, X-Frame-Options, Referrer-Policy, Permissions-Policy, COOP, CSP (frame-ancestors/base-uri/object-src/form-action), HSTS (prod), admin `no-store` |
 
-Mobile speed: bottleneck React/Next runtime JS (~70 KB gz) simulated 4× slow CPU par. Real phones ma ghanu fast chhe. Vadhu sudharo joiye to: hero terminal animation hataavvi, fonts ghatadvana, ke Vercel ma ISR/CDN cache verify karvu.
+Mobile 100 kem nathi: real LCP ~0.3 s chhe (Lighthouse pote measure kare chhe), pan Lighthouse ni *simulated* slow-phone model ma Next.js/React runtime JS (~160 KB gz) ni download + CPU time LCP ma ~1.5 s umere chhe. Eni upar kam karyu: framer-motion hataavyu, hero ane scroll animation CSS-only, system body font (sirf headings Bricolage), unused libs/icons hataavya, background prefetch band, CSS/JS minimal. Have 100 mate fakt "no-JS static HTML" architecture j bake rahe chhe (React hydration vagar) — te bahu motu change chhe. Google PageSpeed (live, Vercel CDN) ma ghani vaar numbers local karta saara aave chhe.
 
 ## 4. Environment variables
 
@@ -69,7 +70,7 @@ Juna `.env` ma je haju padya chhe (Supabase `DATABASE_URL`/`DIRECT_URL`, `ADMIN_
 - [ ] Domain DNS / redirects (www → non-www)
 
 ### Technical improvements (optional / later)
-- [ ] Media upload (hal cover image mate sirf URL)
+- [ ] Media upload (hal image mate `/images/...` file ke URL; admin ma file upload nathi)
 - [ ] Rate limit hal in-memory (serverless ma instance-wise); Upstash/Redis mate upgrade
 - [ ] Multiple admin users / password reset / audit log (hal single admin)
 - [x] Logo FINAL: Icon E5 (S + check-mark V) + Bricolage Grotesque, hand-built vector. Files `public/brand/`, sources + Canva links vault ma (`assets/brand/BRAND-INDEX.md`)
@@ -81,6 +82,11 @@ Juna `.env` ma je haju padya chhe (Supabase `DATABASE_URL`/`DIRECT_URL`, `ADMIN_
 - [ ] Junu `cms/` folder (Strapi, Windows lock ne karane delete na thayu) — manually delete
 - [ ] Backup `D:\Projects\skovento-legacy-backup` — jyare jarur na hoy tyare delete
 - [ ] `public/final*`, `skovento_macro_*`, `skovento-transparent.png` juna images — hal vaparata nathi
+
+## 5a-1. Images (stock photos)
+- 13 Pexels photos (free commercial license): 9 industries, About, 3 blog covers — `public/images/`, credits `docs/IMAGE-CREDITS.md`.
+- next/image: AVIF/WebP, correct sizes, lazy-load, fixed aspect (CLS 0). Detail-page hero photos phone par chhupayela (LCP mate); desktop par dekhay.
+- Admin ma Image URL + alt text fields (Industries, Projects, Case Studies, Blog, About).
 
 ## 5a. First-visit logo intro (loader)
 - Component: `src/components/brand/SiteLoader.tsx` (+ `LoaderDismiss.tsx`, CSS `#sk-loader` in `globals.css`, paths `src/lib/brand-paths.ts`).
