@@ -1,0 +1,10 @@
+[
+  { "group": "Frontend", "description": "Interfaces that are fast, accessible and easy to evolve.", "items": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js"] },
+  { "group": "Backend & APIs", "description": "Reliable services and integrations behind every product.", "items": ["Node.js", "NestJS", "Python", "FastAPI", "GraphQL", "REST"] },
+  { "group": "Mobile", "description": "Cross-platform apps from a single codebase.", "items": ["React Native", "Expo", "PWA", "Firebase"] },
+  { "group": "Data & Storage", "description": "Databases chosen for the shape of your data.", "items": ["PostgreSQL", "MongoDB", "Redis", "Supabase", "Prisma"] },
+  { "group": "AI & Automation", "description": "Applied AI with guardrails and measurable outcomes.", "items": ["LLM APIs", "RAG", "Vector Search", "n8n", "WhatsApp API"] },
+  { "group": "CMS & Commerce", "description": "Content and commerce your team can manage.", "items": ["Strapi", "Shopify", "WooCommerce", "Stripe", "Razorpay"] },
+  { "group": "Cloud & DevOps", "description": "Deployment, monitoring and security hardening.", "items": ["Vercel", "AWS", "Docker", "GitHub Actions", "Cloudflare"] },
+  { "group": "Design & Quality", "description": "Design, testing and performance as part of the build.", "items": ["Figma", "Playwright", "Lighthouse", "Storybook", "Sentry"] }
+]

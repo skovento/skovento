@@ -1,0 +1,78 @@
+{
+  "home": {
+    "hero": {
+      "eyebrow": "Software & Digital Engineering Studio",
+      "titleLead": "Engineering software that",
+      "titleHighlight": "moves your business forward",
+      "subtitle": "We design and build websites, web platforms, mobile apps, AI automation and business software — scoped clearly, built carefully and supported after launch.",
+      "terminalLines": [
+        "$ skovento init --project your-product",
+        "✓ discovery workshop scheduled",
+        "✓ architecture & roadmap drafted",
+        "✓ design system generated",
+        "✓ CI/CD pipeline ready",
+        "→ shipping in iterations"
+      ]
+    },
+    "stats": [
+      { "value": "7", "label": "Service areas" },
+      { "value": "9", "label": "Industries supported" },
+      { "value": "4-step", "label": "Delivery process" },
+      { "value": "100%", "label": "Code ownership transferred" }
+    ],
+    "pillars": [
+      { "icon": "ShieldCheck", "title": "Built to be owned", "text": "You receive the code, the repositories and the infrastructure accounts. No lock-in." },
+      { "icon": "Gauge", "title": "Performance as a requirement", "text": "Speed, accessibility and SEO foundations are agreed and measured before launch." },
+      { "icon": "Workflow", "title": "Transparent delivery", "text": "Short iterations, working demos and plain-language progress updates." },
+      { "icon": "LifeBuoy", "title": "Supported after launch", "text": "Maintenance plans cover security updates, fixes and ongoing improvements." }
+    ],
+    "process": [
+      { "step": "01", "title": "Discover", "text": "We learn your business, users and constraints, then define scope, risks and success measures." },
+      { "step": "02", "title": "Design", "text": "Flows, wireframes and prototypes are tested with real users before engineering begins." },
+      { "step": "03", "title": "Build", "text": "We ship in short iterations with demos, automated tests and code review at every step." },
+      { "step": "04", "title": "Launch & Support", "text": "Deployment, monitoring and a support plan keep the product reliable after go-live." }
+    ],
+    "faqs": [
+      { "q": "What kind of projects do you take on?", "a": "Websites, web applications, mobile apps, AI automation, CRM and business software, plus design, cloud and technical SEO support." },
+      { "q": "How do projects start?", "a": "With a discovery call and a short scoping phase, so budget, timeline and responsibilities are clear before development starts." },
+      { "q": "Can we manage content ourselves?", "a": "Yes. Every site we build includes an admin panel so your team can edit content without a developer." },
+      { "q": "Who owns the final product?", "a": "You do. Source code, designs and infrastructure accounts are handed over under your ownership." },
+      { "q": "Do you offer support after launch?", "a": "Yes. Maintenance plans cover security updates, bug fixes, monitoring and monthly improvement hours." },
+      { "q": "How is pricing decided?", "a": "Pricing follows scope. After discovery we share a fixed-scope estimate or a clear monthly arrangement." }
+    ]
+  },
+  "about": {
+    "headline": "A focused engineering studio, built around how products actually get delivered",
+    "intro": "Skovento is a small, hands-on studio that combines design, engineering and automation. We stay close to the work, communicate plainly and care about what happens after launch.",
+    "mission": "To help businesses replace manual work and weak digital presence with software that is dependable, fast and easy to run.",
+    "vision": "To be the engineering partner growing companies trust for long-term, well-built software.",
+    "story": "Skovento started with a simple observation: many businesses are offered either templates that do not fit or large projects that take too long. We set out to build the middle path — custom software, delivered in clear iterations, by a team that stays accountable.",
+    "values": [
+      { "title": "Clarity first", "text": "Plain-language scoping, honest estimates and no surprises." },
+      { "title": "Quality by default", "text": "Testing, accessibility and performance are part of every build." },
+      { "title": "Ownership", "text": "Clients own their code, data and infrastructure." },
+      { "title": "Long-term thinking", "text": "We design software to be maintained, extended and handed over." }
+    ],
+    "differentiators": [
+      { "title": "Design and engineering together", "text": "One team owns the experience from the first wireframe to the deployed product." },
+      { "title": "Editable by your team", "text": "Content and settings are managed through an admin panel built for non-developers." },
+      { "title": "Industry-aware solutions", "text": "We adapt workflows to your sector instead of forcing a generic template." }
+    ],
+    "facts": [
+      { "label": "Team", "value": "Small, senior, hands-on" },
+      { "label": "Working model", "value": "Fixed-scope projects and monthly retainers" },
+      { "label": "Communication", "value": "Weekly demos and a shared project board" },
+      { "label": "Ownership", "value": "Full code and infrastructure handover" }
+    ]
+  },
+  "contact": {
+    "headline": "Tell us what you want to build",
+    "intro": "Share a few details and we will reply with next steps, usually within one business day. Early ideas and rough requirements are welcome.",
+    "serviceOptions": ["Website", "Web application", "Mobile app", "AI / automation", "CRM / business software", "UI/UX design", "Cloud / DevOps", "Technical SEO", "Not sure yet"],
+    "budgetOptions": ["Under ₹50,000", "₹50,000 – ₹2,00,000", "₹2,00,000 – ₹5,00,000", "₹5,00,000+", "Not decided"]
+  },
+  "legal": {
+    "privacy": "Skovento (\"we\") collects only the details you submit through our contact forms — such as your name, email, phone, company and project description — to respond to your enquiry and to manage our business relationship with you. We do not sell personal data. Enquiries are stored in our internal CRM and may be processed by trusted service providers for email delivery, hosting and analytics. You may ask us to access, correct or delete your data at any time by contacting us through the details on the Contact page. Analytics and tracking tools are used only to understand how the site is used and to improve it.",
+    "terms": "The content on this website is provided for general information. Descriptions of services do not constitute a binding offer; engagements are governed by a written proposal or agreement signed by both parties. Case studies, projects and examples shown may be illustrative samples. All trademarks belong to their respective owners. We may update this website and these terms from time to time."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_settings_ctas",
+  "info": {
+    "displayName": "Main call to action",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "primaryLabel": {
+      "type": "string"
+    },
+    "primaryHref": {
+      "type": "string"
+    },
+    "secondaryLabel": {
+      "type": "string"
+    },
+    "secondaryHref": {
+      "type": "string"
+    }
+  }
+}

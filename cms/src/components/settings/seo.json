@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_settings_seos",
+  "info": {
+    "displayName": "SEO and indexing",
+    "icon": "search"
+  },
+  "options": {},
+  "attributes": {
+    "allowIndexing": {
+      "type": "boolean",
+      "default": false,
+      "description": "OFF = whole site is hidden from Google and every crawler. Turn ON only when ready to go public."
+    },
+    "titleTemplate": {
+      "type": "string",
+      "default": "%s | Skovento"
+    },
+    "defaultOgImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

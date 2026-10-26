@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_settings_trackings",
+  "info": {
+    "displayName": "Tracking and analytics",
+    "icon": "chartPie"
+  },
+  "options": {},
+  "attributes": {
+    "gtmId": {
+      "type": "string",
+      "description": "Google Tag Manager, e.g. GTM-XXXXXXX"
+    },
+    "ga4Id": {
+      "type": "string",
+      "description": "Google Analytics 4, e.g. G-XXXXXXXXXX"
+    },
+    "googleSiteVerification": {
+      "type": "string",
+      "description": "Search Console verification token (content value only)"
+    },
+    "bingSiteVerification": {
+      "type": "string"
+    },
+    "metaPixelId": {
+      "type": "string"
+    },
+    "clarityId": {
+      "type": "string"
+    },
+    "customHeadScript": {
+      "type": "text",
+      "description": "Advanced: raw script added to <head>"
+    }
+  }
+}

@@ -1,133 +1,125 @@
-'use client';
-
-import React from 'react';
 import Link from 'next/link';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import { getServiceCategories } from '@/lib/content';
+import { Container } from '@/components/ui/Section';
 import { Logo } from '@/components/ui/Logo';
-import { siteConfig } from '@/lib/site-config';
+import { Icon } from '@/components/ui/Icon';
+import { locationLabel, socialLinks, whatsappHref } from '@/lib/site';
+import type { Settings } from '@/types/content';
 
-export function Footer() {
-  const currentYear = new Date().getFullYear();
+const company: [string, string][] = [
+  ['Technologies', '/technologies'],
+  ['Industries', '/industries'],
+  ['Projects', '/projects'],
+  ['Case Studies', '/case-studies'],
+  ['Blog', '/blog'],
+  ['About', '/about'],
+  ['Contact', '/contact'],
+];
+
+export async function Footer({ settings }: { settings: Settings }) {
+  const cats = await getServiceCategories();
+  const c = settings.contact;
+  const socials = socialLinks(settings);
+  const wa = whatsappHref(settings);
+  const location = locationLabel(settings);
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#FAF8F5] text-[#424965] border-t border-[#E3DCD3] pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#E3DCD3]">
-          {/* Brand & Studio Info */}
-          <div className="lg:col-span-2 space-y-4">
-            <div>
-              <Logo size="md" />
-            </div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#4F46E5]">
-              Digital Solutions Studio
-            </p>
-            <p className="text-sm text-[#424965] leading-relaxed max-w-sm">
-              We design and develop modern websites, web applications, and digital tools built around real business processes. Clean code, clear communication, and transparent delivery.
-            </p>
-            <div className="pt-2">
-              <a
-                href={`mailto:${siteConfig.contact.email}`}
-                className="inline-flex items-center gap-2 text-sm text-[#16203D] font-medium hover:text-[#4F46E5] transition-colors"
-              >
-                <Mail className="w-4 h-4 text-[#4F46E5]" />
-                <span>{siteConfig.contact.email}</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Services Column */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#16203D]">
-              Services
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/services#business-websites" className="text-[#424965] hover:text-[#4F46E5] transition-colors">
-                  Business Websites
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#ecommerce-booking" className="text-[#424965] hover:text-[#4F46E5] transition-colors">
-                  E-commerce &amp; Booking
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#web-applications" className="text-[#424965] hover:text-[#4F46E5] transition-colors">
-                  Web Applications &amp; Systems
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-[#424965] hover:text-[#4F46E5] transition-colors">
-                  Technical SEO &amp; Performance
-                </Link>
-              </li>
+    <footer className="border-t border-line bg-surface/50">
+      <Container className="grid gap-12 py-14 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <div>
+          <Link href="/" aria-label={`${settings.siteName} home`}>
+            <Logo name={settings.siteName} />
+          </Link>
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">{settings.footerTagline}</p>
+          {socials.length > 0 && (
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="chip hover:text-fg">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
             </ul>
-          </div>
+          )}
+        </div>
 
-          {/* Navigation Column */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#16203D]">
-              Explore
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/work" className="text-[#424965] hover:text-[#4F46E5] transition-colors">
-                  Demonstrations
+        <nav aria-label="Services">
+          <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Services</h3>
+          <ul className="space-y-2.5 text-sm">
+            {cats.map((cat) => (
+              <li key={cat.slug}>
+                <Link href={`/services#${cat.slug}`} className="text-muted hover:text-fg">
+                  {cat.title}
                 </Link>
               </li>
-              <li>
-                <Link href="/process" className="text-[#424965] hover:text-[#4F46E5] transition-colors">
-                  Our Process
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-[#424965] hover:text-[#4F46E5] transition-colors">
-                  About Skovento
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-[#424965] hover:text-[#4F46E5] transition-colors">
-                  Discuss a Project
-                </Link>
-              </li>
-            </ul>
-          </div>
+            ))}
+          </ul>
+        </nav>
 
-          {/* Transparency & Note Column */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#16203D]">
-              Transparency
-            </h4>
-            <p className="text-xs text-[#424965] leading-relaxed">
-              Skovento is an independent digital solutions studio. Concept projects are labeled transparently to demonstrate our design and engineering standards without fabricated client claims.
-            </p>
-            <div className="pt-2">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#4F46E5] hover:underline"
-              >
-                <span>Start a conversation</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+        <nav aria-label="Company">
+          <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Company</h3>
+          <ul className="space-y-2.5 text-sm">
+            {company.map(([label, href]) => (
+              <li key={href}>
+                <Link href={href} className="text-muted hover:text-fg">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Contact</h3>
+          <ul className="space-y-3 text-sm text-muted">
+            {c.email && (
+              <li className="flex gap-2">
+                <Icon name="Mail" size={16} className="mt-0.5 shrink-0 text-accent-2" />
+                <a href={`mailto:${c.email}`} className="hover:text-fg">{c.email}</a>
+              </li>
+            )}
+            {c.phone && (
+              <li className="flex gap-2">
+                <Icon name="Phone" size={16} className="mt-0.5 shrink-0 text-accent-2" />
+                <a href={`tel:${c.phone.replace(/\s/g, '')}`} className="hover:text-fg">{c.phone}</a>
+              </li>
+            )}
+            {wa && (
+              <li className="flex gap-2">
+                <Icon name="MessageCircle" size={16} className="mt-0.5 shrink-0 text-accent-2" />
+                <a href={wa} target="_blank" rel="noopener noreferrer" className="hover:text-fg">WhatsApp</a>
+              </li>
+            )}
+            {(location || c.addressLine) && (
+              <li className="flex gap-2">
+                <Icon name="MapPin" size={16} className="mt-0.5 shrink-0 text-accent-2" />
+                <span>{[c.addressLine, location].filter(Boolean).join(', ')}</span>
+              </li>
+            )}
+            {c.hours && (
+              <li className="flex gap-2">
+                <Icon name="Clock" size={16} className="mt-0.5 shrink-0 text-accent-2" />
+                <span>{c.hours}</span>
+              </li>
+            )}
+            <li>
+              <Link href="/contact" className="inline-flex items-center gap-1 font-medium text-accent hover:text-accent-2">
+                Send an enquiry <Icon name="ArrowRight" size={14} />
               </Link>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
-
-        {/* Bottom Bar: Copyright & Legal */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#424965]/80 gap-4">
-          <p>© {currentYear} Skovento. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-[#4F46E5] transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-[#4F46E5] transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="/contact" className="hover:text-[#4F46E5] transition-colors">
-              Contact
-            </Link>
-          </div>
-        </div>
+      </Container>
+      <div className="border-t border-line">
+        <Container className="flex flex-col items-start justify-between gap-3 py-6 text-xs text-faint sm:flex-row sm:items-center">
+          <p>© {year} {settings.legalEntityName || settings.siteName}. All rights reserved.</p>
+          <p className="flex gap-5">
+            <Link href="/privacy" className="hover:text-fg">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-fg">Terms</Link>
+          </p>
+        </Container>
       </div>
     </footer>
   );

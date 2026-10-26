@@ -1,0 +1,60 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_settings",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "Site Settings"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "default": "Skovento"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "legalEntityName": {
+      "type": "string",
+      "description": "Registered company name shown in footer and legal pages (optional)"
+    },
+    "foundingYear": {
+      "type": "string"
+    },
+    "contact": {
+      "type": "component",
+      "component": "settings.contact"
+    },
+    "socials": {
+      "type": "component",
+      "component": "settings.socials"
+    },
+    "seo": {
+      "type": "component",
+      "component": "settings.seo"
+    },
+    "tracking": {
+      "type": "component",
+      "component": "settings.tracking"
+    },
+    "cta": {
+      "type": "component",
+      "component": "settings.cta"
+    },
+    "nav": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.nav-link"
+    },
+    "footerTagline": {
+      "type": "text"
+    }
+  }
+}

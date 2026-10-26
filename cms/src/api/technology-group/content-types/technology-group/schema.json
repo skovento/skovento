@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "technology_groups",
+  "info": {
+    "singularName": "technology-group",
+    "pluralName": "technology-groups",
+    "displayName": "Technology Group"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "group": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.list-item"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

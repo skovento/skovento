@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "custom-software-vs-off-the-shelf",
+    "title": "Custom software vs off-the-shelf: how to decide",
+    "category": "Business Software",
+    "excerpt": "A practical framework for deciding when to build, when to buy and when to combine both.",
+    "publishedAt": "2026-10-01",
+    "readingMinutes": 5,
+    "tags": ["strategy", "custom software"],
+    "body": "Most businesses face the same choice: buy a ready-made tool, or build something tailored. Neither is always right.\n\n## When off-the-shelf wins\nBuy when the process is common (accounting, email, basic project tracking), when you need to start this week, or when vendors already serve your industry well.\n\n## When custom wins\nBuild when your process is the competitive advantage, when you pay for many unused features, when several tools must be stitched together by hand, or when per-seat pricing grows faster than your revenue.\n\n## The hybrid path\nOften the best answer is to keep proven tools for commodity needs and build only the layer that is unique to you — a customer portal, a workflow engine or a reporting dashboard connected through APIs.\n\n## Questions to ask before deciding\n- How much staff time does the current workaround cost each month?\n- What happens to the data if the vendor changes pricing or shuts down?\n- Who will maintain the custom system in two years?\n\nA short discovery phase answers these questions with numbers instead of opinions."
+  },
+  {
+    "slug": "what-makes-a-business-website-rank",
+    "title": "What actually makes a business website rank on Google",
+    "category": "Technical SEO",
+    "excerpt": "The technical foundations that matter before you spend a rupee on content or ads.",
+    "publishedAt": "2026-10-08",
+    "readingMinutes": 6,
+    "tags": ["seo", "web performance"],
+    "body": "Ranking is not a trick. It is the result of a site search engines can crawl, understand and trust.\n\n## 1. Crawlability\nPages should be reachable through normal links, return correct status codes and be listed in an up-to-date sitemap. Blocked or orphaned pages cannot rank.\n\n## 2. Clear structure\nOne topic per page, descriptive titles, a logical heading order and internal links that connect related pages.\n\n## 3. Speed and stability\nCore Web Vitals measure loading, responsiveness and layout stability on real devices. Heavy images and scripts are the usual culprits.\n\n## 4. Structured data\nSchema markup helps search engines understand what a page is — an organisation, a service, an article — and can enable richer results.\n\n## 5. Genuinely useful content\nPages that answer a real question better than the alternatives earn links and rankings over time. Quantity without depth does not.\n\nFix the foundation first; every later investment in content and promotion then works harder."
+  },
+  {
+    "slug": "where-ai-automation-pays-off",
+    "title": "Where AI automation pays off in a small business",
+    "category": "AI & Automation",
+    "excerpt": "Five repetitive tasks where automation saves real time, and three where it does not.",
+    "publishedAt": "2026-10-15",
+    "readingMinutes": 5,
+    "tags": ["ai", "automation"],
+    "body": "AI works best on repetitive, well-defined tasks with a person reviewing the output.\n\n## Good candidates\n- Routing and tagging incoming enquiries\n- Drafting replies to common customer questions\n- Extracting fields from invoices and forms\n- Summarising meetings and call notes\n- Producing routine reports from existing data\n\n## Weak candidates\n- Decisions with legal or safety consequences and no human review\n- Tasks where the rules change daily and nobody documents them\n- Anything that depends on data you do not actually have\n\n## How to start\nPick one process, measure how long it takes today, automate a small part with a human check, and compare. Expand only when the numbers justify it.\n\nThe goal is not to replace people; it is to remove the copy-paste work that keeps them from better work."
+  }
+]
