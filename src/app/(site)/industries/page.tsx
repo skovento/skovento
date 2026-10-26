@@ -5,6 +5,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { Icon } from '@/components/ui/Icon';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { Photo } from '@/components/ui/Photo';
 
 export async function generateMetadata() {
   const settings = await getSettings();
@@ -30,6 +31,7 @@ export default async function IndustriesPage() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {industries.map((i) => (
             <Link key={i.slug} href={`/industries/${i.slug}`} className="card card-hover flex h-full flex-col p-6">
+              {i.image && <Photo src={i.image} alt={i.imageAlt ?? i.title} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" rounded={false} className="-mx-6 -mt-6 mb-5 rounded-t-[15px]" />}
               <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-line-strong bg-base text-accent-2"><Icon name={i.icon} /></span>
               <h2 className="text-xl font-semibold">{i.title}</h2>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{i.summary}</p>

@@ -4,10 +4,11 @@ import { PageHero } from '@/components/ui/PageHero';
 import { Section, SectionHeading } from '@/components/ui/Section';
 import { Reveal } from '@/components/ui/Reveal';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { Photo } from '@/components/ui/Photo';
 
 export async function generateMetadata() {
   const [settings, about] = await Promise.all([getSettings(), getAbout()]);
-  return pageMetadata({ title: 'About Us', description: about.intro, path: '/about', settings });
+  return pageMetadata({ title: 'About Us', description: about.intro, path: '/about', settings, image: about.image });
 }
 
 export default async function AboutPage() {
@@ -15,6 +16,11 @@ export default async function AboutPage() {
   return (
     <>
       <PageHero eyebrow="About us" title={a.headline} text={a.intro} crumbs={[{ name: 'Home', href: '/' }, { name: 'About' }]} />
+      {a.image && (
+        <Section className="pb-0 pt-10 sm:pb-0 sm:pt-14">
+          <Photo src={a.image} alt={a.imageAlt ?? a.headline} sizes="(min-width: 1280px) 1216px, 100vw" priority ratio="21 / 9" />
+        </Section>
+      )}
 
       <Section>
         <div className="grid gap-5 md:grid-cols-2">

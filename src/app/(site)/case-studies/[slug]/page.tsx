@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getAllServices, getCaseStudies, getSettings } from '@/lib/content';
+import { getAllServices, getCaseStudies, getIndustries, getSettings } from '@/lib/content';
 import { pageMetadata } from '@/lib/site';
 import { breadcrumbs } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -8,6 +8,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { Icon } from '@/components/ui/Icon';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { Photo } from '@/components/ui/Photo';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;
-  const [settings, cases, services] = await Promise.all([getSettings(), getCaseStudies(), getAllServices()]);
+  const [settings, cases, services, industries] = await Promise.all([getSettings(), getCaseStudies(), getAllServices(), getIndustries()]);
   const c = cases.find((x) => x.slug === slug);
   if (!c) notFound();
   const used = services.filter((s) => c.services.includes(s.slug));
@@ -38,6 +39,11 @@ export default async function CaseStudyPage({ params }: Props) {
           {c.isSample && <span className="chip">Illustrative sample — no real client data</span>}
         </p>
       </PageHero>
+      {(c.coverImage || industries.find((x) => x.slug === c.industry)?.image) && (
+        <Section className="pb-0 pt-10 sm:pb-0 sm:pt-14">
+          <Photo src={(c.coverImage || industries.find((x) => x.slug === c.industry)?.image)!} alt={c.coverAlt ?? c.title} sizes="(min-width: 1280px) 1216px, 100vw" priority ratio="21 / 9" />
+        </Section>
+      )}
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
           <div className="space-y-10">

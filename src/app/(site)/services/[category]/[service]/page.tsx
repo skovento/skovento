@@ -34,6 +34,7 @@ export default async function ServicePage({ params }: Props) {
 
   const path = `/services/${s.categorySlug}/${s.slug}`;
   const relatedIndustries = industries.filter((i) => i.relatedServices.includes(s.slug));
+  const siblings = (await getAllServices()).filter((x) => x.categorySlug === s.categorySlug && x.slug !== s.slug);
   const relatedCases = caseStudies.filter((c) => c.services.includes(s.slug));
 
   return (
@@ -90,6 +91,20 @@ export default async function ServicePage({ params }: Props) {
           ))}
         </ol>
       </Section>
+
+      {siblings.length > 0 && (
+        <Section className="pb-0 sm:pb-0">
+          <SectionHeading eyebrow={s.categoryTitle} title="More in this category" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {siblings.map((x) => (
+              <Link key={x.slug} href={`/services/${x.categorySlug}/${x.slug}`} className="card card-hover p-6">
+                <h3 className="font-semibold">{x.title}</h3>
+                <p className="mt-2 text-sm text-muted">{x.summary}</p>
+              </Link>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {relatedCases.length > 0 && (
         <Section>

@@ -8,6 +8,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { Container, Section } from '@/components/ui/Section';
 import { Markdown } from '@/components/ui/Markdown';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { Photo } from '@/components/ui/Photo';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: Props) {
   const [settings, posts] = await Promise.all([getSettings(), getBlogs()]);
   const b = posts.find((x) => x.slug === slug);
   if (!b) return {};
-  return pageMetadata({ title: b.title, description: b.excerpt, path: `/blog/${b.slug}`, settings, type: 'article' });
+  return pageMetadata({ title: b.title, description: b.excerpt, path: `/blog/${b.slug}`, settings, type: 'article', image: b.coverImage });
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -35,6 +36,13 @@ export default async function BlogPostPage({ params }: Props) {
       <PageHero eyebrow={b.category} title={b.title} text={b.excerpt} crumbs={[{ name: 'Home', href: '/' }, { name: 'Blog', href: '/blog' }, { name: b.title }]}>
         <p className="mt-6 text-sm text-faint"><time dateTime={b.publishedAt}>{new Date(b.publishedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</time> · {b.readingMinutes} min read</p>
       </PageHero>
+      {b.coverImage && (
+        <Section className="pb-0 pt-10 sm:pb-0 sm:pt-14">
+          <Container className="max-w-4xl !px-0">
+            <Photo src={b.coverImage} alt={b.coverAlt ?? b.title} sizes="(min-width: 896px) 896px, 100vw" priority ratio="16 / 8" />
+          </Container>
+        </Section>
+      )}
       <Section>
         <Container className="max-w-3xl !px-0">
           <article><Markdown source={b.body} /></article>
@@ -51,7 +59,7 @@ export default async function BlogPostPage({ params }: Props) {
       )}
       <CtaBand settings={settings} />
       <JsonLd data={breadcrumbs(settings, [{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: b.title, path: `/blog/${b.slug}` }])} />
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: b.title, description: b.excerpt, datePublished: b.publishedAt, mainEntityOfPage: absoluteUrl(settings, `/blog/${b.slug}`), publisher: { '@id': absoluteUrl(settings, '/#organization') } }} />
+      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'Article', headline: b.title, description: b.excerpt, datePublished: b.publishedAt, dateModified: b.publishedAt, ...(b.coverImage ? { image: absoluteUrl(settings, b.coverImage) } : {}), author: { '@id': absoluteUrl(settings, '/#organization') }, mainEntityOfPage: absoluteUrl(settings, `/blog/${b.slug}`), publisher: { '@id': absoluteUrl(settings, '/#organization') } }} />
     </>
   );
 }

@@ -53,6 +53,8 @@ export interface Industry {
   challenges: string[];
   solutions: string[];
   relatedServices: string[];
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface TechGroup { group: string; description: string; items: string[] }
@@ -68,6 +70,7 @@ export interface Project {
   highlights: string[];
   isSample: boolean;
   coverImage?: string;
+  coverAlt?: string;
 }
 
 export interface CaseStudy {
@@ -83,6 +86,7 @@ export interface CaseStudy {
   techs: string[];
   isSample: boolean;
   coverImage?: string;
+  coverAlt?: string;
 }
 
 export interface BlogPost {
@@ -95,6 +99,7 @@ export interface BlogPost {
   tags: string[];
   body: string;
   coverImage?: string;
+  coverAlt?: string;
 }
 
 export interface HomeContent {
@@ -110,6 +115,8 @@ export interface AboutContent {
   values: { title: string; text: string }[];
   differentiators: { title: string; text: string }[];
   facts: { label: string; value: string }[];
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface ContactContent {

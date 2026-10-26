@@ -8,6 +8,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { Icon } from '@/components/ui/Icon';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { Photo } from '@/components/ui/Photo';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,6 +37,11 @@ export default async function ProjectPage({ params }: Props) {
       <PageHero eyebrow={industry?.title ?? 'Project'} title={p.title} text={p.summary} crumbs={[{ name: 'Home', href: '/' }, { name: 'Projects', href: '/projects' }, { name: p.title }]}>
         {p.isSample && <p className="chip mt-6">Sample project — illustrative, not a named client</p>}
       </PageHero>
+      {(p.coverImage || industry?.image) && (
+        <Section className="pb-0 pt-10 sm:pb-0 sm:pt-14">
+          <Photo src={(p.coverImage || industry?.image)!} alt={p.coverAlt ?? p.title} sizes="(min-width: 1280px) 1216px, 100vw" priority ratio="21 / 9" />
+        </Section>
+      )}
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
           <div>

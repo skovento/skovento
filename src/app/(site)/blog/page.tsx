@@ -4,6 +4,7 @@ import { pageMetadata } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { Photo } from '@/components/ui/Photo';
 
 export async function generateMetadata() {
   const settings = await getSettings();
@@ -21,6 +22,7 @@ export default async function BlogPage() {
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((b) => (
             <Link key={b.slug} href={`/blog/${b.slug}`} className="card card-hover flex h-full flex-col p-6">
+              {b.coverImage && <Photo src={b.coverImage} alt={b.coverAlt ?? b.title} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" rounded={false} className="-mx-6 -mt-6 mb-5 rounded-t-[15px]" />}
               <span className="font-mono text-xs uppercase tracking-widest text-accent-2">{b.category}</span>
               <h2 className="mt-3 text-xl font-semibold leading-snug">{b.title}</h2>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{b.excerpt}</p>

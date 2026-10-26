@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { getCaseStudies, getSettings } from '@/lib/content';
+import { getCaseStudies, getIndustries, getSettings } from '@/lib/content';
 import { pageMetadata } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { Icon } from '@/components/ui/Icon';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { Photo } from '@/components/ui/Photo';
 
 export async function generateMetadata() {
   const settings = await getSettings();
@@ -12,7 +13,8 @@ export async function generateMetadata() {
 }
 
 export default async function CaseStudiesPage() {
-  const [settings, cases] = await Promise.all([getSettings(), getCaseStudies()]);
+  const [settings, cases, industries] = await Promise.all([getSettings(), getCaseStudies(), getIndustries()]);
+  const img = (c: { coverImage?: string; industry: string }) => c.coverImage || industries.find((i) => i.slug === c.industry)?.image;
   return (
     <>
       <PageHero eyebrow="Case studies" title="Problems solved, explained plainly" text="Each case study covers the challenge, what we built and what changed for the business." crumbs={[{ name: 'Home', href: '/' }, { name: 'Case Studies' }]} />
@@ -20,6 +22,7 @@ export default async function CaseStudiesPage() {
         <div className="grid gap-5 md:grid-cols-2">
           {cases.map((c) => (
             <Link key={c.slug} href={`/case-studies/${c.slug}`} className="card card-hover flex h-full flex-col p-6 sm:p-8">
+              {img(c) && <Photo src={img(c)!} alt={c.coverAlt ?? c.title} sizes="(min-width: 768px) 50vw, 100vw" rounded={false} className="-mx-6 -mt-6 mb-6 rounded-t-[15px] sm:-mx-8 sm:-mt-8" />}
               <div className="mb-4 flex flex-wrap gap-2">
                 {c.isSample && <span className="chip">Sample case study</span>}
                 <span className="chip">{c.client}</span>

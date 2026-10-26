@@ -51,14 +51,16 @@ export function ServicesPreview({ categories }: { categories: ServiceCategory[] 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((c, i) => (
           <Reveal key={c.slug} delay={i * 0.05}>
-            <Link href={`/services#${c.slug}`} className="card card-hover flex h-full flex-col p-6">
+            <div className="card card-hover flex h-full flex-col p-6">
               <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-line-strong bg-base text-accent-2"><Icon name={c.icon} /></span>
-              <h3 className="text-xl font-semibold">{c.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{c.summary}</p>
-              <p className="mt-5 flex flex-wrap gap-1.5">
-                {c.services.slice(0, 3).map((s) => <span key={s.slug} className="chip">{s.title}</span>)}
-              </p>
-            </Link>
+              <h3 className="text-xl font-semibold"><Link href={`/services/${c.slug}`} className="hover:text-accent-2">{c.title}</Link></h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{c.summary}</p>
+              <ul className="mt-4 flex-1 space-y-0.5 text-sm">
+                {c.services.map((s) => (
+                  <li key={s.slug}><Link href={`/services/${c.slug}/${s.slug}`} className="inline-flex min-h-8 items-center gap-1.5 py-1 text-muted hover:text-fg"><Icon name="ArrowRight" size={13} className="text-accent-2" />{s.title}</Link></li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
         ))}
       </div>

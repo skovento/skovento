@@ -149,7 +149,9 @@ export async function listDocs<T extends { id: string } = Doc>(col: string): Pro
     const seeded = await a.isSeeded(col);
     const stored = await a.getAll(col);
     if (!seeded && stored.length === 0) return (defaultCollections[col] ?? []) as unknown as T[];
-    return stored as unknown as T[];
+    // fields added to the starter content later (e.g. images) also show for items saved before they existed
+    const defs = new Map((defaultCollections[col] ?? []).map((d) => [d.id, d]));
+    return stored.map((it) => (defs.has(it.id) ? { ...defs.get(it.id), ...it } : it)) as unknown as T[];
   } catch (e) {
     console.error(`[cms] could not read "${col}", using starter content:`, (e as Error).message);
     return (defaultCollections[col] ?? []) as unknown as T[];

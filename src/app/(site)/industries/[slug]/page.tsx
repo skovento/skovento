@@ -8,6 +8,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { Section, SectionHeading } from '@/components/ui/Section';
 import { Icon } from '@/components/ui/Icon';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { Photo } from '@/components/ui/Photo';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: Props) {
   const [settings, list] = await Promise.all([getSettings(), getIndustries()]);
   const i = list.find((x) => x.slug === slug);
   if (!i) return {};
-  return pageMetadata({ title: `${i.title} Software & Digital Solutions`, description: i.summary, path: `/industries/${i.slug}`, settings });
+  return pageMetadata({ title: `${i.title} Software & Digital Solutions`, description: i.summary, path: `/industries/${i.slug}`, settings, image: i.image });
 }
 
 export default async function IndustryPage({ params }: Props) {
@@ -36,6 +37,11 @@ export default async function IndustryPage({ params }: Props) {
   return (
     <>
       <PageHero eyebrow="Industry" title={i.title} text={i.summary} crumbs={[{ name: 'Home', href: '/' }, { name: 'Industries', href: '/industries' }, { name: i.title }]} />
+      {i.image && (
+        <Section className="pb-0 pt-10 sm:pb-0 sm:pt-14">
+          <Photo src={i.image} alt={i.imageAlt ?? i.title} sizes="(min-width: 1280px) 1216px, 100vw" priority ratio="21 / 9" />
+        </Section>
+      )}
       <Section>
         <div className="grid gap-5 md:grid-cols-2">
           <div className="card p-6 sm:p-8">

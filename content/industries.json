@@ -4,80 +4,215 @@
     "title": "Healthcare & Clinics",
     "icon": "HeartPulse",
     "summary": "Appointment, patient record and communication software for clinics and care providers.",
-    "challenges": ["Manual appointment booking and no-shows", "Patient records scattered across paper and spreadsheets", "Slow communication between front desk and doctors"],
-    "solutions": ["Online booking with automated reminders", "Secure patient and visit records with role-based access", "Doctor and reception dashboards", "WhatsApp and SMS notifications"],
-    "relatedServices": ["web-application-development", "custom-crm-development", "workflow-automation"]
+    "challenges": [
+      "Manual appointment booking and no-shows",
+      "Patient records scattered across paper and spreadsheets",
+      "Slow communication between front desk and doctors"
+    ],
+    "solutions": [
+      "Online booking with automated reminders",
+      "Secure patient and visit records with role-based access",
+      "Doctor and reception dashboards",
+      "WhatsApp and SMS notifications"
+    ],
+    "relatedServices": [
+      "web-application-development",
+      "custom-crm-development",
+      "workflow-automation"
+    ],
+    "image": "/images/industry-healthcare-and-clinics.jpg",
+    "imageAlt": "Two clinicians reviewing patient information together on a tablet"
   },
   {
     "slug": "retail-and-ecommerce",
     "title": "Retail & E-commerce",
     "icon": "ShoppingBag",
     "summary": "Online stores, POS and inventory systems that keep stock and sales in sync.",
-    "challenges": ["Stock mismatch between shop and online store", "Low conversion on slow storefronts", "Manual order and invoice handling"],
-    "solutions": ["Fast storefronts with optimised checkout", "Unified inventory across channels", "Billing and POS integrated with the store", "Sales dashboards by product and branch"],
-    "relatedServices": ["ecommerce-development", "erp-and-inventory-software", "performance-optimisation"]
+    "challenges": [
+      "Stock mismatch between shop and online store",
+      "Low conversion on slow storefronts",
+      "Manual order and invoice handling"
+    ],
+    "solutions": [
+      "Fast storefronts with optimised checkout",
+      "Unified inventory across channels",
+      "Billing and POS integrated with the store",
+      "Sales dashboards by product and branch"
+    ],
+    "relatedServices": [
+      "ecommerce-development",
+      "erp-and-inventory-software",
+      "performance-optimisation"
+    ],
+    "image": "/images/industry-retail-and-ecommerce.jpg",
+    "imageAlt": "Online store owner photographing a product at a desk with a laptop and shipping boxes"
   },
   {
     "slug": "education-and-edtech",
     "title": "Education & EdTech",
     "icon": "GraduationCap",
     "summary": "Learning platforms, admissions and school management software.",
-    "challenges": ["Paper-based admissions and fee tracking", "Parents and staff using separate disconnected tools", "Limited reporting on attendance and results"],
-    "solutions": ["Admission and enquiry management", "Student, staff and fee management", "Parent portals and notifications", "Learning content and assessment platforms"],
-    "relatedServices": ["web-application-development", "dashboards-and-reporting", "react-native-app-development"]
+    "challenges": [
+      "Paper-based admissions and fee tracking",
+      "Parents and staff using separate disconnected tools",
+      "Limited reporting on attendance and results"
+    ],
+    "solutions": [
+      "Admission and enquiry management",
+      "Student, staff and fee management",
+      "Parent portals and notifications",
+      "Learning content and assessment platforms"
+    ],
+    "relatedServices": [
+      "web-application-development",
+      "dashboards-and-reporting",
+      "react-native-app-development"
+    ],
+    "image": "/images/industry-education-and-edtech.jpg",
+    "imageAlt": "Students working on a laptop in a classroom with a teacher"
   },
   {
     "slug": "real-estate",
     "title": "Real Estate",
     "icon": "Building2",
     "summary": "Listing websites, lead management and site-visit workflows for builders and agents.",
-    "challenges": ["Leads lost between calls, messages and portals", "Outdated project and inventory information", "No clear view of site-visit to booking conversion"],
-    "solutions": ["Project and listing websites with enquiry capture", "CRM with site-visit scheduling", "Inventory and availability management", "Lead source and conversion reports"],
-    "relatedServices": ["business-website-development", "custom-crm-development", "technical-seo"]
+    "challenges": [
+      "Leads lost between calls, messages and portals",
+      "Outdated project and inventory information",
+      "No clear view of site-visit to booking conversion"
+    ],
+    "solutions": [
+      "Project and listing websites with enquiry capture",
+      "CRM with site-visit scheduling",
+      "Inventory and availability management",
+      "Lead source and conversion reports"
+    ],
+    "relatedServices": [
+      "business-website-development",
+      "custom-crm-development",
+      "technical-seo"
+    ],
+    "image": "/images/industry-real-estate.jpg",
+    "imageAlt": "Modern apartment building with balconies against a pale sky"
   },
   {
     "slug": "logistics-and-supply-chain",
     "title": "Logistics & Supply Chain",
     "icon": "Truck",
     "summary": "Tracking, dispatch and partner portals for transport and distribution businesses.",
-    "challenges": ["Limited visibility of shipments and fleet", "Manual dispatch and proof-of-delivery paperwork", "Disconnected partner and customer communication"],
-    "solutions": ["Shipment tracking and status updates", "Dispatch and driver apps", "Customer and partner portals", "Operations dashboards and exports"],
-    "relatedServices": ["web-application-development", "react-native-app-development", "dashboards-and-reporting"]
+    "challenges": [
+      "Limited visibility of shipments and fleet",
+      "Manual dispatch and proof-of-delivery paperwork",
+      "Disconnected partner and customer communication"
+    ],
+    "solutions": [
+      "Shipment tracking and status updates",
+      "Dispatch and driver apps",
+      "Customer and partner portals",
+      "Operations dashboards and exports"
+    ],
+    "relatedServices": [
+      "web-application-development",
+      "react-native-app-development",
+      "dashboards-and-reporting"
+    ],
+    "image": "/images/industry-logistics-and-supply-chain.jpg",
+    "imageAlt": "Forklift moving a pallet of goods in a busy distribution warehouse"
   },
   {
     "slug": "hospitality-and-travel",
     "title": "Hospitality & Travel",
     "icon": "Hotel",
     "summary": "Direct booking websites and operations tools for hotels, resorts and travel businesses.",
-    "challenges": ["High commission from third-party booking platforms", "Manual enquiry handling over calls and chats", "Seasonal demand that is hard to forecast"],
-    "solutions": ["Direct booking websites with enquiry flows", "Room, package and availability management", "Guest communication automation", "Occupancy and revenue dashboards"],
-    "relatedServices": ["business-website-development", "workflow-automation", "technical-seo"]
+    "challenges": [
+      "High commission from third-party booking platforms",
+      "Manual enquiry handling over calls and chats",
+      "Seasonal demand that is hard to forecast"
+    ],
+    "solutions": [
+      "Direct booking websites with enquiry flows",
+      "Room, package and availability management",
+      "Guest communication automation",
+      "Occupancy and revenue dashboards"
+    ],
+    "relatedServices": [
+      "business-website-development",
+      "workflow-automation",
+      "technical-seo"
+    ],
+    "image": "/images/industry-hospitality-and-travel.jpg",
+    "imageAlt": "Stylish hotel reception desk and lobby"
   },
   {
     "slug": "manufacturing",
     "title": "Manufacturing & Industrial",
     "icon": "Factory",
     "summary": "Production tracking, inventory and dealer portals for manufacturers and suppliers.",
-    "challenges": ["Production and stock tracked in spreadsheets", "Slow quotation and order processing", "Limited visibility for dealers and distributors"],
-    "solutions": ["Production and inventory tracking", "Quotation and order management", "Dealer and distributor portals", "Product catalogues with enquiry capture"],
-    "relatedServices": ["erp-and-inventory-software", "web-application-development", "dashboards-and-reporting"]
+    "challenges": [
+      "Production and stock tracked in spreadsheets",
+      "Slow quotation and order processing",
+      "Limited visibility for dealers and distributors"
+    ],
+    "solutions": [
+      "Production and inventory tracking",
+      "Quotation and order management",
+      "Dealer and distributor portals",
+      "Product catalogues with enquiry capture"
+    ],
+    "relatedServices": [
+      "erp-and-inventory-software",
+      "web-application-development",
+      "dashboards-and-reporting"
+    ],
+    "image": "/images/industry-manufacturing.jpg",
+    "imageAlt": "Operator running heavy machinery on a factory production line"
   },
   {
     "slug": "professional-services",
     "title": "Professional & Financial Services",
     "icon": "Briefcase",
     "summary": "Client portals, document workflows and lead-generating websites for firms and consultants.",
-    "challenges": ["Document exchange over email and chat", "Slow onboarding of new clients", "Difficulty showing credibility online"],
-    "solutions": ["Secure client portals and document sharing", "Digital onboarding and e-forms", "Appointment and follow-up automation", "Authority-building websites with structured content"],
-    "relatedServices": ["web-application-development", "document-and-data-intelligence", "business-website-development"]
+    "challenges": [
+      "Document exchange over email and chat",
+      "Slow onboarding of new clients",
+      "Difficulty showing credibility online"
+    ],
+    "solutions": [
+      "Secure client portals and document sharing",
+      "Digital onboarding and e-forms",
+      "Appointment and follow-up automation",
+      "Authority-building websites with structured content"
+    ],
+    "relatedServices": [
+      "web-application-development",
+      "document-and-data-intelligence",
+      "business-website-development"
+    ],
+    "image": "/images/industry-professional-services.jpg",
+    "imageAlt": "Adviser reviewing documents on a laptop with a client"
   },
   {
     "slug": "startups-and-saas",
     "title": "Startups & SaaS",
     "icon": "Rocket",
     "summary": "MVP development, product engineering and scaling support for early-stage teams.",
-    "challenges": ["Limited budget and a tight launch window", "Unclear scope and shifting priorities", "No in-house engineering capacity"],
-    "solutions": ["Scoped MVP built in iterations", "Product architecture ready to scale", "Design and engineering in one team", "Post-launch support and roadmap guidance"],
-    "relatedServices": ["web-application-development", "ui-ux-design", "cloud-deployment-and-devops"]
+    "challenges": [
+      "Limited budget and a tight launch window",
+      "Unclear scope and shifting priorities",
+      "No in-house engineering capacity"
+    ],
+    "solutions": [
+      "Scoped MVP built in iterations",
+      "Product architecture ready to scale",
+      "Design and engineering in one team",
+      "Post-launch support and roadmap guidance"
+    ],
+    "relatedServices": [
+      "web-application-development",
+      "ui-ux-design",
+      "cloud-deployment-and-devops"
+    ],
+    "image": "/images/industry-startups-and-saas.jpg",
+    "imageAlt": "Two colleagues planning a product roadmap with sticky notes on a whiteboard"
   }
 ]

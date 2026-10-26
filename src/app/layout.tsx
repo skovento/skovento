@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={display.variable} suppressHydrationWarning>
+    <html lang="en-IN" className={display.variable} suppressHydrationWarning>
       <head>
         {/* Decides before first paint whether to show the logo intro: first visit only, never for crawlers / reduced motion. ?loader=1 forces it. */}
         <script

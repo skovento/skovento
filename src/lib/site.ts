@@ -18,23 +18,38 @@ export const robotsMeta = (s: Settings): NonNullable<Metadata['robots']> =>
         googleBot: { index: false, follow: false, noarchive: true, nosnippet: true, noimageindex: true },
       };
 
-interface PageMetaInput { title: string; description: string; path: string; settings: Settings; type?: 'website' | 'article' }
+interface PageMetaInput { title: string; description: string; path: string; settings: Settings; type?: 'website' | 'article'; image?: string }
 
 /** Per-page metadata: title, description, canonical, social cards and robots. */
-export function pageMetadata({ title, description, path, settings, type = 'website' }: PageMetaInput): Metadata {
+export function pageMetadata({ title, description: rawDescription, path, settings, type = 'website', image }: PageMetaInput): Metadata {
+  const ogImage = image || settings.seo.defaultOgImage;
   const url = absoluteUrl(settings, path);
-  const fullTitle = path === '/' ? title : settings.seo.titleTemplate.replace('%s', title);
+  const branded = settings.seo.titleTemplate.replace('%s', title);
+  // Keep titles within ~60 characters (search results cut longer ones): drop the brand suffix when needed
+  const fullTitle = path === '/' ? title : branded.length <= 60 ? branded : title;
+  const description = fitDescription(rawDescription, settings);
   return {
     title: { absolute: fullTitle },
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, ...(path === '/blog' ? { types: { 'application/rss+xml': absoluteUrl(settings, '/blog/rss.xml') } } : {}) },
     robots: robotsMeta(settings),
     openGraph: {
       title: fullTitle, description, url, siteName: settings.siteName, type, locale: settings.locale.replace('-', '_'),
-      ...(settings.seo.defaultOgImage ? { images: [settings.seo.defaultOgImage] } : {}),
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
-    twitter: { card: 'summary_large_image', title: fullTitle, description },
+    twitter: { card: 'summary_large_image', title: fullTitle, description, ...(ogImage ? { images: [ogImage] } : {}) },
   };
+}
+
+/** Meta descriptions read best at ~110–160 characters: pad very short ones, trim long ones at a word boundary. */
+export function fitDescription(text: string, settings: Settings): string {
+  let d = text.replace(/\s+/g, ' ').trim();
+  if (d.length < 110) d = `${d.replace(/[.!?]$/, '')}. ${settings.siteName} builds reliable software for growing businesses.`;
+  if (d.length > 160) {
+    d = d.slice(0, 157);
+    d = `${d.slice(0, d.lastIndexOf(' ')).replace(/[,;:\-–—]$/, '')}…`;
+  }
+  return d;
 }
 
 export const whatsappHref = (s: Settings): string | null => {

@@ -58,6 +58,7 @@ export async function getIndustries(): Promise<Industry[]> {
   return byOrder(d).map((i) => ({
     slug: i.id, title: i.title, icon: i.icon || 'Briefcase', summary: i.summary ?? '',
     challenges: clean(i.challenges), solutions: clean(i.solutions), relatedServices: arr(i.relatedServices),
+    image: i.image || undefined, imageAlt: i.imageAlt || i.title,
   }));
 }
 
@@ -73,7 +74,7 @@ export async function getProjects(): Promise<Project[]> {
   return byOrder(d).map((p) => ({
     slug: p.id, title: p.title, industry: p.industry ?? '', services: arr(p.services), summary: p.summary ?? '',
     description: p.description ?? '', techs: clean(p.techs), highlights: clean(p.highlights),
-    isSample: p.isSample !== false, coverImage: p.coverImage || undefined,
+    isSample: p.isSample !== false, coverImage: p.coverImage || undefined, coverAlt: p.coverAlt || p.title,
   }));
 }
 
@@ -83,7 +84,7 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
     slug: c.id, title: c.title, client: c.client ?? '', industry: c.industry ?? '', services: arr(c.services),
     summary: c.summary ?? '', challenge: c.challenge ?? '', solution: c.solution ?? '',
     results: arr(c.results).filter((r) => r.label), techs: clean(c.techs), isSample: c.isSample !== false,
-    coverImage: c.coverImage || undefined,
+    coverImage: c.coverImage || undefined, coverAlt: c.coverAlt || c.title,
   }));
 }
 
@@ -95,7 +96,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
     .filter((b) => b.published !== false)
     .map((b) => ({
       slug: b.id, title: b.title, category: b.category ?? '', excerpt: b.excerpt ?? '', publishedAt: b.publishedAt ?? '',
-      readingMinutes: b.readingMinutes || 5, tags: clean(b.tags), body: b.body ?? '', coverImage: b.coverImage || undefined,
+      readingMinutes: b.readingMinutes || 5, tags: clean(b.tags), body: b.body ?? '', coverImage: b.coverImage || undefined, coverAlt: b.coverAlt || b.title,
     }))
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }
