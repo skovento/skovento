@@ -103,13 +103,15 @@ export function Process({ steps }: { steps: HomeContent['process'] }) {
       <SectionHeading eyebrow="How we work" title="A delivery process that keeps you in control" />
       <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
-          <Reveal key={s.step} delay={i * 0.07}>
-            <li className="card relative h-full p-6">
-              <span className="font-mono text-sm text-accent-2">{s.step}</span>
-              <h3 className="mt-3 text-xl font-semibold">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{s.text}</p>
-            </li>
-          </Reveal>
+          <li key={s.step}>
+            <Reveal delay={i * 0.07} className="h-full">
+              <div className="card relative h-full p-6">
+                <span className="font-mono text-sm text-accent-2">{s.step}</span>
+                <h3 className="mt-3 text-xl font-semibold">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{s.text}</p>
+              </div>
+            </Reveal>
+          </li>
         ))}
       </ol>
     </Section>

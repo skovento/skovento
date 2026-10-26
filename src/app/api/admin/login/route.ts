@@ -6,6 +6,9 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
+  if (Number(request.headers.get('content-length') ?? 0) > 5_000) {
+    return NextResponse.json({ error: 'Request too large.' }, { status: 413 });
+  }
   if (!adminConfigured()) {
     return NextResponse.json({ error: 'Admin is not configured. Set ADMIN_EMAIL, ADMIN_PASSWORD (or ADMIN_PASSWORD_HASH) and ADMIN_SESSION_SECRET.' }, { status: 503 });
   }

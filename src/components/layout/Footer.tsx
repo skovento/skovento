@@ -47,10 +47,10 @@ export async function Footer({ settings }: { settings: Settings }) {
 
         <nav aria-label="Services">
           <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Services</h3>
-          <ul className="space-y-2.5 text-sm">
+          <ul className="text-sm">
             {cats.map((cat) => (
               <li key={cat.slug}>
-                <Link href={`/services#${cat.slug}`} className="text-muted hover:text-fg">
+                <Link href={`/services#${cat.slug}`} className="inline-block py-2 text-muted hover:text-fg">
                   {cat.title}
                 </Link>
               </li>
@@ -60,10 +60,10 @@ export async function Footer({ settings }: { settings: Settings }) {
 
         <nav aria-label="Company">
           <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Company</h3>
-          <ul className="space-y-2.5 text-sm">
+          <ul className="text-sm">
             {company.map(([label, href]) => (
               <li key={href}>
-                <Link href={href} className="text-muted hover:text-fg">
+                <Link href={href} className="inline-block py-2 text-muted hover:text-fg">
                   {label}
                 </Link>
               </li>
@@ -73,17 +73,17 @@ export async function Footer({ settings }: { settings: Settings }) {
 
         <div>
           <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Contact</h3>
-          <ul className="space-y-3 text-sm text-muted">
+          <ul className="space-y-1 text-sm text-muted">
             {c.email && (
               <li className="flex gap-2">
                 <Icon name="Mail" size={16} className="mt-0.5 shrink-0 text-accent-2" />
-                <a href={`mailto:${c.email}`} className="hover:text-fg">{c.email}</a>
+                <a href={`mailto:${c.email}`} className="inline-block py-1.5 hover:text-fg">{c.email}</a>
               </li>
             )}
             {c.phone && (
               <li className="flex gap-2">
                 <Icon name="Phone" size={16} className="mt-0.5 shrink-0 text-accent-2" />
-                <a href={`tel:${c.phone.replace(/\s/g, '')}`} className="hover:text-fg">{c.phone}</a>
+                <a href={`tel:${c.phone.replace(/\s/g, '')}`} className="inline-block py-1.5 hover:text-fg">{c.phone}</a>
               </li>
             )}
             {wa && (
@@ -105,7 +105,7 @@ export async function Footer({ settings }: { settings: Settings }) {
               </li>
             )}
             <li>
-              <Link href="/contact" className="inline-flex items-center gap-1 font-medium text-accent hover:text-accent-2">
+              <Link href="/contact" className="inline-flex min-h-10 items-center gap-1 font-medium text-accent hover:text-accent-2">
                 Send an enquiry <Icon name="ArrowRight" size={14} />
               </Link>
             </li>
@@ -115,9 +115,9 @@ export async function Footer({ settings }: { settings: Settings }) {
       <div className="border-t border-line">
         <Container className="flex flex-col items-start justify-between gap-3 py-6 text-xs text-faint sm:flex-row sm:items-center">
           <p>© {year} {settings.legalEntityName || settings.siteName}. All rights reserved.</p>
-          <p className="flex gap-5">
-            <Link href="/privacy" className="hover:text-fg">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-fg">Terms</Link>
+          <p className="flex gap-5 sm:gap-6">
+            <Link href="/privacy" className="inline-block py-3 hover:text-fg">Privacy Policy</Link>
+            <Link href="/terms" className="inline-block py-3 hover:text-fg">Terms</Link>
           </p>
         </Container>
       </div>

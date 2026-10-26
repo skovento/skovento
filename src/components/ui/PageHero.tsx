@@ -11,10 +11,10 @@ export function PageHero({ eyebrow, title, text, crumbs, children }: {
       <div className="bg-grid pointer-events-none absolute inset-0" aria-hidden="true" />
       <Container className="relative">
         {crumbs && (
-          <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-2 text-sm text-faint">
+          <nav aria-label="Breadcrumb" className="mb-3 flex flex-wrap items-center gap-x-2 text-sm text-faint">
             {crumbs.map((c, i) => (
               <span key={c.name} className="flex items-center gap-2">
-                {c.href ? <Link href={c.href} className="hover:text-fg">{c.name}</Link> : <span className="text-muted">{c.name}</span>}
+                {c.href ? <Link href={c.href} className="inline-block py-2 hover:text-fg">{c.name}</Link> : <span className="text-muted">{c.name}</span>}
                 {i < crumbs.length - 1 && <span aria-hidden="true">/</span>}
               </span>
             ))}

@@ -52,7 +52,7 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
                   <Icon name="ChevronDown" size={14} className="transition-transform group-hover:rotate-180" />
                 </Link>
                 <div className="invisible absolute left-1/2 top-full w-[620px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                  <div className="card grid grid-cols-2 gap-1 bg-surface p-3 shadow-2xl">
+                  <div className="menu-panel grid grid-cols-2 gap-1 p-3">
                     {categories.map((c) => (
                       <Link key={c.slug} href={`/services#${c.slug}`} className="flex gap-3 rounded-xl p-3 transition-colors hover:bg-raised">
                         <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-line bg-base text-accent-2">

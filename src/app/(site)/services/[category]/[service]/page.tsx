@@ -69,7 +69,7 @@ export default async function ServicePage({ params }: Props) {
                 <h3 className="font-mono text-xs uppercase tracking-widest text-faint">Relevant industries</h3>
                 <ul className="mt-4 space-y-2 text-sm">
                   {relatedIndustries.map((i) => (
-                    <li key={i.slug}><Link href={`/industries/${i.slug}`} className="inline-flex items-center gap-2 text-muted hover:text-fg"><Icon name={i.icon} size={16} className="text-accent-2" />{i.title}</Link></li>
+                    <li key={i.slug}><Link href={`/industries/${i.slug}`} className="inline-flex items-center gap-2 py-1.5 text-muted hover:text-fg"><Icon name={i.icon} size={16} className="text-accent-2" />{i.title}</Link></li>
                   ))}
                 </ul>
               </div>

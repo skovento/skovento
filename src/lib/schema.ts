@@ -13,6 +13,7 @@ export function baseGraph(s: Settings) {
         '@id': absoluteUrl(s, '/#organization'),
         name: s.legalEntityName || s.siteName,
         url: absoluteUrl(s, '/'),
+        logo: absoluteUrl(s, '/brand/logo-light.png'),
         description: s.description,
         ...(s.contact.email ? { email: s.contact.email } : {}),
         ...(s.contact.phone ? { telephone: s.contact.phone } : {}),

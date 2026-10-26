@@ -52,6 +52,10 @@ async function sendNotification(d: InquiryInput): Promise<boolean> {
 }
 
 export async function POST(request: Request) {
+  // Refuse oversized bodies before reading them (the form never needs more than a few KB)
+  if (Number(request.headers.get('content-length') ?? 0) > 50_000) {
+    return NextResponse.json({ error: 'Request too large.' }, { status: 413 });
+  }
   const limit = rateLimit(clientKey(request, 'contact'), { limit: 5, windowMs: 10 * 60 * 1000 });
   if (!limit.ok) {
     return NextResponse.json({ error: 'Too many submissions. Please try again shortly.' }, { status: 429, headers: { 'Retry-After': String(limit.retryAfterSeconds) } });

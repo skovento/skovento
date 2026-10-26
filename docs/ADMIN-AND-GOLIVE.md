@@ -1,46 +1,49 @@
 # Admin panel ane Go-Live guide
 
-## Chalavvu (local)
+Admin panel Next.js ni andar j chhe (koi external CMS nathi). Address: **`/admin`**.
+
+## Local ma chalavvu
 
 ```bash
-# Terminal 1 — Admin panel / CMS (http://localhost:1337/admin)
-cd cms && npm run develop
-
-# Terminal 2 — Website (http://localhost:3000)
-npm run dev
+npm install
+npm run dev          # http://localhost:3000   |   admin: http://localhost:3000/admin
 ```
 
-Pehli var CMS khule tyare **admin account banavo** (email + password). Starter content automatic import thai jay chhe.
-
-Website ne CMS sathe jodva `.env.local` ma:
-
-```env
-STRAPI_URL=http://localhost:1337
-STRAPI_API_TOKEN=<cms/.tmp/website-leads-token.txt ni andar no token>
-```
+`.env.local` ma `ADMIN_EMAIL` + `ADMIN_PASSWORD` + `ADMIN_SESSION_SECRET` hovu joiye (juo `.env.example`).
+Local data `.data/cms.json` ma save thay chhe (git ma jatu nathi).
 
 ## Admin ma shu shu manage thay
 
 | Jagya | Kaam |
 |---|---|
-| Site Settings | Brand, contact, social, nav, **tracking (GTM / GA4 / Search Console / Pixel / Clarity)**, **Allow indexing** |
-| Home Page / About Page / Contact Page | Badho text |
-| Service Category + Service | Category → sub-service, deliverables, FAQs |
-| Industry, Technology Group | Industries ane tech stack |
-| Project, Case Study | Sample ke real work (Is sample toggle) |
-| Blog Post | Draft / Publish, SEO title + description |
-| Legal Page | Privacy ane Terms |
-| **Lead / Enquiry** | CRM: status, priority, assigned to, follow-up date, deal value, notes |
+| Dashboard | New leads, indexing status, tracking status |
+| **Leads (CRM)** | Status, priority, assigned to, follow-up date, deal value, notes, search/filter, CSV export |
+| Home / About / Contact / Legal | Pages no badho text |
+| Service Categories + Services | Category → sub-service, deliverables, FAQs |
+| Industries, Technology Groups | Industries ane tech stack |
+| Projects, Case Studies | Real ke sample work (`Sample` toggle) |
+| Blog Posts | Draft/Publish, markdown preview |
+| **Site Settings** | Brand, contact, social, menu, **SEO & indexing**, **GTM / GA4 / Search Console / Pixel / Clarity** |
+
+Navu field / navo content type: `src/lib/cms/schema.ts` ma add karo → admin form automatic banse.
+Navo content public site par batavva: `src/lib/content.ts` ma read karo.
 
 ## Crawl / SEO (abhi band)
 
-- Default: **Allow indexing = OFF** → badhu `noindex, nofollow`, `robots.txt` = `Disallow: /`, sitemap khali.
-- Extra kill-switch: hosting env ma `FORCE_NOINDEX=true` → CMS ma ON hoy to pan header thi noindex rahe.
-- Go-live vakhte: pehla Site Settings → Contact / legal entity bharo → pachhi **Allow indexing ON** (ane `FORCE_NOINDEX` hatavo).
-- Tracking IDs (GTM, GA4…) admin ma nakho — tya sudhi kai load nathi thatu.
+- Default: **Allow indexing = OFF** → badhe `noindex, nofollow`, `robots.txt` = `Disallow: /`, sitemap khali.
+- Extra kill-switch: env `FORCE_NOINDEX=true` → admin ma ON hoy to pan noindex rahe.
+- Go-live: Settings ma contact/legal bharo → **Allow indexing ON** → `FORCE_NOINDEX` hatavo → Search Console ma sitemap submit.
+- `/admin` hamesha noindex + no-store.
+
+## Production (Vercel)
+
+1. Env vars set karo (list: `PROJECT-STATUS.md` → Environment variables).
+2. **`CMS_DATABASE_URL` jaruri chhe.** Vercel par disk read-only chhe; vagar database admin ma save nahi thay.
+3. Password hash: `npm run admin:hash -- "tamaro lamb password"` → output `ADMIN_PASSWORD_HASH` ma muko (ADMIN_PASSWORD khali rakho).
+4. Deploy → `/admin` ma login → Settings check → test enquiry moklo → Leads ma dekhay chhe e confirm.
 
 ## Privacy
 
-- Site ma koi person nu naam nathi (About ma pan nahi). Footer ma "legal entity name" optional chhe — khali hoy to brand name j dekhase.
-- Contact details (email / phone / address) khali chhe — jyare decide karo tyare Site Settings ma bharo.
-- Git history ma commit author tamaru naam chhe — public repo na banavo; je git ma jaay chhe te private rakho.
+- Site ma koi person nu naam nathi. Footer ma legal entity name optional (khali = brand name).
+- Email / phone / address khali chhe; Settings ma bharo tyare j dekhase.
+- Git commit author tamaru naam chhe; repo private rakho.

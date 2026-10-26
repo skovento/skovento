@@ -73,7 +73,7 @@ export function clientKey(request: Request, scope: string): string {
   const forwarded = request.headers.get('x-forwarded-for') ?? '';
   const realIp = request.headers.get('x-real-ip') ?? '';
   const ip = forwarded.split(',')[0].trim() || realIp || 'unknown';
-  const salt = process.env.ADMIN_SECRET_KEY ?? 'skovento-fallback-salt';
+  const salt = process.env.ADMIN_SESSION_SECRET ?? 'skovento-fallback-salt';
   return `${scope}:${createHash('sha256').update(`${salt}:${ip}`).digest('hex').slice(0, 32)}`;
 }
 
@@ -83,6 +83,6 @@ export function hashIp(request: Request): string | null {
   const realIp = request.headers.get('x-real-ip') ?? '';
   const ip = forwarded.split(',')[0].trim() || realIp;
   if (!ip) return null;
-  const salt = process.env.ADMIN_SECRET_KEY ?? 'skovento-fallback-salt';
+  const salt = process.env.ADMIN_SESSION_SECRET ?? 'skovento-fallback-salt';
   return createHash('sha256').update(`${salt}:${ip}`).digest('hex').slice(0, 32);
 }

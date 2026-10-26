@@ -12,7 +12,7 @@
   --color-line-strong: #2a3a5e;
   --color-fg: #e8eefb;
   --color-muted: #8f9db8;
-  --color-faint: #5f6e8d;
+  --color-faint: #8190ae;
   --color-accent: #4c8dff;
   --color-accent-2: #22d3ee;
   --color-violet: #8b7cff;
@@ -183,3 +183,11 @@ h1, h2, h3, h4 {
 .ad-input:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(76, 141, 255, 0.25); }
 .ad-input[readonly], .ad-input:disabled { opacity: 0.65; cursor: default; }
 .ad-badge { display: inline-flex; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid var(--color-line-strong); text-transform: capitalize; }
+
+/* Solid panel for menus / popovers (the translucent .card lets page content bleed through) */
+.menu-panel {
+  background: #0b1220;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 16px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(76, 141, 255, 0.08);
+}

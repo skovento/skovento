@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { LazyMotion, m, useReducedMotion } from 'framer-motion';
+
+const loadFeatures = () => import('@/components/ui/motion-features').then((r) => r.default);
 
 /** Animated terminal: types each line in turn, then loops. Static when reduced motion is on. */
 export function HeroVisual({ lines }: { lines: string[] }) {
@@ -18,9 +20,10 @@ export function HeroVisual({ lines }: { lines: string[] }) {
   const visible = lines.slice(0, Math.min(shown, lines.length));
 
   return (
+    <LazyMotion features={loadFeatures} strict>
     <div className="relative mx-auto w-full max-w-lg" aria-hidden="true">
       <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-accent/25 via-transparent to-accent-2/20 blur-2xl" />
-      <motion.div
+      <m.div
         initial={reduce ? false : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -34,20 +37,20 @@ export function HeroVisual({ lines }: { lines: string[] }) {
         </div>
         <div className="min-h-[250px] space-y-2 p-5 font-mono text-[13px] leading-relaxed sm:text-sm">
           {visible.map((l, i) => (
-            <motion.p
+            <m.p
               key={`${l}-${i}`}
               initial={reduce ? false : { opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               className={l.startsWith('$') ? 'text-fg' : l.startsWith('✓') ? 'text-ok' : 'text-accent-2'}
             >
               {l}
-            </motion.p>
+            </m.p>
           ))}
           <p className="text-accent-2">
             <span className="caret">▍</span>
           </p>
         </div>
-      </motion.div>
+      </m.div>
 
       <div className="animate-float absolute -right-3 -top-5 hidden rounded-xl border border-line-strong bg-raised/90 px-4 py-3 shadow-xl backdrop-blur sm:block">
         <p className="font-mono text-[11px] uppercase tracking-widest text-faint">Performance</p>
@@ -58,5 +61,6 @@ export function HeroVisual({ lines }: { lines: string[] }) {
         <p className="font-display text-sm font-semibold text-fg">All checks passed</p>
       </div>
     </div>
+    </LazyMotion>
   );
 }

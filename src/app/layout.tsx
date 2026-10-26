@@ -6,7 +6,7 @@ import { robotsMeta, siteUrl } from '@/lib/site';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--f-inter' });
 const display = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap', variable: '--f-display' });
-const mono = JetBrains_Mono({ subsets: ['latin'], display: 'swap', variable: '--f-mono' });
+const mono = JetBrains_Mono({ subsets: ['latin'], display: 'swap', variable: '--f-mono', preload: false });
 
 export const viewport: Viewport = { themeColor: '#060a13', colorScheme: 'dark' };
 

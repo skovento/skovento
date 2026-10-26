@@ -55,7 +55,7 @@ export default async function ProjectPage({ params }: Props) {
               <div className="card p-6">
                 <h3 className="font-mono text-xs uppercase tracking-widest text-faint">Services involved</h3>
                 <ul className="mt-4 space-y-2 text-sm">
-                  {used.map((s) => <li key={s.slug}><Link href={`/services/${s.categorySlug}/${s.slug}`} className="text-muted hover:text-fg">{s.title}</Link></li>)}
+                  {used.map((s) => <li key={s.slug}><Link href={`/services/${s.categorySlug}/${s.slug}`} className="inline-block py-1.5 text-muted hover:text-fg">{s.title}</Link></li>)}
                 </ul>
               </div>
             )}
