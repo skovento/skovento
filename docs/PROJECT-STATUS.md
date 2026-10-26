@@ -72,7 +72,7 @@ Juna `.env` ma je haju padya chhe (Supabase `DATABASE_URL`/`DIRECT_URL`, `ADMIN_
 - [ ] Media upload (hal cover image mate sirf URL)
 - [ ] Rate limit hal in-memory (serverless ma instance-wise); Upstash/Redis mate upgrade
 - [ ] Multiple admin users / password reset / audit log (hal single admin)
-- [x] Logo: simple hand-built vector S + node mark (no raster / Canva dependency). Old detailed logo vault ma archive
+- [x] Logo FINAL: Icon E5 (S + check-mark V) + Bricolage Grotesque, hand-built vector. Files `public/brand/`, sources + Canva links vault ma (`assets/brand/BRAND-INDEX.md`)
 - [ ] Automated tests (Playwright): contact form, admin login, CRUD
 - [ ] Uptime + error monitoring (Sentry / Vercel Analytics)
 - [ ] Mobile speed: further JS reduction (hero animation lighter)
@@ -81,6 +81,12 @@ Juna `.env` ma je haju padya chhe (Supabase `DATABASE_URL`/`DIRECT_URL`, `ADMIN_
 - [ ] Junu `cms/` folder (Strapi, Windows lock ne karane delete na thayu) — manually delete
 - [ ] Backup `D:\Projects\skovento-legacy-backup` — jyare jarur na hoy tyare delete
 - [ ] `public/final*`, `skovento_macro_*`, `skovento-transparent.png` juna images — hal vaparata nathi
+
+## 5a. First-visit logo intro (loader)
+- Component: `src/components/brand/SiteLoader.tsx` (+ `LoaderDismiss.tsx`, CSS `#sk-loader` in `globals.css`, paths `src/lib/brand-paths.ts`).
+- Logo draw animation (~2.5 s): S → check-mark V → wordmark → fade. Pure CSS, server-rendered (no flash).
+- Sirf **first visit** (localStorage `sk_seen`). Skip: click / key / Skip button. Off for returning visitors, `prefers-reduced-motion`, crawlers, Lighthouse, headless.
+- Test karva: `/?loader=1` (flag reset kari fari batave). Band karva: `(site)/layout.tsx` ma `<SiteLoader />` hataavo.
 
 ## 5b. Important data vault (project ni bahar)
 `D:\Projects\project-vault\skovento\important\` — repository info, env copies + changelog, legal checklist, data inventory, licenses, brand assets, source snapshot zip. Template: `D:\Projects\project-vault\_template`.

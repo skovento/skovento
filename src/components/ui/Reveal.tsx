@@ -1,22 +1,15 @@
-'use client';
-import { LazyMotion, m, useReducedMotion } from 'framer-motion';
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
-const loadFeatures = () => import('./motion-features').then((r) => r.default);
-
-export function Reveal({ children, delay = 0, y = 22, className }: { children: ReactNode; delay?: number; y?: number; className?: string }) {
-  const reduce = useReducedMotion();
+/**
+ * Scroll-in effect without a JS animation library: this only tags the element, a tiny observer
+ * (RevealInit) adds `.is-in` when it scrolls into view, and CSS does the rest. Content stays fully
+ * visible without JavaScript and for reduced-motion users (see globals.css).
+ */
+export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; y?: number; className?: string }) {
+  const style: CSSProperties | undefined = delay ? { transitionDelay: `${delay}s` } : undefined;
   return (
-    <LazyMotion features={loadFeatures} strict>
-      <m.div
-        className={className}
-        initial={reduce ? false : { opacity: 0, y }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
-      >
-        {children}
-      </m.div>
-    </LazyMotion>
+    <div data-reveal className={className} style={style}>
+      {children}
+    </div>
   );
 }

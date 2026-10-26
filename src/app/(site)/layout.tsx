@@ -5,6 +5,7 @@ import { Tracking } from '@/components/seo/Tracking';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { SiteLoader } from '@/components/brand/SiteLoader';
+import { RevealInit } from '@/components/ui/RevealInit';
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const settings = await getSettings();
@@ -12,6 +13,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   return (
     <>
       <SiteLoader />
+      <RevealInit />
       {gtm && (
         <noscript>
           <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtm}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} title="gtm" />

@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--f-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--f-display), var(--f-inter), system-ui, sans-serif;
-  --font-mono: var(--f-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--f-display), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 
   --color-base: #060a13;
   --color-surface: #0b1220;
@@ -64,16 +64,6 @@ h1, h2, h3, h4 {
   -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 25%, transparent 78%);
 }
 
-/* fine film grain over the whole page: adds depth without images (pointer-safe, ~0 cost) */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 
 .bg-glow {
   background:
@@ -235,3 +225,10 @@ html.no-loader #sk-loader { display: none; }
 @keyframes sk-fill { to { transform: scaleX(1); } }
 @keyframes sk-out { to { opacity: 0; visibility: hidden; } }
 @media (prefers-reduced-motion: reduce) { #sk-loader { display: none; } }
+
+/* ---------- hero terminal + scroll reveal (CSS only) ---------- */
+.term-line { opacity: 0; animation: term-in 0.45s ease both; }
+@keyframes term-in { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+html.js [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+html.js [data-reveal].is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html.js [data-reveal] { opacity: 1; transform: none; } .term-line { opacity: 1; animation: none; } }

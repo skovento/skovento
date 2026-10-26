@@ -46,7 +46,7 @@ export async function Footer({ settings }: { settings: Settings }) {
         </div>
 
         <nav aria-label="Services">
-          <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Services</h3>
+          <h2 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Services</h2>
           <ul className="text-sm">
             {cats.map((cat) => (
               <li key={cat.slug}>
@@ -59,7 +59,7 @@ export async function Footer({ settings }: { settings: Settings }) {
         </nav>
 
         <nav aria-label="Company">
-          <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Company</h3>
+          <h2 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Company</h2>
           <ul className="text-sm">
             {company.map(([label, href]) => (
               <li key={href}>
@@ -72,7 +72,7 @@ export async function Footer({ settings }: { settings: Settings }) {
         </nav>
 
         <div>
-          <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Contact</h3>
+          <h2 className="mb-4 font-mono text-xs uppercase tracking-widest text-faint">Contact</h2>
           <ul className="space-y-1 text-sm text-muted">
             {c.email && (
               <li className="flex gap-2">

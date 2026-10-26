@@ -39,7 +39,7 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
   return (
     <header className={cn('fixed inset-x-0 top-0 z-50 transition-all duration-300', scrolled || open ? 'border-b border-line bg-base/85 backdrop-blur-xl' : 'bg-transparent')}>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-[72px] lg:px-8">
-        <Link href="/" aria-label={`${name} home`} onClick={() => setOpen(false)}>
+        <Link prefetch={false} href="/" aria-label={`${name} home`} onClick={() => setOpen(false)}>
           <Logo name={name} />
         </Link>
 
@@ -47,14 +47,14 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
           {nav.map((l) =>
             l.href === '/services' ? (
               <div key={l.href} className="group relative">
-                <Link href={l.href} className={cn('flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg', active(l.href) && 'text-fg')}>
+                <Link prefetch={false} href={l.href} className={cn('flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg', active(l.href) && 'text-fg')}>
                   {l.label}
                   <Icon name="ChevronDown" size={14} className="transition-transform group-hover:rotate-180" />
                 </Link>
                 <div className="invisible absolute left-1/2 top-full w-[620px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
                   <div className="menu-panel grid grid-cols-2 gap-1 p-3">
                     {categories.map((c) => (
-                      <Link key={c.slug} href={`/services#${c.slug}`} className="flex gap-3 rounded-xl p-3 transition-colors hover:bg-raised">
+                      <Link prefetch={false} key={c.slug} href={`/services#${c.slug}`} className="flex gap-3 rounded-xl p-3 transition-colors hover:bg-raised">
                         <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-line bg-base text-accent-2">
                           <Icon name={c.icon} size={18} />
                         </span>
@@ -68,7 +68,7 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
                 </div>
               </div>
             ) : (
-              <Link key={l.href} href={l.href} className={cn('whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg', active(l.href) && 'text-fg')}>
+              <Link prefetch={false} key={l.href} href={l.href} className={cn('whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg', active(l.href) && 'text-fg')}>
                 {l.label}
               </Link>
             ),
@@ -78,7 +78,7 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
         <div className="flex items-center gap-2">
           {/* wrapper hides it on phones: the unlayered .btn rule would override a `hidden` class on the link itself */}
           <div className="hidden sm:block">
-            <Link href={ctaHref} className="btn btn-primary !min-h-10 !px-4 !text-sm">
+            <Link prefetch={false} href={ctaHref} className="btn btn-primary !min-h-10 !px-4 !text-sm">
               {ctaLabel}
             </Link>
           </div>
@@ -92,13 +92,13 @@ export function NavbarClient({ name, nav, categories, ctaLabel, ctaHref }: Props
         <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-base px-4 pb-8 pt-4 lg:hidden">
           <nav aria-label="Mobile" className="flex flex-col">
             {nav.map((l) => (
-              <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className={cn('flex min-h-12 items-center justify-between border-b border-line text-lg font-medium text-muted', active(l.href) && 'text-fg')}>
+              <Link prefetch={false} key={l.href} href={l.href} onClick={() => setOpen(false)} className={cn('flex min-h-12 items-center justify-between border-b border-line text-lg font-medium text-muted', active(l.href) && 'text-fg')}>
                 {l.label}
                 <Icon name="ArrowRight" size={16} />
               </Link>
             ))}
           </nav>
-          <Link href={ctaHref} onClick={() => setOpen(false)} className="btn btn-primary mt-6 w-full">
+          <Link prefetch={false} href={ctaHref} onClick={() => setOpen(false)} className="btn btn-primary mt-6 w-full">
             {ctaLabel}
           </Link>
         </div>
