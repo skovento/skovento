@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "admin:hash": "node scripts/admin-hash.mjs"
+    "admin:hash": "node scripts/admin-hash.mjs",
+    "vapid:generate": "node scripts/vapid-generate.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

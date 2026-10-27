@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { inquirySchema, fieldErrors, type InquiryInput } from '@/lib/validation';
 import { rateLimit, clientKey } from '@/lib/rate-limit';
 import { saveDoc } from '@/lib/cms/store';
+import { sendEnquiryEmail } from '@/lib/mail';
 
 /**
  * POST /api/contact — enquiry form.
- * Saves the lead into the admin panel's CRM and optionally emails a notification.
+ * Saves the lead into the admin panel's CRM and optionally emails a notification (SMTP, see src/lib/mail.ts).
  * The request only succeeds if at least one of the two worked, so no lead is silently lost.
  */
 
@@ -29,27 +29,7 @@ async function saveLead(d: InquiryInput): Promise<boolean> {
   }
 }
 
-async function sendNotification(d: InquiryInput): Promise<boolean> {
-  const { RESEND_API_KEY: key, NOTIFICATION_EMAIL: to, FROM_EMAIL: from } = process.env;
-  if (!key || !to || !from) return false;
-  try {
-    const resend = new Resend(key);
-    const { error } = await resend.emails.send({
-      from, to, replyTo: d.email,
-      subject: `New enquiry — ${d.name}${d.service ? ` (${d.service})` : ''}`,
-      text: [
-        `Name:    ${d.name}`, `Email:   ${d.email}`,
-        d.phone ? `Phone:   ${d.phone}` : null, d.company ? `Company: ${d.company}` : null,
-        d.service ? `Service: ${d.service}` : null, d.budgetRange ? `Budget:  ${d.budgetRange}` : null,
-        '', d.message || '(no message)',
-      ].filter((l): l is string => l !== null).join('\n'),
-    });
-    return !error;
-  } catch (err) {
-    console.error('[contact] email failed:', (err as Error).message);
-    return false;
-  }
-}
+const sendNotification = (d: InquiryInput) => sendEnquiryEmail(d);
 
 export async function POST(request: Request) {
   // Refuse oversized bodies before reading them (the form never needs more than a few KB)

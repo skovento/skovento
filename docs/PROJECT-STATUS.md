@@ -47,6 +47,7 @@ Mobile 100 kem nathi: real LCP ~0.3 s chhe (Lighthouse pote measure kare chhe), 
 | `CMS_DATABASE_URL` | **Yes (prod)** | Postgres URL. Vagar admin save Vercel par nahi chale |
 | `NEXT_PUBLIC_SITE_URL` | Yes (prod) | e.g. `https://skovento.com` (canonical/sitemap) |
 | `FORCE_NOINDEX` | Optional | `true` = noindex always (staging / pre-launch) |
+| `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | For phone alerts | `npm run vapid:generate`; see `ADMIN-MOBILE-PWA.md` |
 | `RESEND_API_KEY`, `NOTIFICATION_EMAIL`, `FROM_EMAIL` | Optional | New enquiry email alert |
 
 Juna `.env` ma je haju padya chhe (Supabase `DATABASE_URL`/`DIRECT_URL`, `ADMIN_SECRET_KEY`, `STRAPI_*`) — **have vaparata nathi**; Vercel/`.env` mathi kadhi nakho.

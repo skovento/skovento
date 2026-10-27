@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
 import { Icon } from '@/components/ui/Icon';
+import { AdminApp } from '@/components/admin/AdminApp';
 import { cn } from '@/lib/utils';
 
 export interface NavGroup { title: string; items: { label: string; href: string; badge?: number }[] }
@@ -66,7 +67,7 @@ export function AdminShell({ groups, email, siteName, children }: { groups: NavG
       {open && <div className="fixed inset-x-0 bottom-0 top-14 z-40 overflow-y-auto bg-surface lg:hidden">{nav}</div>}
 
       <main className="lg:pl-64">
-        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-8">{children}</div>
+        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-8"><AdminApp />{children}</div>
       </main>
     </div>
   );

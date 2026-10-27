@@ -14,7 +14,8 @@ import { redirect } from 'next/navigation';
  */
 
 const COOKIE = 'sk_admin';
-const MAX_AGE = 60 * 60 * 24 * 7;
+// 30 days: the admin app on a phone should stay signed in
+const MAX_AGE = 60 * 60 * 24 * 30;
 
 const secret = () => {
   const s = process.env.ADMIN_SESSION_SECRET;
